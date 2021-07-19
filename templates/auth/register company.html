@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+
+
+{% block content  %}
+    {% load bootstrap4 %}
+    <h1 class="text-center">Register</h1>
+    <div class="row d-flex justify-content-center">
+
+    <form method= "POST" action="{% url 'register company' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button class="btn btn-primary">Register</button>
+            <p>or <a href="{% url 'login' %}">Login</a></p>
+        {% endbuttons %}
+    </form>
+    </div>
+{% endblock %}
