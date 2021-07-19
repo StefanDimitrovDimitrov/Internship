@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internship</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+{#    <link rel="stylesheet" href="{% static 'style.css' %}">#}
+</head>
+<body>
+{% include 'shared/header.html' %}
+
+{% block content %}
+    <div class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="https://static.vecteezy.com/system/resources/previews/001/213/015/original/we-re-hiring-with-office-chair-and-vacant-sign-vector.jpg" alt="First slide">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% include 'shared/footer.html' %}
+
+</body>
+</html>

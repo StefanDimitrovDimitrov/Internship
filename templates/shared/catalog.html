@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1> Tool </h1>
+    {% for company in profiles %}
+        <ul>
+            <li><h3>{{ company.email }}</h3></li>
+            <a href="{% url 'company details' company.id %}">Details</a>
+        </ul>
+
+    {% endfor %}
+
+{% endblock %}
