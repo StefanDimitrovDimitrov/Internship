@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 from Internship.internship_auth.models import InternshipUser
-from Internship.internship_profiles.forms import CompanyForm
+from Internship.internship_profiles.forms import CompanyForm, CandidateForm
 from Internship.internship_profiles.models import CompanyProfile
 
 UserModel = get_user_model()
@@ -16,7 +16,18 @@ UserModel = get_user_model()
 class RegisterForm(UserCreationForm):
     class Meta:
         model = UserModel
-        fields = ('email','profile')
+        fields = ('email',)
+
+class RegisterFormCompany(CompanyForm, RegisterForm):
+    class Meta:
+        model = UserModel
+        fields = ('company_name','email')
+
+
+class RegisterFormCandidate(CandidateForm, RegisterForm):
+    class Meta:
+        model = UserModel
+        fields = ('email',)
 
 
 class LoginForm(forms.Form):
@@ -41,11 +52,3 @@ class LoginForm(forms.Form):
         return self.user
 
 
-class RegisterFormCompany(RegisterForm, CompanyForm):
-    class Meta:
-        model = UserModel
-        fields = ('email','profile','company_name')
-
-
-class RegisterFormCandidate(RegisterForm):
-    pass

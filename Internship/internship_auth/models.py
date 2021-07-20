@@ -4,7 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 
 from django.db import models
 
-from Internship.Choices.choices import  PROFILE
+from Internship.Choices.choices import PROFILE
 
 
 class InternshipUserManager(BaseUserManager):
@@ -42,7 +42,7 @@ class InternshipUser(AbstractBaseUser, PermissionsMixin):
 
     profile = models.CharField(
         max_length=10,
-        choices=PROFILE
+        blank=True
     )
 
     company_name = models.CharField(

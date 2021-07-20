@@ -1,8 +1,13 @@
-
+from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
 from Internship.Choices.choices import FIELD_CHOICES, TYPE_UNKNOWN, CITY_CHOICES, DURATION_CHOICES
+from Internship.internship_auth.models import InternshipUser
+from Internship.internship_profiles.models import CompanyProfile
+
+UserModel = get_user_model()
+
 
 class Internship_ad(models.Model):
     title = models.CharField(max_length=50)
@@ -11,6 +16,11 @@ class Internship_ad(models.Model):
     duration = models.CharField(max_length=30, choices=DURATION_CHOICES, default=TYPE_UNKNOWN)
     image = models.ImageField()
     description = models.TextField(max_length=500)
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+    )
 
     # company_profile = models.ForeignKey(Profile, on_delete=models.CASCADE,default='')
     def __str__(self):

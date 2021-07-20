@@ -11,7 +11,8 @@
         {% bootstrap_form form %}
         {% buttons %}
             <button class="btn btn-primary">Login</button>
-            <p>or <a href="{% url 'register' %}?next={{ request.GET.next }}">Register</a></p>
+            <p>or <a href="{% url 'register company' %}?next={{ request.GET.next }}">Register Candidate</a></p>
+            <p>or <a href="{% url 'register candidate' %}?next={{ request.GET.next }}">Register Company</a></p>
         {% endbuttons %}
     </form>
     </div>

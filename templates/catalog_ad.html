@@ -11,11 +11,10 @@
                 <h5>City: {{ ad.city }}</h5>
                 <h5>Field: {{ ad.field }}</h5>
                 <h5>Duration: {{ ad.duration }}</h5>
-                <button class="btn btn-primary">Details</button>
+                <a class="btn btn-primary" href="{% url 'details ad' ad.id %}">Details</a>
                 <br>
                 <hr>
             </div>
-
         {% endfor %}
 
     {% else %}
@@ -23,14 +22,5 @@
         <h1>No ads at the momenta</h1>
 
     {% endif %}
-    {% for company in profiles %}
-        <ul>
-            <li><h3>{{ company.email }}</h3></li>
-            <a href="{% url 'company details' company.id %}">Details</a>
-        </ul>
-
-    {% endfor %}
-
-
 
 {% endblock %}

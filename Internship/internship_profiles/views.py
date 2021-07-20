@@ -15,21 +15,21 @@ def get_company_profile(request):
     # return render(request, 'profile/company.html', context)
     pass
 
-def edit_company_profile():
+def edit_company_profile(request):
     pass
 
 
-def delete_company_profile():
+def delete_company_profile(request):
     pass
 
 
-def get_candidate_details():
+def get_candidate_details(request):
     pass
 
 
-def edit_candidate_details():
+def edit_candidate_details(request):
     pass
 
 
-def delete_candidate_details():
+def delete_candidate_details(request):
     pass

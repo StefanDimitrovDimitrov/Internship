@@ -12,3 +12,6 @@ urlpatterns = [
     path('companyProfile/', edit_candidate_details, name='company details'),
     path('companyProfile/', delete_candidate_details, name='company details'),
 ]
+
+
+import Internship.internship_profiles.signals

@@ -11,20 +11,17 @@ from Internship.internship_profiles.forms import CandidateForm, CompanyForm
 def register_candidate(request):
     if request.POST:
         form = RegisterFormCandidate(request.POST)
-        profile_form = CandidateForm(request.POST)
+        # profile_form = CandidateForm(request.POST)
 
-        if form.is_valid() and profile_form.is_valid():
+        if form.is_valid():
+
+            user = form.save(commit=False)
+            user.profile = "Candidate"
             user = form.save()
-            profile_form = profile_form.save(commit=False)
-            profile_form.user = user
-            profile_form.save()
-
             login(request, user)
             return redirect('home')
     else:
         form = RegisterFormCandidate()
-        form.profile = 'candidate'
-
     context = {
         'form': form,
     }
@@ -35,13 +32,12 @@ def register_candidate(request):
 def register_company(request):
     if request.POST:
         form = RegisterFormCompany(request.POST)
-        profile_form = RegisterFormCompany(request.POST, request.FILES)
+        # profile_form = RegisterFormCompany(request.POST, request.FILES)
 
-        if form.is_valid() and profile_form.is_valid():
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.profile = "Company"
             user = form.save()
-            profile_form = profile_form.save(commit=False)
-            profile_form.user = user
-            profile_form.save()
 
             login(request, user)
             return redirect('home')
