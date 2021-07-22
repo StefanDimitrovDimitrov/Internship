@@ -1,0 +1,23 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+
+<div class="card m-3" style="width: 18rem;">
+    {% load bootstrap4 %}
+    <form method= "POST" action="{% url 'edit company' info.user_id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <div>
+            <button class="btn btn-warning btn-block">Save</button>
+        </div>
+        {% endbuttons %}
+    </form>
+            <div>
+                <a class="btn btn-danger btn-block" href="{% url 'delete company' info.user_id %}">Delete</a>
+            </div>
+ </div>
+
+{% endblock %}
+

@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
 
+
 UserModel = get_user_model()
 
 
@@ -24,7 +25,7 @@ class CandidateProfile(models.Model):
 
     profile_image = models.ImageField(
         upload_to='intern_profile',
-        blank=True,
+        default='InitialProfilePics/pic.png',
     )
 
     CV = models.FileField(
@@ -52,17 +53,17 @@ class CompanyProfile(models.Model):
 
     company_logo = models.ImageField(
         upload_to='company_logo',
-        blank=True,
+        default='InitialProfilePics/logo.png',
     )
 
-    description = models.ImageField(
+    description = models.TextField(
         max_length=500,
         blank=True,
     )
 
     company_image = models.ImageField(
         upload_to='company_pics',
-        blank=True,
+        default='InitialProfilePics/company_pic.png',
     )
 
     user = models.OneToOneField(

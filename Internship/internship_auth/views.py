@@ -35,11 +35,12 @@ def register_company(request):
         # profile_form = RegisterFormCompany(request.POST, request.FILES)
 
         if form.is_valid():
-            user = form.save(commit=False)
-            user.profile = "Company"
-            user = form.save()
+            company = form.save(commit=False)
 
-            login(request, user)
+            company.profile = "Company"
+            company = form.save()
+
+            login(request, company)
             return redirect('home')
     else:
         form = RegisterFormCompany()

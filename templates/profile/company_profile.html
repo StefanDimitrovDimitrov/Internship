@@ -1,0 +1,33 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+
+               <image src="{{ info.company_logo.url }}" alt="image logo"></image>
+                <h1>Company: {{ info.company_name }}</h1>
+                <br>
+                <h5>Email: {{ info.email }}</h5>
+                <image src="{{ info.company_image.url }}" alt="image company"></image>
+                <h5>Description: {{ info.description }}</h5>
+
+                <a class="btn btn-warning btn-block" href="{% url 'edit company' info.user_id %}">Edit</a>
+                <a class="btn btn-danger btn-block" href="{% url 'delete company' info.user_id %}">Delete</a>
+
+                <br>
+                <hr>
+
+                {% for ads in company_ads %}
+
+                    <div>
+                       <p> {{ ads.title }}</p>
+                         <p>{{ ads.city }}</p>
+                         <p>{{ ads.field }}</p>
+                         <image src="{{ ads.image.url }}" alt="image company"></image>
+                    </div>
+                {% endfor %}
+
+    </div>
+
+{% endblock %}
+

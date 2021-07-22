@@ -15,7 +15,7 @@
             <p class="card-text">Duration: {{ ad.duration }}</p>
         </div>
 
-        {% if id == ad.user_id %}
+        {% if id == ad.company_owner_id %}
                         <div>
                 <a class="btn btn-warning btn-block" href="{% url 'edit ad' ad.pk %}">Edit</a>
             </div>

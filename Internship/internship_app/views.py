@@ -15,7 +15,7 @@ def home(request):
 
 
 def catalog_companies(request):
-    profiles = InternshipUser.objects.all()
+    profiles = CompanyProfile.objects.all()
 
     context = {
         'profiles': profiles
@@ -40,7 +40,9 @@ def create_ad(request):
         form = AdForm(request.POST, request.FILES)
         if form.is_valid():
             ad = form.save(commit=False)
-            ad.user_id = request.user.id
+            user_id = request.user.id
+            company = CompanyProfile.objects.get(user_id=user_id)
+            ad.company_owner_id = company.user_id
             ad.save()
             form.save()
             return redirect('catalog ads')
@@ -54,6 +56,7 @@ def create_ad(request):
 def details_ad(request, pk):
     ad = Internship_ad.objects.get(pk=pk)
     user_id = request.user.id
+    a = 'a'
 
     context = {
         'ad': ad,
@@ -100,9 +103,9 @@ def apply(request, pk):
     if request.method == "POST":
         form = ApplyForm(request.POST, request.FILES)
         if form.is_valid():
-            candidate_apply = form.save(commit=False)
-            job_ads.append(ad)
-            candidate_apply = form.save()
+            applied_form = form.save()
+            ad.applied_candidates.add(applied_form)
+            # we have to use set but I am not sure how
             form.save()
             return redirect('home')
 

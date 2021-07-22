@@ -8,7 +8,7 @@ class AdForm(forms.ModelForm):
     class Meta:
         model = Internship_ad
         fields = '__all__'
-        exclude = ('user',)
+        exclude = ('user','company_owner','applied_candidates')
 
 
 class ApplyForm(forms.ModelForm):

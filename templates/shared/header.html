@@ -11,18 +11,28 @@
                     <li class="nav-item active">
                       <a class="nav-link" href="{% url 'catalog ads' %}">All Ads</a></p>
                     </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{% url 'create ad' %}">Create Ads</a></p>
-                    </li>
+                    {% if user.profile == 'Company' %}
+                        <li class="nav-item active">
+                          <a class="nav-link" href="{% url 'create ad' %}">Create Ads</a></p>
+                        </li>
+                    {% endif %}
                 {% endif %}
             </ul>
         </div>
             <ul class="navbar-nav">
 
                 {% if user.is_authenticated %}
-                    <li class="nav-item active">
-                      <h6>Hello, {{ user.email }}!</h6>
-                    </li>
+                    {% if user.profile == 'Company' %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'details company' user.id %}">Your Profile {{ user.email }}!</a>
+                        </li>
+
+                        {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'details candidate' user.id %}">Your Profile {{ user.email }}!</a>
+                        </li>
+
+                    {% endif %}
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
