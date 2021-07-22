@@ -95,18 +95,20 @@ def delete_ad(request, pk):
 def apply(request, pk):
 
     ad = Internship_ad.objects.get(pk=pk)
-    job_ads = []
     user_id = request.user.id
+
     candidate = CandidateProfile.objects.get(user_id = user_id)
+
     form = ApplyForm(request.FILES)
+
     form.CV = candidate.CV
+
     if request.method == "POST":
         form = ApplyForm(request.POST, request.FILES)
         if form.is_valid():
-            applied_form = form.save()
-            ad.applied_candidates.add(applied_form)
+            applied_form = form.save(commit=False)
+            ad.applied_candidates.add(candidate)
             # we have to use set but I am not sure how
-            form.save()
             return redirect('home')
 
     context = {

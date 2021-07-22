@@ -12,7 +12,7 @@
                 <h5>Last_name: {{ info.last_name }}</h5>
                 <br>
                 <h5>Email: {{ info.email }}</h5>
-                <h5>CV: {{ info.CV }}</h5>
+                <image src="{{ info.CV.url }}" alt="CV">CV:</image>
 
                 <a class="btn btn-warning btn-block" href="{% url 'edit candidate' info.user_id %}">Edit</a>
                 <a class="btn btn-danger btn-block" href="{% url 'delete candidate' info.user_id %}">Delete</a>
