@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load profile_complete_notification %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +11,55 @@
 <body>
 {% include 'shared/header.html' %}
 
+{% if user.is_authenticated %}
+    {% profile_complete_notification %}
+
+{% endif %}
 {% block content %}
     <br>
     <br>
-    <br>
-    <br>
-    <div class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="https://static.vecteezy.com/system/resources/previews/001/213/015/original/we-re-hiring-with-office-chair-and-vacant-sign-vector.jpg" alt="First slide">
+
+    <div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom">Latest job adds</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+        </div>
+        <div>
+          <h2>Featured title</h2>
+          <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+          <a href="#" class="btn btn-primary">
+            Details
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"></use></svg>
+        </div>
+        <div>
+          <h2>Featured title</h2>
+          <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+          <a href="#" class="btn btn-primary">
+            Details
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"></use></svg>
+        </div>
+        <div>
+          <h2>Featured title</h2>
+          <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+          <a href="#" class="btn btn-primary">
+            Details
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 {% endblock %}
 
 {% include 'shared/footer.html' %}

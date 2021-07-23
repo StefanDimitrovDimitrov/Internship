@@ -56,11 +56,11 @@ def create_ad(request):
 def details_ad(request, pk):
     ad = Internship_ad.objects.get(pk=pk)
     user_id = request.user.id
-    a = 'a'
-
+    candidates = ad.applied_candidates.all()
     context = {
         'ad': ad,
         'id': user_id,
+        'candidates': candidates
     }
 
     return render(request, 'details.html', context)

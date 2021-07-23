@@ -7,11 +7,11 @@ class CandidateForm(forms.ModelForm):
     class Meta:
         model = CandidateProfile
         field = '__all__'
-        exclude = ('user',)
+        exclude = ('user','email','is_complete')
 
 
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = CompanyProfile
         field = '__all__'
-        exclude = ('user',)
+        exclude = ('user','email','is_complete')

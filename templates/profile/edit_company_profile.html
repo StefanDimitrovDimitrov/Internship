@@ -8,6 +8,7 @@
     <form method= "POST" action="{% url 'edit company' info.user_id %}" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}
+        {% bootstrap_form user_form %}
         {% buttons %}
         <div>
             <button class="btn btn-warning btn-block">Save</button>

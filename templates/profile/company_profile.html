@@ -17,15 +17,20 @@
                 <br>
                 <hr>
 
-                {% for ads in company_ads %}
+                {% for ad in company_ads %}
 
-                    <div>
-                       <p> {{ ads.title }}</p>
-                         <p>{{ ads.city }}</p>
-                         <p>{{ ads.field }}</p>
-                         <image src="{{ ads.image.url }}" alt="image company"></image>
-                    </div>
+                        <div class="container">
+                            <h1>{{ ad.title }}</h1>
+                            <br>
+                            <h5>City: {{ ad.city }}</h5>
+                            <h5>Field: {{ ad.field }}</h5>
+                            <h5>Duration: {{ ad.duration }}</h5>
+                            <a class="btn btn-primary" href="{% url 'details ad' ad.id %}">Details</a>
+                            <br>
+                            <hr>
+                        </div>
                 {% endfor %}
+
 
     </div>
 

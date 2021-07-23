@@ -33,6 +33,10 @@ class CandidateProfile(models.Model):
         blank=True,
     )
 
+    is_complete = models.BooleanField(
+        default=False
+    )
+
     user = models.OneToOneField(
         UserModel,
         on_delete=models.CASCADE,
@@ -64,6 +68,10 @@ class CompanyProfile(models.Model):
     company_image = models.ImageField(
         upload_to='company_pics',
         default='InitialProfilePics/company_pic.png',
+    )
+
+    is_complete = models.BooleanField(
+        default=False
     )
 
     user = models.OneToOneField(
