@@ -12,6 +12,7 @@
                 <h5>Description: {{ info.description }}</h5>
 
                 <a class="btn btn-warning btn-block" href="{% url 'edit company' info.user_id %}">Edit</a>
+                <a class="btn btn-warning btn-block" href="{% url 'change company credentials' info.user_id %}">Change Credentials</a>
                 <a class="btn btn-danger btn-block" href="{% url 'delete company' info.user_id %}">Delete</a>
 
                 <br>

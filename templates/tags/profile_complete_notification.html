@@ -1,7 +1,7 @@
 {% if profile == 'Candidate' %}
 
     {% if not is_complete %}
-        <a href="{% url 'edit candidate' user_id %}">Complete your profile</a>!
+        <a href="{% url 'edit candidate profile' user_id %}">Complete your profile</a>!
     {% endif %}
 
 {% else %}

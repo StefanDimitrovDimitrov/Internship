@@ -32,7 +32,7 @@ def register_candidate(request):
 def register_company(request):
     if request.POST:
         form = RegisterFormCompany(request.POST)
-        # profile_form = RegisterFormCompany(request.POST, request.FILES)
+        profile_form = RegisterFormCompany(request.POST, request.FILES)
 
         if form.is_valid():
             company = form.save(commit=False)

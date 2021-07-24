@@ -13,9 +13,7 @@
                 <br>
                 <h5>Email: {{ info.email }}</h5>
                 {% if info.CV %}
-
-                    <image src="{{ info.CV.url }}" alt="CV">CV:</image>
-
+                    <h5>Check you application: <a href="{{ info.CV.url }}">CV</a></h5>
                 {% else %}
 
                     <p> You haven't upload a CV</p>
@@ -23,11 +21,28 @@
                 {% endif %}
 
 
-                <a class="btn btn-warning btn-block" href="{% url 'edit candidate' info.user_id %}">Edit</a>
+                <a class="btn btn-warning btn-block" href="{% url 'edit candidate profile' info.user_id %}">Edit Profile</a>
+                <a class="btn btn-warning btn-block" href="{% url 'change candidate credentials' info.user_id %}">Change Credentials</a>
                 <a class="btn btn-danger btn-block" href="{% url 'delete candidate' info.user_id %}">Delete</a>
 
                 <br>
                 <hr>
+
+        {% if applied_ads %}
+            {%  for ad in applied_ads %}
+
+                <h3>{{ ad.title }}</h3>
+                <img src="{{ ad.image.url }}" alt="ad_image">
+                <a class="btn btn-primary" href="{% url 'details ad' ad.id %}">Details</a>
+            {% endfor %}
+        {% else %}
+
+            <p>You are not applied yer or the ads are expired.</p>
+
+        {% endif %}
+
+
+
 
 
     </div>

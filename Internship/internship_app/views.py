@@ -98,10 +98,8 @@ def apply(request, pk):
     user_id = request.user.id
 
     candidate = CandidateProfile.objects.get(user_id = user_id)
-
     form = ApplyForm(request.FILES)
 
-    form.CV = candidate.CV
 
     if request.method == "POST":
         form = ApplyForm(request.POST, request.FILES)
@@ -112,8 +110,7 @@ def apply(request, pk):
             return redirect('home')
 
     context = {
-        'form': form,
-        'CV': candidate.CV,
+        'form': ApplyForm(instance=candidate),
         'ad': ad
     }
     return render(request, 'apply.html', context)

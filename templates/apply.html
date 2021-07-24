@@ -16,7 +16,7 @@
         </div>
         <form method="POST" action="{% url 'apply' ad.pk %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {% bootstrap_form form %}
+            {{ form }}
             {% buttons %}
                 <button class="btn btn-success">Submit</button>
             {% endbuttons %}

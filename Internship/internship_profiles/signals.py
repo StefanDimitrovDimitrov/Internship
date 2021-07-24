@@ -8,25 +8,36 @@ UserModel = get_user_model()
 
 
 @receiver(post_save, sender=UserModel)
-def user_created(sender, instance, created, update_fields=None, **kwargs):
+def user_created(sender, instance, created, **kwargs):
+    if created:
         if instance.profile == 'Candidate':
-            profile = CandidateProfile.objects.get(user_id = instance.id)
+            profile = CandidateProfile(user=instance)
             profile.email = instance.email
         else:
-            profile = CompanyProfile.objects.get(user_id = instance.id)
+            profile = CompanyProfile(user=instance)
             profile.company_name = instance.company_name
             profile.email = instance.email
 
         profile.save()
 
 
-@receiver(post_save, sender=CandidateProfile)
-def check_is_complete(sender, instance, created, update_fields=None, **kwargs):
+
+
+
+
+
+@receiver(pre_save, sender=CandidateProfile)
+def check_is_complete(sender, instance, update_fields=None, **kwargs):
     if instance.first_name and instance.last_name and instance.email and instance.profile_image and instance.CV:
         instance.is_complete = True
+    else:
+        instance.is_complete = False
 
 
-@receiver(post_save, sender=CompanyProfile)
-def check_is_complete(sender, instance, created, update_fields=None, **kwargs):
+
+@receiver(pre_save, sender=CompanyProfile)
+def check_is_complete(sender, instance, update_fields=None, **kwargs):
     if instance.company_name and instance.company_logo and instance.description and instance.company_image:
         instance.is_complete = True
+    else:
+        instance.is_complete = False

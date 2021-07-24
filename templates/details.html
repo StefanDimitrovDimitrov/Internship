@@ -21,10 +21,11 @@
 
             {% if candidates %}
                 {% for candidate in candidates %}
-
-                    {{ candidate.profile_image }}
-                    {{ candidate.email }}
-                    {{ candidate.CV }}
+                    <img src="{{ candidate.profile_image.url }}" alt="candidate pic">
+                    <p>{{ candidate.first_name }}</p>
+                    <p>{{ candidate.last_name }}</p>
+                    <p>{{ candidate.email }}</p>
+                    <a href="{{ candidate.CV.url }}">Application</a>
 
                 {% endfor %}
             {% else %}
