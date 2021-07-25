@@ -11,7 +11,7 @@
 <body>
 {% include 'shared/header.html' %}
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and not user.is_superuser %}
     {% profile_complete_notification %}
 
 {% endif %}

@@ -23,9 +23,17 @@
                         <div class="container">
                             <h1>{{ ad.title }}</h1>
                             <br>
+
                             <h5>City: {{ ad.city }}</h5>
                             <h5>Field: {{ ad.field }}</h5>
                             <h5>Duration: {{ ad.duration }}</h5>
+                            <h5>Employment: {{ ad.employment_type }}</h5>
+
+                            {% if ad.is_active %}
+                                <h5> Active </h5>
+                                {% else %}
+                                <h5> Closed </h5>
+                            {% endif%}
                             <a class="btn btn-primary" href="{% url 'details ad' ad.id %}">Details</a>
                             <br>
                             <hr>

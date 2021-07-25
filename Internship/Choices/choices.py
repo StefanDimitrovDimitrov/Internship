@@ -1,4 +1,3 @@
-
 TYPE_SOFIA = 'Sofia'
 TYPE_PLOVDIV = 'Plovdiv'
 TYPE_VARNA = 'Varna'
@@ -6,19 +5,18 @@ TYPE_BURGAS = 'Burgas'
 TYPE_RUSE = 'Ruse'
 TYPE_STARAZAGORA = 'Stara Zagora'
 TYPE_PLEVEN = 'Pleven'
-TYPE_UNKNOWN = 'unknown'
+TYPE_UNKNOWN = ''
 
-CITY_CHOICES =(
+CITY_CHOICES = (
     (TYPE_SOFIA, 'Sofia'),
     (TYPE_PLOVDIV, 'Plovdiv'),
     (TYPE_VARNA, 'Varna'),
     (TYPE_BURGAS, 'Burgas'),
     (TYPE_RUSE, 'Ruse'),
-    (TYPE_STARAZAGORA,'Stara Zagora'),
+    (TYPE_STARAZAGORA, 'Stara Zagora'),
     (TYPE_PLEVEN, 'Pleven'),
-    (TYPE_UNKNOWN, 'unknown'),
+    (TYPE_UNKNOWN, ''),
 )
-
 
 TYPE_HR = 'Human Resources'
 TYPE_IT = 'Information Technology'
@@ -28,7 +26,6 @@ TYPE_SALES = 'SALES'
 TYPE_MANUFACTURING = 'Manufacturing'
 TYPE_TOURISM = 'Tourism'
 
-
 FIELD_CHOICES = (
     (TYPE_HR, 'Human Resources'),
     (TYPE_IT, 'Information Technology'),
@@ -37,7 +34,7 @@ FIELD_CHOICES = (
     (TYPE_SALES, 'Sales'),
     (TYPE_MANUFACTURING, 'Manufacturing'),
     (TYPE_TOURISM, 'Tourism'),
-    (TYPE_UNKNOWN, 'unknown'),
+    (TYPE_UNKNOWN, ''),
 )
 
 TYPE_ONE_MONTH = '1 month'
@@ -66,13 +63,22 @@ DURATION_CHOICES = (
     (TYPE_TEN_MONTHS, '10 months'),
     (TYPE_ELEVEN_MONTHS, '11 months'),
     (TYPE_ONE_YEAR, '1 year'),
-    (TYPE_UNKNOWN, 'unknown'),
+    (TYPE_UNKNOWN, ''),
 )
 
 TYPE_COMPANY = 'Company'
 TYPE_CANDIDATE = 'Candidate'
 
-PROFILE =(
+PROFILE = (
     (TYPE_COMPANY, 'Company'),
     (TYPE_CANDIDATE, 'Candidate')
+)
+
+TYPE_FULL_TYME = 'Full-Time'
+TYPE_PART_TYME = 'Part-Time'
+
+EMPLOYMENT_TYPE = (
+    (TYPE_FULL_TYME, 'Full-Time'),
+    (TYPE_PART_TYME, 'Part-Time'),
+    (TYPE_UNKNOWN, ''),
 )

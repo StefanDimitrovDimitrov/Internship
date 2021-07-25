@@ -1,0 +1,15 @@
+{% extends 'shared/base.html' %}
+{% load sort_ads %}
+
+{% block content %}
+
+    {% if ads %}
+
+        {% sort_ads %}
+
+
+    {% else %}
+
+        <h1>No ads at the momenta</h1>
+        {% endif %}
+{% endblock %}

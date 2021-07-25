@@ -1,0 +1,32 @@
+
+
+<form method='GET' action="{% url 'catalog ads' %}">
+    {{ sort_form }}
+    {% csrf_token %}
+    <button>Sort</button>
+</form>
+
+<form method='GET' action="{% url 'catalog ads' %}">
+    {{ search_form }}
+    {% csrf_token %}
+    <button>Search</button>
+</form>
+
+
+{% for ad in ads %}
+
+    <div class="container">
+                <h1>{{ ad.title }}</h1>
+                <br>
+                <h5>Employer: {{ ad.company_owner.company_name }}</h5>
+                <h5>City: {{ ad.city }}</h5>
+                <h5>Field: {{ ad.field }}</h5>
+                <h5>Duration: {{ ad.duration }}</h5>
+                <h5>Employment: {{ ad.employment_type }}</h5>
+
+                <a class="btn btn-primary" href="{% url 'details ad' ad.id %}">Details</a>
+                <br>
+                <hr>
+    </div>
+
+{% endfor %}

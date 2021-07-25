@@ -1,9 +1,10 @@
 from django.template import Library
 
+from Internship.internship_app.forms import SortForm
+from Internship.internship_app.models import Internship_ad
 from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
 register = Library()
-
 
 
 @register.inclusion_tag(
@@ -27,4 +28,5 @@ def profile_complete_notification(context):
             'user_id': user_id,
             'profile': context.request.user.profile
         }
+
 

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+
 UserModel = get_user_model()
 
 
@@ -80,3 +81,5 @@ class CompanyProfile(models.Model):
         primary_key=True
     )
     # list of ads
+
+

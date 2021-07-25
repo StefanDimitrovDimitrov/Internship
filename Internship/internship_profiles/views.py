@@ -25,7 +25,6 @@ def get_company_details(request, pk):
     return render(request, 'profile/company_profile.html', context)
 
 
-@login_required
 def edit_company_details(request, pk):
     company = CompanyProfile.objects.get(pk=pk)
     if request.method == "POST":
@@ -41,7 +40,7 @@ def edit_company_details(request, pk):
 
     return render(request, 'profile/edit_company_profile.html', context)
 
-
+@login_required
 def change_company_credentials(request, pk):
     user = UserModel.objects.get(pk=pk)
     company_profile = CompanyProfile.objects.get(user_id=pk)
@@ -63,13 +62,13 @@ def change_company_credentials(request, pk):
 
     return render(request, 'profile/change_company_credentials.html', context)
 
-
+@login_required
 def delete_company_details(request, pk):
     company = CompanyProfile.objects.get(pk=pk)
     company.delete()
     return redirect('catalog companies')
 
-
+@login_required
 def get_candidate_details(request, pk):
     candidate = CandidateProfile.objects.get(pk=pk)
     ads = Internship_ad.objects.all()
@@ -90,7 +89,7 @@ def get_candidate_details(request, pk):
 
     return render(request, 'profile/candidate_profile.html', context)
 
-
+@login_required
 def edit_candidate_details(request, pk):
     candidate = CandidateProfile.objects.get(pk=pk)
     if request.method == "POST":
@@ -107,7 +106,7 @@ def edit_candidate_details(request, pk):
 
     return render(request, 'profile/edit_candidate_profile.html', context)
 
-
+@login_required
 def change_candidate_credentials(request, pk):
     user = UserModel.objects.get(pk=pk)
     candidate_profile = CandidateProfile.objects.get(user_id=pk)
@@ -128,7 +127,7 @@ def change_candidate_credentials(request, pk):
 
     return render(request, 'profile/change_candidate_credentials.html', context)
 
-
+@login_required
 def delete_candidate_details(request, pk):
     candidate = CandidateProfile.objects.get(pk=pk)
     candidate.delete()

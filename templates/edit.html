@@ -16,9 +16,18 @@
         </div>
         {% endbuttons %}
     </form>
+
+        {% if ad.is_active %}
             <div>
-                <a class="btn btn-danger btn-block" href="{% url 'delete ad' ad.pk %}">Delete</a>
+                <a class="btn btn-danger btn-block" href="{% url 'deactivate ad' ad.pk %}">Deactivate</a>
             </div>
+        {% else %}
+            <div>
+                <a class="btn btn-warning btn-block" href="{% url 'activate ad' ad.pk %}">Activate</a>
+            </div>
+        {% endif %}
+
+
  </div>
 
 
