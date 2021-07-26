@@ -5,14 +5,22 @@ import os
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.views.generic import ListView
+
 from Internship.internship_app.forms import AdForm, ApplyForm
 from Internship.internship_app.models import Internship_ad
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
 
-def home(request):
-    return render(request, 'shared/base.html', )
+# def home(request):
+#     return render(request, 'shared/base.html', )
 
+
+class Home(ListView):
+    model = Internship_ad
+    template_name = 'shared/base.html'
+    context_object_name = 'ads'
+    paginate_by = 3
 
 def catalog_companies(request):
     profiles = CompanyProfile.objects.all()

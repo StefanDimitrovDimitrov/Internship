@@ -1,12 +1,31 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
+<div class="album py-5 bg-light">
 
-    {% for company in profiles %}
-        <ul>
-            <li><h3>{{ company.email }}</h3></li>
-            <a href="{% url 'details company' company.user_id %}">Details</a>
-        </ul>
+        <div class="container">
+
+          <div class="row">
+          {% for company in profiles %}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="{{ company.company_image.url }}" data-holder-rendered="true">
+                <div class="card-body">
+                            <h1>{{ company.company_name }}</h1>
+                            <br>
+                            <h5>Email: {{ company.email }}</h5>
+                            <h5>Active_Ads:</h5>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a class="btn btn-info" href="{% url 'details company' company.user_id %}">See More...</a>
+{#                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 
     {% endfor %}
 
