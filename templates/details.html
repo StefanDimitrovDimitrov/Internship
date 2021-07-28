@@ -2,13 +2,21 @@
 
 {% block content %}
     {% load bootstrap4 %}
-    <div class="card m-3" style="width: 18rem;">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="card m-3" style="width: 20rem;">
         <img class="card-img-top" src="{{ ad.image.url }}" alt="image ad">
         <div class="card-body">
             <h5 class="card-title">Title: {{ ad.title }}</h5>
             <p class="card-text">Description: {{ ad.description }}</p>
             <p class="card-text">Field: {{ ad.field }}</p>
             <p class="card-text">Duration: {{ ad.duration }}</p>
+            <p class="card-text">Created at: {{ ad.created_at }}</p>
+            <p class="card-text">Last modified at: {{ ad.modified_at }}</p>
         </div>
 
         {% if id == ad.company_owner_id %}

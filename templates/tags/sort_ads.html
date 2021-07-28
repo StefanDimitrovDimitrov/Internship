@@ -29,13 +29,15 @@
           {% for ad in ads %}
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="{{ ad.image.url }}" data-holder-rendered="true">
+
                 <div class="card-body">
-                            <h1>{{ ad.title }}</h1>
-                            <br>
-                            <h5>Employer: {{ ad.company_owner.company_name }}</h5>
-                            <h5>City: {{ ad.city }}</h5>
-                            <h5>Field: {{ ad.field }}</h5>
+                    <h1>{{ ad.title }}</h1>
+                                                <br>
+                    <ul>
+                            <li><h5>Employer: {{ ad.company_owner.company_name }}</h5></li>
+                           <li> <h5>City: {{ ad.city }}</h5></li>
+                           <li> <h5>Field: {{ ad.field }}</h5></li>
+                        </ul>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details</a>

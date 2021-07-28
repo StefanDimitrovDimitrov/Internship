@@ -1,7 +1,7 @@
 from django import forms
 
 from Internship.Choices.choices import CITY_CHOICES, FIELD_CHOICES, DURATION_CHOICES, EMPLOYMENT_TYPE
-from Internship.internship_app.models import Internship_ad
+from Internship.internship_app.models import Internship_ad, AppliedTracking
 from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
 
@@ -9,12 +9,12 @@ class AdForm(forms.ModelForm):
     class Meta:
         model = Internship_ad
         fields = '__all__'
-        exclude = ('user', 'company_owner', 'is_active', 'applied_candidates')
+        exclude = ('user', 'company_owner', 'is_active', 'applied_candidates','created_at','modified_at')
 
 
 class ApplyForm(forms.ModelForm):
     class Meta:
-        model = CandidateProfile
+        model = AppliedTracking
         fields = ('CV',)
 
 

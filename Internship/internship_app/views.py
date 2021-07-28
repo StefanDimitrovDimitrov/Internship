@@ -114,16 +114,22 @@ def activate_ad(request, pk):
 
 
 def apply(request, pk):
+
     ad = Internship_ad.objects.get(pk=pk)
     user_id = request.user.id
 
     candidate = CandidateProfile.objects.get(user_id=user_id)
-    form = ApplyForm(request.FILES)
+    # form = ApplyForm(request.FILES)
+    form = ApplyForm(request.FILES);
 
     if request.method == "POST":
         form = ApplyForm(request.POST, request.FILES)
         if form.is_valid():
             applied_form = form.save(commit=False)
+            applied_form.application = ad
+            applied_form.applied_candidate = candidate
+            ad.applied_candidates.add(candidate)
+            applied_form = form.save()
             return redirect('home')
 
     context = {
