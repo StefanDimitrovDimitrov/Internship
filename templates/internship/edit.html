@@ -1,0 +1,36 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Edit Menu</h1>
+    <p class="lead">Make your ad more attractive adding what is important for your candidates.</p>
+  </div>
+</div>
+<div class="card m-3" style="width: 18rem;">
+    {% load bootstrap4 %}
+    <form method= "POST" action="{% url 'edit ad' ad.pk %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <div>
+            <button class="btn btn-warning btn-block">Save</button>
+        </div>
+        {% endbuttons %}
+    </form>
+
+        {% if ad.is_active %}
+            <div>
+                <a class="btn btn-danger btn-block" href="{% url 'deactivate ad' ad.pk %}">Deactivate</a>
+            </div>
+        {% else %}
+            <div>
+                <a class="btn btn-warning btn-block" href="{% url 'activate ad' ad.pk %}">Activate</a>
+            </div>
+        {% endif %}
+
+
+ </div>
+
+
+{% endblock %}

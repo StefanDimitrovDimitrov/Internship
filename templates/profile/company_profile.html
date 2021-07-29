@@ -3,17 +3,23 @@
 {% block content %}
 
     <div class="container">
-
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">You can review your company information</h1>
+                <p class="lead">Use Edit Profile to update your profile</p>
+            </div>
+        </div>
                <image src="{{ info.company_logo.url }}" alt="image logo"></image>
                 <h1>Company: {{ info.company_name }}</h1>
                 <br>
-                <h5>Email: {{ info.email }}</h5>
-                <image src="{{ info.company_image.url }}" alt="image company"></image>
                 <h5>Description: {{ info.description }}</h5>
+                <h5>Email: {{ info.email }}</h5>
+                <h5>Company_address: {{ info.company_address }}</h5>
+                <h5>Company_website: {{ info.company_website }}</h5>
+                <h5>Company_phone: {{ info.company_phone }}</h5>
 
-                <a class="btn btn-warning btn-block" href="{% url 'edit company' info.user_id %}">Edit</a>
-                <a class="btn btn-warning btn-block" href="{% url 'change company credentials' info.user_id %}">Change Credentials</a>
-                <a class="btn btn-danger btn-block" href="{% url 'delete company' info.user_id %}">Delete</a>
+                <a class="btn btn-warning btn-block" href="{% url 'edit company profile' info.user_id %}">Edit Profile</a>
+                <a class="btn btn-danger btn-block" href="{% url 'delete profile' info.user_id %}">Delete Profile</a>
 
                 <br>
                 <hr>
@@ -28,6 +34,8 @@
                             <h5>Field: {{ ad.field }}</h5>
                             <h5>Duration: {{ ad.duration }}</h5>
                             <h5>Employment: {{ ad.employment_type }}</h5>
+                            <p>Created: {{ ad.created_at }}</p>
+                            <p>Last Modify: {{ ad.modified_at }}</p>
 
                             {% if ad.is_active %}
                                 <h5> Active </h5>

@@ -1,19 +1,15 @@
 {% if profile == 'Candidate' %}
 
     {% if not is_complete %}
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <a href="{% url 'edit candidate profile' user_id %}">Complete your profile</a>!
+        <a id="candidate-color" class="nav-link complete-profile" href="{% url 'edit candidate profile' user_id %}">Complete your profile</a>
+        {% else %}
     {% endif %}
 
 {% else %}
 
     {% if not is_complete %}
-        <a href="{% url 'edit company' user_id %}">Complete your profile</a>!
+        <a id="company-color" class="nav-link" href="{% url 'edit company profile' user_id %}">Complete your profile</a>
+    {% else %}
     {% endif %}
 
 {% endif %}

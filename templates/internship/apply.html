@@ -1,0 +1,35 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Apply for this opportunity</h1>
+    <p class="lead">You can apply using your current CV or uploading new one.</p>
+  </div>
+</div>
+    {% load bootstrap4 %}
+    <div class="card m-3" style="width: 18rem;">
+        <img class="card-img-top" src="{{ ad.image.url }}" alt="image ad">
+        <div class="card-body">
+            <h5 class="card-title">Title: {{ ad.title }}</h5>
+            <p class="card-text">Description: {{ ad.description }}</p>
+            <p class="card-text">Field: {{ ad.description }}</p>
+            <p class="card-text">Duration: {{ ad.duration }}</p>
+        </div>
+        <form method="POST" action="{% url 'apply' ad.pk %}" enctype="multipart/form-data">
+            {% csrf_token %}
+                {{ form.as_p }}
+            {% buttons %}
+                <button class="btn btn-success">Submit</button>
+            {% endbuttons %}
+        </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+{% endif %}
+    </div>
+{% endblock %}

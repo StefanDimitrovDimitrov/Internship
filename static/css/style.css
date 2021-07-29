@@ -1,8 +1,44 @@
-body {
+#bootstrap-overrides{
     background-color:lightblue;
 }
 
+nav li {
+   position: relative;
+}
 
-/*.bg{*/
-/*    background-color: blueviolet;*/
-/*}*/
+nav div > ul > li > a::before{
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: white;
+
+    position: absolute;
+    bottom: 0;
+    width: 0;
+
+    transition: all ease-in-out 350ms;
+}
+
+nav a:hover::before{
+    width: 90%;
+}
+
+#candidate-color{
+    color: orange;
+}
+
+#company-color{
+    color: orange;
+}
+
+#candidate-color:hover{
+    color: white;
+}
+
+#company-color:hover{
+    color: white;
+}
+
+
+form{ margin: 0 auto; }
+

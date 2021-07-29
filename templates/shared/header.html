@@ -1,4 +1,5 @@
 {% load static %}
+{% load profile_complete_notification %}
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
         <a class="navbar-brand" href="{% url 'home' %}">
@@ -28,15 +29,19 @@
 
             <ul class="navbar-nav ml-auth">
                 {% if user.is_authenticated %}
+                            {% if not user.is_superuser %}
+                                {% profile_complete_notification %}
+                            {% endif %}
                     {% if user.profile == 'Company' %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'details company' user.id %}">Your
-                                Profile {{ user.email }}!</a>
+                            <a class="nav-link" href="{% url 'company profile' user.id %}">My
+                                Profile {{ user.email }}</a>
                         </li>
 
                     {% else %}
+
                         <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'details candidate' user.id %}">Your
+                            <a class="nav-link" href="{% url 'candidate profile' user.id %}">My
                                 Profile {{ user.email }}!</a>
                         </li>
 

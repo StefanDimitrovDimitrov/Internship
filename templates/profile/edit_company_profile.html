@@ -4,8 +4,15 @@
 
 
 <div class="card m-3" style="width: 18rem;">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Complete your profile</h1>
+                <p class="lead">Completing your profile you provide more details about you to your future employees as well as your ads are listed with higher priority.
+                    If you chose to leave this place all your ads will be deleted. If you decide to stay please complete your profile.</p>
+            </div>
+        </div>
     {% load bootstrap4 %}
-    <form method= "POST" action="{% url 'edit company' info.user_id %}" enctype="multipart/form-data">
+    <form method= "POST" action="{% url 'edit company profile' info.user_id %}" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons %}
@@ -15,7 +22,10 @@
         {% endbuttons %}
     </form>
             <div>
-                <a class="btn btn-danger btn-block" href="{% url 'delete company' info.user_id %}">Delete</a>
+                <a class="btn btn-warning btn-block" href="{% url 'change company credentials' info.user_id %}">Change Credentials</a>
+            </div>
+            <div>
+                <a class="btn btn-danger btn-block" href="{% url 'delete profile' info.user_id %}">Delete Profile</a>
             </div>
  </div>
 

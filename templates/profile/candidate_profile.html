@@ -1,35 +1,40 @@
-
 {% extends 'shared/base.html' %}
 
 {% block content %}
 
     <div class="container">
-
-                <image src="{{ info.profile_image.url }}" alt="image user"></image>
-
-
-                <h5>First_name: {{ info.first_name }}</h5>
-                <h5>Last_name: {{ info.last_name }}</h5>
-                <br>
-                <h5>Email: {{ info.email }}</h5>
-                {% if info.CV %}
-                    <h5>Check you application: <a href="{{ info.CV.url }}">CV</a></h5>
-                {% else %}
-
-                    <p> You haven't upload a CV</p>
-
-                {% endif %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">You can review your personal information</h1>
+                <p class="lead">If you want to add something dont forget to mention how awesome are you. </p>
+            </div>
+        </div>
+        <image src="{{ info.profile_image.url }}" alt="image user"></image>
 
 
-                <a class="btn btn-warning btn-block" href="{% url 'edit candidate profile' info.user_id %}">Edit Profile</a>
-                <a class="btn btn-warning btn-block" href="{% url 'change candidate credentials' info.user_id %}">Change Credentials</a>
-                <a class="btn btn-danger btn-block" href="{% url 'delete candidate' info.user_id %}">Delete</a>
+        <h5>First_name: {{ info.first_name }}</h5>
+        <h5>Last_name: {{ info.last_name }}</h5>
+        <br>
+        <h5>Email: {{ info.email }}</h5>
+        {% if info.CV %}
+            <h5>Check you application: <a href="{{ info.CV.url }}">CV</a></h5>
+        {% else %}
 
-                <br>
-                <hr>
+            <p> You haven't upload a CV</p>
 
-        {% if applied_ads %}
-            {%  for ad in applied_ads %}
+        {% endif %}
+
+
+        <a class="btn btn-warning btn-block" href="{% url 'edit candidate profile' info.user_id %}">Edit Profile</a>
+        <a class="btn btn-warning btn-block" href="{% url 'change candidate credentials' info.user_id %}">Change
+            Credentials</a>
+        <a class="btn btn-danger btn-block" href="{% url 'delete profile' info.user_id %}">Delete</a>
+
+        <br>
+        <hr>
+
+        {% if list_of_ads %}
+            {% for ad in list_of_ads %}
 
                 <h3>{{ ad.title }}</h3>
                 <img src="{{ ad.image.url }}" alt="ad_image">
@@ -40,9 +45,6 @@
             <p>You are not applied yer or the ads are expired.</p>
 
         {% endif %}
-
-
-
 
 
     </div>

@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
-
+from phone_field import PhoneField
 
 
 UserModel = get_user_model()
@@ -50,15 +50,17 @@ class CompanyProfile(models.Model):
     company_name = models.CharField(
         max_length=35,
         blank=True,
+
     )
 
     email = models.EmailField(
         unique=True,
+
     )
 
     company_logo = models.ImageField(
         upload_to='company_logo',
-        default='InitialProfilePics/logo.png',
+        default='InitialProfilePics/Logo.jpg',
     )
 
     description = models.TextField(
@@ -66,10 +68,18 @@ class CompanyProfile(models.Model):
         blank=True,
     )
 
-    company_image = models.ImageField(
-        upload_to='company_pics',
-        default='InitialProfilePics/company_pic.png',
+    company_website = models.URLField(
+        blank=True
     )
+
+    company_address = models.CharField(
+        max_length=20,
+        blank=True
+    )
+
+    company_phone = PhoneField(
+        blank=True,
+        help_text='Contact phone number')
 
     is_complete = models.BooleanField(
         default=False
@@ -80,6 +90,6 @@ class CompanyProfile(models.Model):
         on_delete=models.CASCADE,
         primary_key=True
     )
-    # list of ads
+
 
 

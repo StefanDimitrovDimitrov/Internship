@@ -18,10 +18,10 @@ class RegisterForm(UserCreationForm):
         model = UserModel
         fields = ('email',)
 
-class RegisterFormCompany(CompanyForm, RegisterForm):
+class RegisterFormCompany(RegisterForm):
     class Meta:
         model = UserModel
-        fields = ('company_name','email')
+        fields = ('email',)
 
 
 class RegisterFormCandidate(CandidateForm, RegisterForm):

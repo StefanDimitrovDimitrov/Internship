@@ -6,12 +6,23 @@ from Internship.internship_profiles.models import CompanyProfile, CandidateProfi
 class CandidateForm(forms.ModelForm):
     class Meta:
         model = CandidateProfile
-        field = '__all__'
-        exclude = ('user','email','is_complete')
+        fields = '__all__'
+        exclude = ('user', 'email', 'is_complete')
+
+
+class EditCandidateForm(CandidateForm):
+    pass
 
 
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = CompanyProfile
-        field = '__all__'
-        exclude = ('user','email','is_complete')
+        fields = '__all__'
+        exclude = ('user', 'email', 'is_complete')
+
+
+class EditCompanyForm(CompanyForm):
+    class Meta:
+        model = CompanyProfile
+        fields = '__all__'
+        exclude = ('user', 'email', 'is_complete',)

@@ -1,0 +1,63 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Company Catalog</h1>
+    <p class="lead">This is the place where you can find your future employer</p>
+  </div>
+</div>
+  <div class="card">
+  {% for company in profiles %}
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              <img class="card-img-top" style="height: 225px; width: 100%; display: block;"
+                         src="{{ company.company_logo.url }}" data-holder-rendered="true">
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+                    <h5>Email: {{ company.email }}</h5>
+      </div>
+    </div>
+  </div>
+     {% endfor %}
+{#    <div class="album py-5 bg-light">#}
+{##}
+{#        <div class="container">#}
+{##}
+{#            <div class="row">#}
+{#                {% for company in profiles %}#}
+{#                    <div class="col-md-4">#}
+{#                    <div class="card mb-4 box-shadow">#}
+{#                    <img class="card-img-top" style="height: 225px; width: 100%; display: block;"#}
+{#                         src="{{ company.company_logo.url }}" data-holder-rendered="true">#}
+{#                    <div class="card-body">#}
+{##}
+{#                    <h1>Company: {{ company.company_name }}</h1>#}
+{#                    <br>#}
+{#                    <h5>Description: {{ company.description }}</h5>#}
+{#                    <h5>Email: {{ company.email }}</h5>#}
+{#                    <h5>Company_address: {{ company.company_address }}</h5>#}
+{#                    <h5>Company_website: {{ company.company_website }}</h5>#}
+{#                    <h5>Company_phone: {{ company.company_phone }}</h5>#}
+{##}
+{#                    <div class="d-flex justify-content-between align-items-center">#}
+{#                        <div class="btn-group">#}
+{#                            <a class="btn btn-info" href="{% url 'company profile' company.user_id %}">See#}
+{#                                More...</a>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#              </div>#}
+{#                </div>#}
+{#                </div>#}
+{% endblock %}

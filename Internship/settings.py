@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'bootstrap4',
-    'debug_toolbar'
+    'debug_toolbar',
+    'phone_field',
 ]
 
 MIDDLEWARE = [
