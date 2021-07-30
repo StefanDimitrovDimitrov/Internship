@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Internship</title>
+    <link rel="shorcut icon type='image/ico" href="{% static 'img/favicon.ico' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -25,9 +26,9 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Your career starts here!</h1>
-          <p>This is a internship website. A place where various companies can meet suitable candidates for their internship programs.</p>
-          <p><a class="btn btn-info btn-lg" href="{% url 'catalog ads' %}" role="button">Learn more »</a></p>
+          <h1 class="display-4 text-center">Your career starts here!</h1>
+          <p class="text-center">This is an internship website. A place where various companies can meet suitable candidates for their internship programs.</p>
+          <div class="col text-center"><a class="btn btn-info btn-lg btn-default" href="{% url 'catalog ads' %}" role="button">Learn more »</a></div>
         </div>
       </div>
 
@@ -45,7 +46,7 @@
         <hr>
 
       </div> <!-- /container -->
-
+      </div>
     </main>
 
 {% endblock %}

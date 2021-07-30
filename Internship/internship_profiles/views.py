@@ -1,6 +1,10 @@
+import os
+
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+
+from Internship.comman.remove_old_img import remove_old_img
 from Internship.internship_profiles.signals import *
 # Create your views here.
 from Internship.internship_app.models import Internship_ad, AppliedTracking
@@ -11,7 +15,7 @@ from Internship.internship_profiles.models import CompanyProfile, CandidateProfi
 UserModel = get_user_model()
 
 
-@login_required
+
 def get_company_profile(request, pk):
     company = CompanyProfile.objects.get(pk=pk)
     company_ads = Internship_ad.objects.filter(company_owner=pk)
@@ -29,9 +33,13 @@ def get_company_profile(request, pk):
 @login_required
 def edit_company_profile(request, pk):
     company = CompanyProfile.objects.get(pk=pk)
+    old_image = ''
     if request.method == "POST":
+        if company.company_logo:
+            old_image = company.company_logo.path
         edit_profile_form = EditCompanyForm(request.POST, request.FILES, instance=company)
         if edit_profile_form.is_valid():
+            remove_old_img(old_image)
             edit_profile_form.save()
             return redirect('company profile', pk=pk)
 
@@ -62,10 +70,14 @@ def get_candidate_profile(request, pk):
 @login_required
 def edit_candidate_profiles(request, pk):
     candidate = CandidateProfile.objects.get(pk=pk)
+    old_image = ''
     if request.method == "POST":
+        if candidate.profile_image:
+            old_image = candidate.profile_image.path
         profile_form = EditCandidateForm(request.POST, request.FILES, instance=candidate)
 
         if profile_form.is_valid():
+            remove_old_img(old_image)
             profile_form.save()
             return redirect('candidate profile', pk=pk)
 

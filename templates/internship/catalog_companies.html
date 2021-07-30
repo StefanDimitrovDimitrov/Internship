@@ -1,63 +1,81 @@
 {% extends 'shared/base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Company Catalog</h1>
-    <p class="lead">This is the place where you can find your future employer</p>
-  </div>
-</div>
-  <div class="card">
-  {% for company in profiles %}
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              <img class="card-img-top" style="height: 225px; width: 100%; display: block;"
-                         src="{{ company.company_logo.url }}" data-holder-rendered="true">
-        </button>
-      </h5>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Company Catalog</h1>
+            <p class="lead text-center">This is the place where you can find your future employer</p>
+        </div>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-                    <h5>Email: {{ company.email }}</h5>
-      </div>
-    </div>
-  </div>
-     {% endfor %}
-{#    <div class="album py-5 bg-light">#}
-{##}
-{#        <div class="container">#}
-{##}
-{#            <div class="row">#}
-{#                {% for company in profiles %}#}
-{#                    <div class="col-md-4">#}
-{#                    <div class="card mb-4 box-shadow">#}
-{#                    <img class="card-img-top" style="height: 225px; width: 100%; display: block;"#}
-{#                         src="{{ company.company_logo.url }}" data-holder-rendered="true">#}
-{#                    <div class="card-body">#}
-{##}
-{#                    <h1>Company: {{ company.company_name }}</h1>#}
-{#                    <br>#}
-{#                    <h5>Description: {{ company.description }}</h5>#}
-{#                    <h5>Email: {{ company.email }}</h5>#}
-{#                    <h5>Company_address: {{ company.company_address }}</h5>#}
-{#                    <h5>Company_website: {{ company.company_website }}</h5>#}
-{#                    <h5>Company_phone: {{ company.company_phone }}</h5>#}
-{##}
-{#                    <div class="d-flex justify-content-between align-items-center">#}
-{#                        <div class="btn-group">#}
-{#                            <a class="btn btn-info" href="{% url 'company profile' company.user_id %}">See#}
-{#                                More...</a>#}
-{##}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                </div>#}
-{#                </div>#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#              </div>#}
-{#                </div>#}
-{#                </div>#}
+    {% if profiles %}
+        {% for info in profiles %}
+            <div class="container">
+            {#                <image src="{{ info.company_logo.url }}" class="rounded-circle" alt="image logo"></image>#}
+            {#                <h1>Company: {{ info.company_name }}</h1>#}
+            {#                <br>#}
+            {#                <h5>Description: {{ info.description }}</h5>#}
+            {#                <h5>Email: {{ info.email }}</h5>#}
+            {#                <h5>Company_address: {{ info.company_address }}</h5>#}
+            {#                <h5>Company_website: {{ info.company_website }}</h5>#}
+            {#                <h5>Company_phone: {{ info.company_phone }}</h5>#}
+
+            <div class="row">
+            <div class="col-md">
+
+            <div class="justify-content-md-center">
+                <div class="card-body">
+
+
+                    <h1 class="text-center">Company: {{ info.company_name }}</h1></span>
+
+                    <br>
+                    <hr>
+                    <br>
+                    <ul>
+                        <li>
+                            <img src="{% static 'img/email.png' %}" width="30" height="30" alt="brand img"><span> <b>Email: {{ info.email }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="{% static 'img/paddress.png' %}" width="30" height="30" alt="brand img"><span>Address: <b>{{ info.company_address }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="{% static 'img/webaddress.png' %}" width="30" height="30" alt="brand img"><span>Website: <b>{{ info.company_website }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="{% static 'img/phone.png' %}" width="30" height="30"
+                                 alt="brand img"><span>Employment-type: <b>Phone: {{ info.company_phone }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="{% static 'img/duration.png' %}" width="30" height="30" alt="brand img"><span>Active_Ads: <b>24</b></span>
+
+                        </li>
+                         <br>
+
+                    <br>
+                        <li>
+                            <p><a class="btn btn-secondary btn-primary" href="{% url 'company profile' info.user_id %}"
+                                  role="button">View more »</a></p>
+                        </li>
+
+                    </ul>
+                    <br>
+                    <hr>
+                    <br>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <h1>No register company at the moment</h1>
+
+    {% endif %}
+</div>
 {% endblock %}

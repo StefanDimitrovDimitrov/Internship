@@ -1,13 +1,13 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
+
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4">Complete your profile</h1>
-                <p class="lead">Completing your profile you will have the opportunity to apply with the uploaded CV.</p>
+                <h1 class="display-4 text-center">Complete your profile</h1>
+                <p class="lead text-center">Completing your profile you will have the opportunity to apply with the uploaded CV.</p>
             </div>
         </div>
-
 
     <div class="card m-3" style="width: 18rem;">
         {% load bootstrap4 %}
@@ -21,9 +21,15 @@
                 </div>
             {% endbuttons %}
         </form>
-        <div>
-            <a class="btn btn-danger btn-block" href="{% url 'delete profile' info.user_id %}">Delete Profile</a>
-        </div>
-    </div>
+                <div>
+                <a class="btn btn-warning btn-block" href="{% url 'change candidate credentials' info.user_id %}">Change Credentials</a>
+            </div>
+            <div>
+                <a type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-danger btn-block" href="{% url 'delete profile' info.user_id %}">Delete Profile</a>
+            </div>
+
+</div>
+
+{% include 'shared/modal/delete-modal.html' %}
 
 {% endblock %}

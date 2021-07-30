@@ -42,3 +42,26 @@ nav a:hover::before{
 
 form{ margin: 0 auto; }
 
+
+/* Resize images */
+.container img {
+    width: 10%;
+    height: auto;
+}
+
+.container-large img {
+    width: 50%;
+    height: auto;
+}
+
+ul li{ list-style-type: none; }
+
+#bmi {         /*my additional class name -for card*/
+    margin-left: 18%;
+    margin-right: 18%;
+    width: auto;
+}
+
+img+span {
+  margin-left: 10px;
+}

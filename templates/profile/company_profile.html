@@ -1,15 +1,15 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-
-    <div class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4">You can review your company information</h1>
-                <p class="lead">Use Edit Profile to update your profile</p>
+                <h1 class="display-4 text-center">Company Information</h1>
+                <p class="lead text-center">Employer branding is important more important is who you really are.</p>
             </div>
         </div>
-               <image src="{{ info.company_logo.url }}" alt="image logo"></image>
+    <div class="container">
+
+               <image src="{{ info.company_logo.url }}" class="rounded-circle" alt="image logo"></image>
                 <h1>Company: {{ info.company_name }}</h1>
                 <br>
                 <h5>Description: {{ info.description }}</h5>
@@ -18,12 +18,16 @@
                 <h5>Company_website: {{ info.company_website }}</h5>
                 <h5>Company_phone: {{ info.company_phone }}</h5>
 
+    {% if user.id == info.user_id %}
+
                 <a class="btn btn-warning btn-block" href="{% url 'edit company profile' info.user_id %}">Edit Profile</a>
-                <a class="btn btn-danger btn-block" href="{% url 'delete profile' info.user_id %}">Delete Profile</a>
 
                 <br>
                 <hr>
-
+    {% endif %}
+                    <br>
+                <hr>
+            <h1>Company Ads:</h1>
                 {% for ad in company_ads %}
 
                         <div class="container">
