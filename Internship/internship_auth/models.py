@@ -4,8 +4,6 @@ from django.contrib.auth.models import PermissionsMixin
 
 from django.db import models
 
-from Internship.choices.choices import PROFILE
-
 
 class InternshipUserManager(BaseUserManager):
 

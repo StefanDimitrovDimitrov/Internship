@@ -2,52 +2,70 @@
 
 {% block content %}
 
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4 text-center">You can review your personal information</h1>
+            <p class="lead text-center">If you want to add something dont forget to mention how awesome you
+                are. </p>
+        </div>
+    </div>
+
     <div class="container">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">You can review your personal information</h1>
-                <p class="lead text-center">If you want to add something dont forget to mention how awesome you are. </p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card mx-auto" style="width: 25rem;">
+                    <img class="card-img-top" src="{{ info.profile_image.url }}" width=50% height="50%" alt="img">
+                    <div class="card-body">
+                        <h5>First_name: {{ info.first_name }}</h5>
+                        <h5>Last_name: {{ info.last_name }}</h5>
+                        <br>
+                        <h5>Email: {{ info.email }}</h5>
+                        {% if info.CV %}
+                            <h5>Check your application: <a href="{{ info.CV.url }}">here</a></h5>
+                        {% else %}
+
+                            <p> You haven't upload a CV</p>
+
+                        {% endif %}
+
+
+                        <a class="btn btn-warning btn-block" href="{% url 'edit candidate profile' info.user_id %}">Edit
+                            Profile</a>
+                        <a class="btn btn-warning btn-block"
+                           href="{% url 'change candidate credentials' info.user_id %}">Change
+                            Credentials</a>
+                        <a type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                           data-target="#exampleModal">Delete</a>
+
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card" style="width: 25rem;">
+                    <h1 class="text-center">List of your Ads</h1>
+                    <div class="card-body">
+                        {% if list_of_ads %}
+                            {% for ad in list_of_ads %}
+
+                                <h3>{{ ad.title }}</h3>
+                                <img src="{{ ad.image.url }}" alt="ad_image">
+                                <a class="btn btn-primary" href="{% url 'details ad' ad.id %}">Details</a>
+                            {% endfor %}
+                        {% else %}
+                            <h6></h6>
+                            <p class="text-center">You are not applied yet or the ads are expired.</p>
+
+                        {% endif %}
+
+                    </div>
+                </div>
             </div>
         </div>
-        <image src="{{ info.profile_image.url }}" alt="image user"></image>
-
-
-        <h5>First_name: {{ info.first_name }}</h5>
-        <h5>Last_name: {{ info.last_name }}</h5>
-        <br>
-        <h5>Email: {{ info.email }}</h5>
-        {% if info.CV %}
-            <h5>Check you application: <a href="{{ info.CV.url }}">CV</a></h5>
-        {% else %}
-
-            <p> You haven't upload a CV</p>
-
-        {% endif %}
-
-
-        <a class="btn btn-warning btn-block" href="{% url 'edit candidate profile' info.user_id %}">Edit Profile</a>
-        <a class="btn btn-warning btn-block" href="{% url 'change candidate credentials' info.user_id %}">Change
-            Credentials</a>
-        <a class="btn btn-danger btn-block" href="{% url 'delete profile' info.user_id %}">Delete</a>
-
-        <br>
-        <hr>
-
-        {% if list_of_ads %}
-            {% for ad in list_of_ads %}
-
-                <h3>{{ ad.title }}</h3>
-                <img src="{{ ad.image.url }}" alt="ad_image">
-                <a class="btn btn-primary" href="{% url 'details ad' ad.id %}">Details</a>
-            {% endfor %}
-        {% else %}
-
-            <p>You are not applied yer or the ads are expired.</p>
-
-        {% endif %}
-
-
     </div>
+    {% include 'shared/modal/delete-modal.html' %}
+
 
 {% endblock %}
 

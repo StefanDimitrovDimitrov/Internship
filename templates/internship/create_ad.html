@@ -1,4 +1,5 @@
 {% extends 'shared/base.html' %}
+{% load crispy_forms_filters %}
 
 
 {% block content %}
@@ -9,16 +10,24 @@
         </div>
     </div>
 
-    {% load bootstrap4 %}
+    {% if company_profile.is_complete %}
+
+
+
+
     <h1 class="text-center">Ads</h1>
     <div class="row d-flex justify-content-center">
         <form action="{% url 'create ad' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {% bootstrap_form form %}
-            {% buttons %}
+{{ form|crispy }}
                 <button class="btn btn-primary">Create</button>
-            {% endbuttons %}
+
         </form>
     </div>
 
+    {% else %}
+
+        <h1 class="text-center">Please complete your profile and create your Internship ad here.</h1>
+
+    {% endif %} }
 {% endblock %}

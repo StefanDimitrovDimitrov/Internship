@@ -1,4 +1,5 @@
 {% extends 'shared/base.html' %}
+{% load crispy_forms_filters %}
 
 {% block content %}
 <div class="jumbotron jumbotron-fluid">
@@ -9,15 +10,15 @@
 </div>
     <h1 class="text-center">Edit</h1>
     <div class="row d-flex justify-content-center">
-    {% load bootstrap4 %}
+
     <form method= "POST" action="{% url 'edit ad' ad.pk %}" enctype="multipart/form-data">
         {% csrf_token %}
-        {% bootstrap_form form %}
-        {% buttons %}
+        {{ form|crispy }}
+
         <div>
             <button class="btn btn-warning btn-block">Save</button>
         </div>
-        {% endbuttons %}
+
     </form>
  </div>
         <div class="row d-flex justify-content-center">

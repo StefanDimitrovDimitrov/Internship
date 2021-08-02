@@ -3,32 +3,31 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from Internship.internship_auth.forms import LoginForm, RegisterFormCandidate, RegisterFormCompany, UserModel, \
+from Internship.internship_auth.forms import LoginForm, UserModel, \
     RegisterForm
 
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
 
 def register_candidate(request):
-    form = RegisterFormCandidate()
+    form = RegisterForm()
 
     if request.method == "POST":
-        form = RegisterFormCandidate(request.POST)
-        # profile_form = CandidateForm(request.POST)
+        form = RegisterForm(request.POST)
 
         if form.is_valid():
             candidate_user = form.save(commit=False)
             candidate_user.profile = "Candidate"
             candidate_user = form.save()
             login(request, candidate_user)
-            return redirect('home')
+            return redirect('candidate profile', pk=request.user.pk)
 
     return render(request, 'auth/register candidate.html', context={"form": form})
 
 
 def register_company(request):
     if request.method == "POST":
-        form = RegisterFormCompany(request.POST)
+        form = RegisterForm(request.POST)
 
         if form.is_valid():
             company_user = form.save(commit=False)
@@ -36,10 +35,10 @@ def register_company(request):
             company_user = form.save()
 
             login(request, company_user)
-            return redirect('home')
+            return redirect('company profile', pk=request.user.pk)
 
     context = {
-        "form": RegisterFormCompany(),
+        "form": RegisterForm(),
     }
 
 
@@ -72,7 +71,7 @@ def change_candidate_credentials(request, pk):
     user = UserModel.objects.get(pk=pk)
     candidate_profile = CandidateProfile.objects.get(user_id=pk)
     if request.method == "POST":
-        form = RegisterFormCandidate(request.POST, instance=user)
+        form = RegisterForm(request.POST, instance=user)
         if form.is_valid():
             temp_object = form.save(commit=False)
             candidate_profile.email = temp_object.email
@@ -82,7 +81,7 @@ def change_candidate_credentials(request, pk):
             return redirect('candidate profile', pk=pk)
 
     context = {
-        'form': RegisterFormCandidate(instance=user),
+        'form': RegisterForm(instance=user),
         'user': user
     }
 

@@ -18,17 +18,6 @@ class RegisterForm(UserCreationForm):
         model = UserModel
         fields = ('email',)
 
-class RegisterFormCompany(RegisterForm):
-    class Meta:
-        model = UserModel
-        fields = ('email',)
-
-
-class RegisterFormCandidate(CandidateForm, RegisterForm):
-    class Meta:
-        model = UserModel
-        fields = ('email',)
-
 
 class LoginForm(forms.Form):
     email = forms.EmailField(

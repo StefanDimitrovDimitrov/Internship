@@ -11,10 +11,10 @@ UserModel = get_user_model()
 def user_created(sender, instance, created, **kwargs):
     if created:
         if instance.profile == 'Candidate':
-            profile = CandidateProfile(user=instance)
+            profile = CandidateProfile()
         else:
-            profile = CompanyProfile(user=instance)
-
+            profile = CompanyProfile()
+        profile.user_id = instance.id
         profile.email = instance.email
         profile.save()
 
@@ -31,7 +31,7 @@ def check_is_complete(sender, instance, update_fields=None, **kwargs):
 
 @receiver(pre_save, sender=CompanyProfile)
 def check_is_complete(sender, instance, update_fields=None, **kwargs):
-    if instance.company_name and instance.company_logo and instance.description and instance.company_phone\
+    if instance.company_name and instance.email and instance.company_logo and instance.description and instance.company_phone\
             and instance.company_address and instance.company_website:
         instance.is_complete = True
     else:

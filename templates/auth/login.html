@@ -1,25 +1,28 @@
 {% extends 'shared/base.html' %}
+{% load crispy_forms_filters %}
 
 
-{% block content  %}
-        <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4 text-center">Login</h1>
-    <p class="lead text-center">Happy to see you again.</p>
-  </div>
-</div>
-    {% load bootstrap4 %}
-    <h1 class="text-center">Login</h1>
-    <div class="row d-flex justify-content-center">
-    <form method= "POST" action="{% url 'login' %}">
-        <input type="hidden" name="return_url" value="{{ request.GET.next }}">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% buttons %}
-            <button class="btn btn-primary">Login</button>
-            <p>or <a href="{% url 'register company' %}?next={{ request.GET.next }}">Register Candidate</a></p>
-            <p>or <a href="{% url 'register candidate' %}?next={{ request.GET.next }}">Register Company</a></p>
-        {% endbuttons %}
-    </form>
+{% block content %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Login with your Email and Password</h1>
+            <p class="lead text-center">Happy to see you again.</p>
+        </div>
     </div>
+    <div class="text-center">
+        <h1 class="text-center">Login</h1>
+
+
+        <form method="POST" action="{% url 'login' %}">
+            <input type="hidden" name="return_url" value="{{ request.GET.next }}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button class="btn btn-primary">Login</button>
+            <p>or <a href="{% url 'register company' %}?next={{ request.GET.next }}">Register Candidate</a> / <a
+                    href="{% url 'register candidate' %}?next={{ request.GET.next }}">Company</a></p>
+
+        </form>
+    </div>
+
 {% endblock %}

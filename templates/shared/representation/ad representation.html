@@ -1,0 +1,56 @@
+{% load static %}
+
+
+{% if ads %}
+
+
+    <div class="container">
+
+        <div class="row">
+            {% for ad in ads %}
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+
+                        <div class="card-body">
+                            <ul>
+                                <li>
+                                    <img src="{% static 'img/exam.svg' %}" width="30" height="30"
+                                         alt="brand img"><span>Title: <b>{{ ad.title|upper }}</b></span>
+                                </li>
+                                <br>
+                                <li>
+                                    <img src="{% static 'img/company.png' %}" width="30" height="30"
+                                         alt="brand img"><span>Company: <b>{{ ad.company_owner.company_name }}</b></span>
+                                </li>
+                                <br>
+                                <li>
+                                    <img src="{% static 'img/time.png' %}" width="30" height="30"
+                                         alt="brand img"><span>Created at: <b>{{ ad.created_at|date:"Y-m-d" }}</b></span>
+                                </li>
+                                <br>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a>
+                                    {#                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
+                                </div>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+{% else %}
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">No public ad at the moment!</h1>
+        </div>
+    </div>
+
+{% endif %}

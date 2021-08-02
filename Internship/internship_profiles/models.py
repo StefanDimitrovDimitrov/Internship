@@ -77,9 +77,9 @@ class CompanyProfile(models.Model):
         blank=True
     )
 
-    company_phone = PhoneField(
-        blank=True,
-        help_text='Contact phone number')
+    company_phone = models.CharField(max_length=20,
+        blank=True,)
+        # help_text='Contact phone number')
 
     is_complete = models.BooleanField(
         default=False

@@ -29,9 +29,9 @@
 
             <ul class="navbar-nav ml-auth">
                 {% if user.is_authenticated %}
-                            {% if not user.is_superuser %}
-                                {% profile_complete_notification %}
-                            {% endif %}
+                    {% if not user.is_superuser %}
+                        {% profile_complete_notification %}
+                    {% endif %}
                     {% if user.profile == 'Company' %}
                         <li class="nav-item active">
                             <a class="nav-link" href="{% url 'company profile' user.id %}">My

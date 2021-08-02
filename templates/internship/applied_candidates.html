@@ -1,0 +1,111 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    {% load static %}
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Ad Overview</h1>
+            <p class="lead text-center">Did you know how amazing is this opportunity?</p>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+
+                <div class="justify-content-md-center">
+                    <div class="card-body">
+
+
+                        <h1 class="text-center">{{ ad.title }}</h1>
+                        <br>
+                        <hr>
+                        <br>
+                        <ul>
+                            <li>
+                                <img src="{% static 'img/company.png' %}" width="30" height="30" alt="brand img"><span>Company: <b>{{ ad.company_owner.company_name|upper }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="{% static 'img/city.png' %}" width="30" height="30"
+                                     alt="brand img"><span>City: <b>{{ ad.city }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="{% static 'img/field.png' %}" width="30" height="30"
+                                     alt="brand img"><span>Field: <b>{{ ad.field }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="{% static 'img/employment type.png' %}" width="30" height="30"
+                                     alt="brand img"><span>Employment-type: <b>{{ ad.employment_type }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="{% static 'img/duration.png' %}" width="30" height="30" alt="brand img"><span>Duration: <b>{{ ad.duration }}</b></span>
+                            </li>
+                            <br>
+                        </ul>
+                        <br>
+                        <hr>
+                        <br>
+
+                        {% if id == ad.company_owner_id %}
+                            <div>
+                                <a class="btn btn-warning btn-block btn-lg" href="{% url 'edit ad' ad.pk %}">Edit</a>
+                            </div>
+                            <div>
+                                <a class="btn btn-danger btn-block btn-lg" href="{% url 'delete ad' ad.pk %}">Delete</a>
+                            </div>
+                        {% elif user.profile == 'Candidate' %}
+                            <div>
+                                <a class="btn btn-danger btn-block btn-lg" href="{% url 'apply' ad.pk %}">Apply</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="justify-content-md-center">
+
+
+                    {% if user.id == ad.company_owner_id %}
+                        {% if candidates %}
+                            {% for candidate in candidates %}
+
+                                <div class="container">
+                                    <hr>
+
+
+                                    <img src="{{ candidate.profile_image.url }}"
+                                         class="img-fluid rounded-circle mx-auto d-block" width=30% height="auto"
+                                         alt="CV">
+                                </div>
+                                       <p>Email: {{ candidate.email }}</p>
+                                                                    {% for record in records %}
+                                    {% if record.applied_candidate_id == candidate.user_id %}
+                                        <a href="{{ record.CV.url }}">Application</a> applied at:
+                                        {{ record.applied_at }}
+                                    {% endif %}
+
+                                {% endfor %}
+
+
+                            {% endfor %}
+
+                        {% else %}
+                            <p>no candidates yet</p>
+                        {% endif %}
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

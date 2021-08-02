@@ -1,6 +1,14 @@
 from django.contrib import admin
 
 # Register your models here.
-from Internship.internship_app.models import Internship_ad
+from django_summernote.admin import SummernoteModelAdmin
 
-admin.site.register(Internship_ad)
+from Internship.internship_app.models import Internship_ad
+class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
+    summernote_fields = ('description', )
+
+
+
+
+
+admin.site.register(Internship_ad, SomeModelAdmin)

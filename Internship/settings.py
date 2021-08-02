@@ -17,7 +17,6 @@ from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ SECRET_KEY = 'django-insecure-os1iwsj-zywg7d6n_anxygtpg=79uuzl2&sy6)8h#5y1cn)=d5
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -43,10 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'bootstrap4',
+    'bootstrapform',
+    # 'bootstrap4',
     'debug_toolbar',
     'phone_field',
+    'django_summernote',
+    'crispy_forms'
+
 ]
 
 MIDDLEWARE = [
@@ -60,10 +61,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-INTERNAL_IPS =[
+INTERNAL_IPS = [
     '127.0.0.1',
 ]
-
 
 ROOT_URLCONF = 'Internship.urls'
 
@@ -86,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Internship.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -100,7 +99,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -120,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -134,13 +131,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 #
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR/"static",
+    BASE_DIR / "static",
 ]
 
 MEDIA_URL = '/media/'
@@ -152,8 +148,10 @@ LOGIN_URL = reverse_lazy('sign in')
 
 AUTH_USER_MODEL = 'internship_auth.InternshipUser'
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SUMMERNOTE_THEME = 'bs4'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

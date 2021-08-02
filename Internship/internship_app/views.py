@@ -5,7 +5,9 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views.generic import ListView
+from django.views.generic.detail import SingleObjectMixin
 
+from Internship.comman.main import get_current_company
 from Internship.comman.remove_old_img import remove_old_img
 from Internship.internship_app.forms import AdForm, ApplyForm
 from Internship.internship_app.models import Internship_ad, AppliedTracking
@@ -15,7 +17,25 @@ from django.contrib import messages
 
 # def home(request):
 #     return render(request, 'shared/base.html', )
-
+# class Home(SingleObjectMixin, ListView):
+#     model = Internship_ad
+#     template_name = 'shared/base.html'
+#
+#     object = None
+#
+#     paginate_by = 3
+#
+#     def get(self, request, *args, **kwargs):
+#         self.object = self.get_object(queryset=Internship_ad.objects.all())
+#         return super().get(request, *args, **kwargs)
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['source'] = self.object
+#         return context
+#
+#     def get_queryset(self):
+#         return self.object.ads_set.all()
 
 class Home(ListView):
     model = Internship_ad
@@ -25,10 +45,10 @@ class Home(ListView):
 
 
 def catalog_companies(request):
-    profiles = CompanyProfile.objects.all()
+    companies = CompanyProfile.objects.filter(is_complete=True)
 
     context = {
-        'profiles': profiles
+        'companies': companies
     }
 
     return render(request, 'internship/catalog_companies.html', context)
@@ -48,20 +68,21 @@ def catalog_ad(request):
 
 @login_required
 def create_ad(request):
+    current_company = get_current_company(request)
     if request.method == "POST":
 
         form = AdForm(request.POST, request.FILES)
         if form.is_valid():
             ad = form.save(commit=False)
-            user_id = request.user.id
-            company = CompanyProfile.objects.get(user_id=user_id)
-            ad.company_owner_id = company.user_id
+            ad.company_owner_id = current_company.user_id
             ad.save()
             form.save()
             return redirect('catalog ads')
 
     context = {
         'form': AdForm(),
+        'company_profile': current_company
+
     }
     return render(request, 'internship/create_ad.html', context)
 
@@ -88,13 +109,13 @@ def details_ad(request, pk):
         'list_applied_cv': ad_apply_candidates,
         'company_owner': company_owner
         }
-
-    context = {
-        'ad': ad,
-        'candidates': list_of_applied_candidates,
-        'list_applied_cv': ad_apply_candidates,
-        'company_owner': company_owner
-    }
+    else:
+        context = {
+            'ad': ad,
+            'candidates': list_of_applied_candidates,
+            'list_applied_cv': ad_apply_candidates,
+            'company_owner': company_owner
+        }
 
     # candidates = ad.applied_candidates.all()
 
@@ -153,7 +174,7 @@ def alert(param):
 def apply(request, pk):
     ad = Internship_ad.objects.get(pk=pk)
     candidate = CandidateProfile.objects.get(user_id=request.user.id)
-    form = ApplyForm(request.FILES, instance=candidate)
+    form = ApplyForm(request.FILES)
     CV = candidate.CV
 
     if request.method == "POST":
@@ -174,6 +195,24 @@ def apply(request, pk):
     context = {
         'form': form,
         'ad': ad,
+        'cv': CV
     }
     return render(request, 'internship/apply.html', context)
 
+def applied_candidates(request, pk):
+    ad = Internship_ad.objects.get(pk=pk)
+    ad_apply_candidates = AppliedTracking.objects.filter(application_id=pk)
+    all_candidates = CandidateProfile.objects.all()
+    list_of_applied_candidates = [c for c in all_candidates for record in ad_apply_candidates if
+                                  c.user_id == record.applied_candidate_id]
+
+
+
+
+    context ={
+        'candidates':list_of_applied_candidates,
+        'ad': ad,
+        'records':ad_apply_candidates,
+    }
+
+    return render(request, 'internship/applied_candidates.html', context)

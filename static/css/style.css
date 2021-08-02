@@ -43,9 +43,9 @@ nav a:hover::before{
 form{ margin: 0 auto; }
 
 
-/* Resize images */
+ Resize images
 .container img {
-    width: 10%;
+    width: 20%;
     height: auto;
 }
 
@@ -64,4 +64,25 @@ ul li{ list-style-type: none; }
 
 img+span {
   margin-left: 10px;
+}
+
+.jumbotron{
+    margin-top: 40px;
+}
+
+footer{
+    color: white;
+}
+
+.bg-primary{
+    background-color: lightblue!important;
+}
+.bg-custom-1{
+    background-color: lightblue;
+}
+
+.card{
+
+    background-color: lightblue;
+
 }
