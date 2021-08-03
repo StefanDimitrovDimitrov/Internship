@@ -3,10 +3,11 @@ from django_summernote.fields import SummernoteTextFormField
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
 from Internship.choices.choices import CITY_CHOICES, FIELD_CHOICES, DURATION_CHOICES, EMPLOYMENT_TYPE
+from Internship.comman.bot_catcher_mixin import BotCatcherFormMixin
 from Internship.internship_app.models import Internship_ad, AppliedTracking
 from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
-class AdForm(forms.ModelForm):
+class AdForm(forms.ModelForm, BotCatcherFormMixin):
     class Meta:
         model = Internship_ad
         fields = '__all__'
@@ -17,7 +18,7 @@ class AdForm(forms.ModelForm):
         exclude = ('user', 'company_owner', 'is_active', 'applied_candidates', 'created_at', 'modified_at')
 
 
-class ApplyForm(forms.ModelForm):
+class ApplyForm(forms.ModelForm,BotCatcherFormMixin):
     class Meta:
         model = CandidateProfile
         fields = ('CV',)

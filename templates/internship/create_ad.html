@@ -19,6 +19,7 @@
     <div class="row d-flex justify-content-center">
         <form action="{% url 'create ad' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            {{ form.error }}
 {{ form|crispy }}
                 <button class="btn btn-primary">Create</button>
 

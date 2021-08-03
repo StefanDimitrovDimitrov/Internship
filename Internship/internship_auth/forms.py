@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+from Internship.comman.bot_catcher_mixin import BotCatcherFormMixin
 from Internship.internship_auth.models import InternshipUser
 from Internship.internship_profiles.forms import CompanyForm, CandidateForm
 from Internship.internship_profiles.models import CompanyProfile
@@ -13,7 +14,7 @@ UserModel = get_user_model()
 
 
 
-class RegisterForm(UserCreationForm):
+class RegisterForm(UserCreationForm,BotCatcherFormMixin):
     class Meta:
         model = UserModel
         fields = ('email',)
