@@ -1,10 +1,11 @@
 from django.urls import path
 
 from Internship.internship_app.views import catalog_companies, catalog_ad, create_ad, details_ad, edit_ad, \
-    delete_ad, apply, deactivate_ad, activate_ad, Home,applied_candidates
+    delete_ad, apply, deactivate_ad, activate_ad, Home, applied_candidates, about
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
+    path('about/',about, name='about'),
     path('companies/', catalog_companies, name='catalog companies'),
     path('ads/', catalog_ad, name='catalog ads'),
     path('create/', create_ad, name='create ad'),

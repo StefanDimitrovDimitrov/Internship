@@ -29,7 +29,7 @@ def catalog_companies(request):
         'companies': companies
     }
 
-    return render(request, 'internship/catalog_companies.html')
+    return render(request, 'internship/catalog_companies.html', context)
 
 
 def catalog_ad(request):
@@ -194,3 +194,8 @@ def applied_candidates(request, pk):
     }
 
     return render(request, 'internship/applied_candidates.html', context)
+
+
+def about(request):
+
+    return render(request, 'internship/about.html')

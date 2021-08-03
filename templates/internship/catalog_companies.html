@@ -12,9 +12,25 @@
     </div>
 
 
-
+    {% if companies %}
 
 {% search_company %}
+
+
+    {% else %}
+
+            <hr>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4 text-center">No register company at the moment</h1>
+                </div>
+            </div>
+            <hr>
+        {% endif %}
+
+
+
+
 
 
 {% endblock %}

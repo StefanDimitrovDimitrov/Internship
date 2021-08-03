@@ -30,10 +30,11 @@ def sort_ads(context):
 
     ads = set(chain(ads_list1, ads_list2))
 
+
     return {
         'ads': ads,
         'sort_form': SortForm(initial=params),
-        'search_form': SearchForm(initial=params)
+        'search_form': SearchForm(initial=params),
     }
 
 

@@ -36,6 +36,13 @@ def edit_company_profile(request, pk):
         if edit_profile_form.is_valid():
             edit_profile_form.save()
             return redirect('company profile', pk=pk)
+        else:
+            context = {
+                'form': EditCompanyForm(instance=company),
+                'info': company,
+                'errors': edit_profile_form.errors
+            }
+            return render(request, 'profile/edit_company_profile.html', context)
 
     context = {
         'form': EditCompanyForm(instance=company),

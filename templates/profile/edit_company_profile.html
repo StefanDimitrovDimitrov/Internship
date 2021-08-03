@@ -20,7 +20,14 @@
     <div class="card-body">
         <form method="POST" action="{% url 'edit company profile' info.user_id %}" enctype="multipart/form-data">
             {% csrf_token %}
+             {% if errors %}
+                   <div class="alert alert-warning">
+    <strong>Warning!</strong> Please check again your phone number.
+  </div>
+                {% endif %}
+
             {{ form|crispy }}
+
             <br>
             <div>
                 <button class="btn btn-success btn-block">Save</button>

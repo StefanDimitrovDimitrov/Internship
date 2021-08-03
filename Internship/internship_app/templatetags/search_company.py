@@ -21,7 +21,8 @@ def search_company(context):
 
     return {
         'companies': company,
-        'search_form': SearchForm(initial=params)
+        'search_form': SearchForm(initial=params),
+        'params': params['text']
     }
 
 

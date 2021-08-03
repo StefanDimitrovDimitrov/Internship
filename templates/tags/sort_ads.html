@@ -10,7 +10,8 @@
                 <div class="form-group">
                     {{ sort_form }}
                     {% csrf_token %}
-                    <button class="btn btn-success">Filter</button>
+                    <button class="btn"><img src="{% static 'img/filter.png' %}" width="30" height="30"
+                         alt="brand img"></button>
                 </div>
             </form>
 
@@ -18,7 +19,8 @@
                 <div class="form-group">
                     {{ search_form }}
                     {% csrf_token %}
-                    <button class="btn btn-success">Search</button>
+                    <button class="btn"><img src="{% static 'img/ad.png' %}" width="30" height="30"
+                         alt="brand img"></button>
                 </div>
             </form>
         </div>
@@ -26,7 +28,10 @@
 
         <div class="container">
 
+        {% if ads %}
+
             <div class="row">
+
                 {% for ad in ads %}
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
@@ -60,9 +65,26 @@
                     </div>
 
                 {% endfor %}
+                    {% else %}
+            <hr>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4 text-center">Looks like we don't have any matches.</h1>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img src="{% static 'img/ad.png' %}" width="30" height="30"
+                             alt="brand img"><span><a class="btn btn-info" href="{% url 'catalog ads' %}">Back to Companies</a></span>
+
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+        {% endif %}
+
             </div>
         </div>
     </div>
+
 
 </main>
 

@@ -7,6 +7,7 @@ from Internship.comman.bot_catcher_mixin import BotCatcherFormMixin
 from Internship.internship_app.models import Internship_ad, AppliedTracking
 from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
+
 class AdForm(forms.ModelForm, BotCatcherFormMixin):
     class Meta:
         model = Internship_ad
@@ -18,7 +19,7 @@ class AdForm(forms.ModelForm, BotCatcherFormMixin):
         exclude = ('user', 'company_owner', 'is_active', 'applied_candidates', 'created_at', 'modified_at')
 
 
-class ApplyForm(forms.ModelForm,BotCatcherFormMixin):
+class ApplyForm(forms.ModelForm, BotCatcherFormMixin):
     class Meta:
         model = CandidateProfile
         fields = ('CV',)
@@ -32,5 +33,4 @@ class SortForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    Company_search = forms.CharField(max_length=15, required=False)
-
+    text = forms.CharField(max_length=30, required=False)

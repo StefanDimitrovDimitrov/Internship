@@ -5,9 +5,8 @@
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'img/favicon.ico' %}" width="30" height="30" class="d-inline-block align-top"
+            <img src="{% static 'img/favicon1.png' %}" width="150" height="35" class="d-inline-block align-top"
                  alt="brand img">
-            Internship
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,6 +61,9 @@
                         <a class="nav-link" href="{% url 'register company' %}">Register Company</a>
                     </li>
                 {% endif %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'about' %}">About us</a></a>
+                </li>
             </ul>
 
         </div>

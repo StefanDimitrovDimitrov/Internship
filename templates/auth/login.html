@@ -17,6 +17,7 @@
             <input type="hidden" name="return_url" value="{{ request.GET.next }}">
             {% csrf_token %}
             {{ form|crispy }}
+
             <br>
             <button class="btn btn-primary">Login</button>
             <p>or <a href="{% url 'register company' %}?next={{ request.GET.next }}">Register Candidate</a> / <a
