@@ -7,7 +7,8 @@ from itertools import chain
 
 register = Library()
 
-@register.inclusion_tag('tags/sort_ads.html', takes_context=True,)
+
+@register.inclusion_tag('tags/sort_ads.html', takes_context=True, )
 def sort_ads(context):
     params = extract_filter_values(context.request.GET)
 
@@ -17,6 +18,7 @@ def sort_ads(context):
         duration__icontains=params['duration'],
         employment_type__icontains=params['employment_type'],
         title__icontains=params['text']
+
     )
     ads_list2 = Internship_ad.objects.filter(
         city__icontains=params['city'],
@@ -26,9 +28,7 @@ def sort_ads(context):
         company_owner__company_name__icontains=params['text']
     )
 
-
     ads = set(chain(ads_list1, ads_list2))
-
 
     return {
         'ads': ads,

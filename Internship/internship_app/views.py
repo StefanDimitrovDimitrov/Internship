@@ -15,28 +15,6 @@ from Internship.internship_profiles.models import CompanyProfile, CandidateProfi
 from django.contrib import messages
 
 
-# def home(request):
-#     return render(request, 'shared/base.html', )
-# class Home(SingleObjectMixin, ListView):
-#     model = Internship_ad
-#     template_name = 'shared/base.html'
-#
-#     object = None
-#
-#     paginate_by = 3
-#
-#     def get(self, request, *args, **kwargs):
-#         self.object = self.get_object(queryset=Internship_ad.objects.all())
-#         return super().get(request, *args, **kwargs)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['source'] = self.object
-#         return context
-#
-#     def get_queryset(self):
-#         return self.object.ads_set.all()
-
 class Home(ListView):
     model = Internship_ad
     template_name = 'shared/base.html'
@@ -51,7 +29,7 @@ def catalog_companies(request):
         'companies': companies
     }
 
-    return render(request, 'internship/catalog_companies.html', context)
+    return render(request, 'internship/catalog_companies.html')
 
 
 def catalog_ad(request):

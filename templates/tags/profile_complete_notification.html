@@ -2,14 +2,12 @@
 
     {% if not is_complete %}
         <a id="candidate-color" class="nav-link complete-profile" href="{% url 'edit candidate profile' user_id %}">Complete your profile</a>
-        {% else %}
     {% endif %}
 
 {% else %}
 
     {% if not is_complete %}
         <a id="company-color" class="nav-link" href="{% url 'edit company profile' user_id %}">Complete your profile</a>
-    {% else %}
     {% endif %}
 
 {% endif %}

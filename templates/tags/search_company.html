@@ -1,0 +1,80 @@
+
+{% load crispy_forms_filters %}
+{% load static %}
+<div class="container">
+    <form class="uniForm" method='GET' action="{% url 'catalog companies' %}">
+        <div class="form-group">
+
+            {{ search_form|crispy }}
+            {% csrf_token %}
+            <button class="btn btn-success">Search</button>
+        </div>
+    </form>
+</div>
+        <div class="container">
+           <div class="row">
+                {% if companies %}
+                    {% for company in companies %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+
+                                <div class="card-body">
+
+                                    <h3 class="text-center">{{ company.company_name }}</h3>
+
+                                    <ul>
+                                        <li>
+                                            <img src="{% static 'img/email.png' %}" width="30" height="30"
+                                                 alt="brand img"><span> <b>Email: {{ company.email }}</b></span>
+                                        </li>
+                                        <br>
+                                        <li>
+                                            <img src="{% static 'img/paddress.png' %}" width="30" height="30"
+                                                 alt="brand img"><span>Address: <b>{{ company.company_address }}</b></span>
+                                        </li>
+                                        <br>
+                                        <li>
+                                            <img src="{% static 'img/webaddress.png' %}" width="30" height="30"
+                                                 alt="brand img"><span>Website: <b>{{ company.company_website }}</b></span>
+                                        </li>
+                                        <br>
+                                        <li>
+                                            <img src="{% static 'img/phone.png' %}" width="30" height="30"
+                                                 alt="brand img"><span>Phone: <b>Phone: {{ company.phone }}</b></span>
+                                        </li>
+                                        <br>
+                                        <li>
+                                            <img src="{% static 'img/duration.png' %}" width="30" height="30"
+                                                 alt="brand img"><span>Active_Ads: <b>24</b></span>
+
+                                        </li>
+                                        <br>
+
+                                        <br>
+                                        <li>
+                                            <p><a class="btn btn-secondary btn-primary"
+                                                  href="{% url 'company profile' company.user_id %}"
+                                                  role="button">View more »</a></p>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+                    <hr>
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <h1 class="display-4 text-center">No register company at the moment</h1>
+                        </div>
+                    </div>
+                    <hr>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
