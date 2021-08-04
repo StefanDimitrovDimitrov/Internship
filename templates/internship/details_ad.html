@@ -25,26 +25,23 @@
                         <br>
                         <ul>
                             <li>
-                                <img src="{% static 'img/company.png' %}" width="30" height="30" alt="brand img"><span>Company: <b>{{ company_owner.company_name|upper }}</b></span>
+                                <img src="https://img.icons8.com/color/48/000000/company.png"/><span>Company: <b>{{ company_owner.company_name|upper }}</b></span>
                             </li>
                             <br>
                             <li>
-                                <img src="{% static 'img/city.png' %}" width="30" height="30"
-                                     alt="brand img"><span>City: <b>{{ ad.city }}</b></span>
+                                <img src="https://img.icons8.com/color/48/000000/place-marker--v1.png"/><span>City: <b>{{ ad.city }}</b></span>
                             </li>
                             <br>
                             <li>
-                                <img src="{% static 'img/field.png' %}" width="30" height="30"
-                                     alt="brand img"><span>Field: <b>{{ ad.field }}</b></span>
+                                <img src="https://img.icons8.com/color/48/000000/artificial-intelligence.png"/><span>Field: <b>{{ ad.field }}</b></span>
                             </li>
                             <br>
                             <li>
-                                <img src="{% static 'img/employment type.png' %}" width="30" height="30"
-                                     alt="brand img"><span>Employment-type: <b>{{ ad.employment_type }}</b></span>
+                                <img src="https://img.icons8.com/ultraviolet/40/000000/alarm-clock--v2.png"/><span>Employment-type: <b>{{ ad.employment_type }}</b></span>
                             </li>
                             <br>
                             <li>
-                                <img src="{% static 'img/duration.png' %}" width="30" height="30" alt="brand img"><span>Duration: <b>{{ ad.duration }}</b></span>
+                                <img src="https://img.icons8.com/color/48/000000/calendar--v1.png"/><span>Duration: <b>{{ ad.duration }}</b></span>
                             </li>
                             <br>
                         </ul>
@@ -74,15 +71,15 @@
                 <div class="justify-content-md-center">
                     <div class="card-body">
 
-{% if user.id == ad.company_owner_id %}
+                        {% if user.id == ad.company_owner_id %}
 
-                                <a class="btn btn-info btn-lg" href="{% url 'applied candidates' ad.pk %}">Applied
-                                    Candidates: {{ num_candidates }}</a>
+                            <a class="btn btn-lg btn-primary" href="{% url 'applied candidates' ad.pk %}">Applied
+                                Candidates: {{ num_candidates }}</a>
 
                         {% endif %}
                         <hr>
-                        <h5 class="text-left">Description
-                        </h5>
+                        <h3 class="text-left">Description</h3>
+                        <br>
                         <p>{% autoescape off %}{{ ad.description|safe }}{% endautoescape %}</p>
                     </div>
                 </div>

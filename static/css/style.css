@@ -1,5 +1,5 @@
 #bootstrap-overrides{
-    background-color:lightblue;
+    background-color: white !important;
 }
 
 nav li {
@@ -71,18 +71,21 @@ img+span {
 }
 
 footer{
-    color: white;
+    color: teal;
+    background-color: white !important;
 }
 
 .bg-primary{
-    background-color: lightblue!important;
+    background-color: white!important;
 }
 .bg-custom-1{
-    background-color: lightblue;
+    background-color: white;
 }
 
 .card{
+    background-color: white;
+}
 
-    background-color: lightblue;
-
+.p {
+      font-size: 100px;
 }

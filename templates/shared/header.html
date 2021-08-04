@@ -3,10 +3,8 @@
 
 
 <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" style="background-color: teal">
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'img/favicon1.png' %}" width="150" height="35" class="d-inline-block align-top"
-                 alt="brand img">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,14 +14,17 @@
 
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'catalog companies' %}">Companies</a>
+                    <a class="nav-link" href="{% url 'home' %}"><b>Home</b></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'catalog ads' %}">Advertisements</a>
+                    <a class="nav-link" href="{% url 'catalog companies' %}"><b>Companies</b></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'catalog ads' %}"><b>Advertisements</b></a>
                 </li>
                 {% if user.is_authenticated and  user.profile == 'Company' %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'create ad' %}">Create Ads</a>
+                        <a class="nav-link" href="{% url 'create ad' %}"><b>Create Ad</b></a>
                     </li>
                 {% endif %}
             </ul>

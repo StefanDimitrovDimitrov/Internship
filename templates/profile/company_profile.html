@@ -1,3 +1,6 @@
+<style>
+
+</style>
 {% extends 'shared/base.html' %}
 {% load static %}
 
@@ -11,89 +14,87 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-6">
-                <div class="card" style="width: 25rem;">
-                    <img class="card-img-top" src="{{ info.company_logo.url }}" width=50% height="50%" alt="img">
-                    <div class="card-body">
-
-                        <ul>
-                            <li>
-                                <img src="{% static 'img/company.png' %}" width="30" height="30" alt="brand img"><span>Company: <b>{{ info.company_name }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/email.png' %}" width="30" height="30"
-                                     alt="brand img"><span> Email: <b>{{ info.email }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/paddress.png' %}" width="30" height="30" alt="brand img"><span>Address: <b>{{ info.company_address }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/webaddress.png' %}" width="30" height="30"
-                                     alt="brand img"><span>Website: <b>{{ info.company_website }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/phone.png' %}" width="30" height="30"
-                                     alt="brand img"><span>Phone: <b>{{ info.company_phone }}</b></span>
-                            </li>
-                        </ul>
-                        <h5 class="text-center">Description</h5>
-                        <p>{{ info.description }}</p>
-
-                        {% if user.id == info.user_id %}
-                            <hr>
-                            <a class="btn btn-warning btn-block" href="{% url 'edit company profile' info.user_id %}">Edit
-                                Profile</a>
-                            <a class="btn btn-warning btn-block"
-                               href="{% url 'change company credentials' info.user_id %}">Change
-                                Credentials</a>
-
-                            <a type="button" class="btn btn-danger btn-block" data-toggle="modal"
-                               data-target="#exampleModal">
-                                Delete
-                            </a>
-                            {% include 'shared/modal/delete-modal.html' %}
-                            <hr>
-                        {% endif %}
+            <div>
+                <div>
+                    <div>
+                        <img class="rounded-circle" src="{{ info.company_logo.url }}" alt="Generic placeholder image"
+                             width="200" height="200" style="object-fit: scale-down">
                     </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="card" style="width: 25rem;">
-                    <div class="card-body">
-                        <h1>Company Ads:</h1>
-
+                    <ul>
+                        <li>
+                            <img src="https://img.icons8.com/color/48/000000/company.png"/><span>Company: <b>{{ info.company_name }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="https://img.icons8.com/color/48/000000/email.png"/><span> Email: <b>{{ info.email }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="https://img.icons8.com/color/48/000000/contact-card.png"/><span>Address: <b>{{ info.company_address }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="https://img.icons8.com/color/48/000000/coderwall.png"/><span>Website: <b>{{ info.company_website }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="https://img.icons8.com/color/48/000000/phonelink-ring--v1.png"/><span>Phone: <b>{{ info.company_phone }}</b></span>
+                        </li>
+                    </ul>
+                    <hr>
+                    <h2 class="text-center">What we do and who we are...</h2>
+                    <br>
+                    <p>{{ info.description }}</p>
+                    <br>
+                    {% if user.id == info.user_id %}
                         <hr>
+                        <a class="btn btn-warning btn-block" href="{% url 'edit company profile' info.user_id %}">Edit
+                            Profile</a>
+                        <a class="btn btn-warning btn-block"
+                           href="{% url 'change company credentials' info.user_id %}">Change
+                            Credentials</a>
 
-                        {% if not company_ads %}
-                            <p>You don't have published ads yet.</p>
-                            <p>You have to complete your profile to be able to publish an ad.</p>
-                            <p>Publish your first ad: <a href="{% url 'create ad' %}">HERE</a></p>
-                        {% endif %}
-
-                        {% for ad in company_ads %}
-
-                            <div class="container">
-                                <p><b>{{ ad.title }}</b></p>
-                                <p>Applied candidates <b>{{ 25 }}</b></p>
-                                <p><a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a></p>
-
-                                {% if ad.is_active %}
-                                    <p>Active - Created: {{ ad.created_at }}</p>
-                                {% else %}
-                                    <h5> Closed </h5>
-                                {% endif %}
-                                <hr>
-                            </div>
-                        {% endfor %}
-
-                    </div>
+                        <a type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                           data-target="#exampleModal">
+                            Delete
+                        </a>
+                        {% include 'shared/modal/delete-modal.html' %}
+                        <hr>
+                    {% endif %}
                 </div>
             </div>
         </div>
+        <div class="col-10">
+            <h1>Your job adds:</h1>
+
+            <hr>
+
+            {% if not company_ads %}
+                <h5>It looks a bit lonely here...</h5>
+                <p>You have to complete your profile to be able to publish an ad.</p>
+                <br>
+                <h3><a href="{% url 'create ad' %}" style="color: black">Publish your first ad here </a></h3>
+
+            {% endif %}
+
+            {% for ad in company_ads %}
+
+                <div class="container">
+                    <p><b>{{ ad.title }}</b></p>
+                    <p>Applied candidates <b>{{ 25 }}</b></p>
+                    <p><a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a></p>
+
+                    {% if ad.is_active %}
+                        <p>Active - Created: {{ ad.created_at }}</p>
+                    {% else %}
+                        <h5> Closed </h5>
+                    {% endif %}
+                    <hr>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
     </div>
 
 {% endblock %}

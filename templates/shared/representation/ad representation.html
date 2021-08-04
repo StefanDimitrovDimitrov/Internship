@@ -8,33 +8,19 @@
 
         <div class="row">
             {% for ad in ads %}
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
+                <div class="row align-items-md-stretch">
 
-                        <div class="card-body">
-                            <ul>
-                                <li>
-                                    <img src="{% static 'img/exam.svg' %}" width="30" height="30"
-                                         alt="brand img"><span>Title: <b>{{ ad.title|upper }}</b></span>
-                                </li>
-                                <br>
-                                <li>
-                                    <img src="{% static 'img/company.png' %}" width="30" height="30"
-                                         alt="brand img"><span>Company: <b>{{ ad.company_owner.company_name }}</b></span>
-                                </li>
-                                <br>
-                                <li>
-                                    <img src="{% static 'img/time.png' %}" width="30" height="30"
-                                         alt="brand img"><span>Created at: <b>{{ ad.created_at|date:"Y-m-d" }}</b></span>
-                                </li>
-                                <br>
-                                <div class="btn-group">
-                                    <a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a>
-                                    {#                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-                                </div>
-                            </ul>
-
-
+                    <div class="col-md-4">
+                        <div class="h-100 p-5 bg-light border rounded-3">
+                            <h2><b>{{ ad.title|upper }}</b></h2>
+                            <br>
+                            <h5>Published by <b>{{ ad.company_owner.company_name }}</b></h5>
+                            <br>
+                            <h4>Location: {{ ad.city }}</h4>
+                            <br>
+                            <h6>Employment type: {{ ad.employment_type }}</h6>
+                            <br>
+                            <a class="btn btn-outline-secondary" type="button" href="{% url 'details ad' ad.id %}">See more...</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +30,7 @@
         </div>
     </div>
 
-
+    <br>
     {% include 'shared/representation/pagination.html' %}
 
 {% else %}

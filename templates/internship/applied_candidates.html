@@ -10,85 +10,47 @@
         </div>
     </div>
 
-
     <div class="container">
         <div class="row">
             <div class="col-8">
 
-                <div class="justify-content-md-center">
-                    <div class="card-body">
+                <div class="container">
+                    <h1 class="text-center">{{ ad.title }}</h1>
+                    <br>
 
-
-                        <h1 class="text-center">{{ ad.title }}</h1>
-                        <br>
-                        <hr>
-                        <br>
-                        <ul>
-                            <li>
-                                <img src="{% static 'img/company.png' %}" width="30" height="30" alt="brand img"><span>Company: <b>{{ ad.company_owner.company_name|upper }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/city.png' %}" width="30" height="30"
-                                     alt="brand img"><span>City: <b>{{ ad.city }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/field.png' %}" width="30" height="30"
-                                     alt="brand img"><span>Field: <b>{{ ad.field }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/employment type.png' %}" width="30" height="30"
-                                     alt="brand img"><span>Employment-type: <b>{{ ad.employment_type }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/duration.png' %}" width="30" height="30" alt="brand img"><span>Duration: <b>{{ ad.duration }}</b></span>
-                            </li>
-                            <br>
-                        </ul>
-                        <br>
-                        <hr>
-                        <br>
-
-                        {% if id == ad.company_owner_id %}
-                            <div>
-                                <a class="btn btn-warning btn-block btn-lg" href="{% url 'edit ad' ad.pk %}">Edit</a>
-                            </div>
-                            <div>
-                                <a class="btn btn-danger btn-block btn-lg" href="{% url 'delete ad' ad.pk %}">Delete</a>
-                            </div>
-                        {% elif user.profile == 'Candidate' %}
-                            <div>
-                                <a class="btn btn-danger btn-block btn-lg" href="{% url 'apply' ad.pk %}">Apply</a>
-                            </div>
-                        {% endif %}
-                    </div>
+                    {% if id == ad.company_owner_id %}
+                        <div>
+                            <a class="btn btn-warning btn-block btn-lg" href="{% url 'edit ad' ad.pk %}">Edit</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-danger btn-block btn-lg" href="{% url 'delete ad' ad.pk %}">Delete</a>
+                        </div>
+                    {% elif user.profile == 'Candidate' %}
+                        <div>
+                            <a class="btn btn-danger btn-block btn-lg" href="{% url 'apply' ad.pk %}">Apply</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
-            <div class="col-4">
+            <div class="container">
                 <div class="justify-content-md-center">
-
 
                     {% if user.id == ad.company_owner_id %}
                         {% if candidates %}
                             {% for candidate in candidates %}
-
                                 <div class="container">
-                                    <hr>
-
-
-                                    <img src="{{ candidate.profile_image.url }}"
-                                         class="img-fluid rounded-circle mx-auto d-block" width=30% height="auto"
-                                         alt="CV">
+                                    <img class="rounded-circle" src="{{ candidate.profile_image.url }}"
+                                         alt="Generic placeholder image"
+                                         width="100" height="100" style="object-fit: scale-down">
                                 </div>
-                                <p>Email: {{ candidate.email }}</p>
+                                <img src="https://img.icons8.com/color/48/000000/email.png"/>Email:
+                                {{ candidate.email }}
+                                <p></p>
                                 {% for record in records %}
                                     {% if record.applied_candidate_id == candidate.user_id %}
-                                        <a href="{{ record.CV.url }}">Application</a> applied at:
-                                        {{ record.applied_at }}
+                                        <a class="btn btn-lg btn-primary" style="float: right" href="{{ record.CV.url }}">View more...</a>
+                                        <br>
                                     {% endif %}
 
                                 {% endfor %}

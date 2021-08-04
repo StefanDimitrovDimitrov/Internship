@@ -32,4 +32,8 @@ class SortForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    text = forms.CharField(max_length=30, required=False, help_text='Search by company')
+    text = forms.CharField(
+        max_length=30,
+        required=False,
+        help_text='Search by company'
+    )
