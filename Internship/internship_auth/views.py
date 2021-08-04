@@ -26,6 +26,7 @@ def register_candidate(request):
 
 
 def register_company(request):
+    form = RegisterForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
 
@@ -36,11 +37,16 @@ def register_company(request):
 
             login(request, company_user)
             return redirect('company profile', pk=request.user.pk)
+        else:
+            context = {
+                "form": form,
+
+            }
+        return render(request, 'auth/register company.html', context)
 
     context = {
-        "form": RegisterForm(),
+        "form": form,
     }
-
 
     return render(request, 'auth/register company.html', context)
 

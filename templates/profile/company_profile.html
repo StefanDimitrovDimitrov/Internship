@@ -13,31 +13,35 @@
         <div class="row">
             <div class="col-6">
                 <div class="card" style="width: 25rem;">
-                    <img class="card-img-top" src="{{ info.company_logo.url }}" alt="img">
+                    <img class="card-img-top" src="{{ info.company_logo.url }}" width=50% height="50%" alt="img">
                     <div class="card-body">
 
                         <ul>
                             <li>
                                 <img src="{% static 'img/company.png' %}" width="30" height="30" alt="brand img"><span>Company: <b>{{ info.company_name }}</b></span>
                             </li>
+                            <br>
                             <li>
                                 <img src="{% static 'img/email.png' %}" width="30" height="30"
                                      alt="brand img"><span> Email: <b>{{ info.email }}</b></span>
                             </li>
+                            <br>
                             <li>
                                 <img src="{% static 'img/paddress.png' %}" width="30" height="30" alt="brand img"><span>Address: <b>{{ info.company_address }}</b></span>
                             </li>
+                            <br>
                             <li>
                                 <img src="{% static 'img/webaddress.png' %}" width="30" height="30"
                                      alt="brand img"><span>Website: <b>{{ info.company_website }}</b></span>
                             </li>
+                            <br>
                             <li>
                                 <img src="{% static 'img/phone.png' %}" width="30" height="30"
                                      alt="brand img"><span>Phone: <b>{{ info.company_phone }}</b></span>
                             </li>
                         </ul>
                         <h5 class="text-center">Description</h5>
-                            <p>{{ info.description }}</p>
+                        <p>{{ info.description }}</p>
 
                         {% if user.id == info.user_id %}
                             <hr>
@@ -50,9 +54,6 @@
                             <a type="button" class="btn btn-danger btn-block" data-toggle="modal"
                                data-target="#exampleModal">
                                 Delete
-                            </a>
-                            <a type="button" class="btn btn-winner btn-block">
-                                Company Ads
                             </a>
                             {% include 'shared/modal/delete-modal.html' %}
                             <hr>
@@ -77,8 +78,8 @@
 
                             <div class="container">
                                 <p><b>{{ ad.title }}</b></p>
-                            <p>Applied candidates <b>{{ 25 }}</b></p>
-                            <p><a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a></p>
+                                <p>Applied candidates <b>{{ 25 }}</b></p>
+                                <p><a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a></p>
 
                                 {% if ad.is_active %}
                                     <p>Active - Created: {{ ad.created_at }}</p>

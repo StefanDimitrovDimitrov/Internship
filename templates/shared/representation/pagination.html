@@ -1,7 +1,7 @@
 {% load static %}
 <div class="d-flex justify-content-center">
 
-        <div class="pagination">
+    <div class="pagination">
 
                 <span class="step-links text-center">
 
@@ -11,12 +11,12 @@
                                                                                      width="30" height="30"
                                                                                      alt="prev img"></a>
                         {% endif %}
-                    <b>{{ page_obj.number }}</b>
+                        <b>{{ page_obj.number }}</b>
                         {% if page_obj.has_next %}
                             <a href="?page={{ page_obj.next_page_number }}"><img src="{% static 'img/next.png' %}"
                                                                                  width="30" height="30" alt="next img"></a>
                         {% endif %}
                     </span>
                 </span>
-        </div>
     </div>
+</div>

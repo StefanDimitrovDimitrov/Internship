@@ -1,6 +1,6 @@
 from django import forms
 
-from Internship.comman.bot_catcher_mixin import BotCatcherFormMixin
+from Internship.common.bot_catcher_mixin import BotCatcherFormMixin
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
 

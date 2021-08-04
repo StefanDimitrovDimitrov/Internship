@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="ClosedModal" tabindex="-1" role="dialog" aria-labelledby="ClosedModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -10,11 +10,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                Please confirm that you want to delete this account.
+                Please confirm that you want to deactivate this ad.
+                The ad will not be visible for candidates.
+                You can review all deactivated ads in your profile.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a type="button" class="btn btn-danger" href="{% url 'delete profile' info.user_id %}">Delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                <a type="button" class="btn btn-danger" href="{% url 'deactivate ad' ad.pk %}">Deactivate</a>
             </div>
         </div>
     </div>

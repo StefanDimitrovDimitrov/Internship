@@ -10,12 +10,12 @@
         </div>
     </div>
 <div class="text-center">
+ <br>
     <h1 class="text-center">Register</h1>
+     <br>
         <form method="POST" action="{% url 'register candidate' %}" enctype="multipart/form-data">
             {% csrf_token %}
              {{ form|crispy }}
-{#            {% bootstrap_form form %}#}
-{#            {% buttons %}#}
                 <button class="btn btn-primary">Register</button>
                 <p>or <a href="{% url 'login' %}">Login</a></p>
 

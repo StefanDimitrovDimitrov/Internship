@@ -1,71 +1,69 @@
-
 {% load crispy_forms_filters %}
 {% load static %}
 
-<main role="main">
 
-{#    <section class="jumbotron text-center">#}
-        <div class="container">
-            <form method='GET' action="{% url 'catalog ads' %}">
-                <div class="form-group">
-                    {{ sort_form }}
-                    {% csrf_token %}
-                    <button class="btn"><img src="{% static 'img/filter.png' %}" width="30" height="30"
-                         alt="brand img"></button>
-                </div>
-            </form>
+    {#    <section class="jumbotron text-center">#}
+    <div class="container">
+        <form method='GET' action="{% url 'catalog ads' %}">
+            <div class="form-group">
+                {{ sort_form }}
+                {% csrf_token %}
+                <button class="btn"><img src="{% static 'img/filter.png' %}" width="30" height="30"
+                                         alt="brand img"></button>
+            </div>
+        </form>
 
-            <form method='GET' action="{% url 'catalog ads' %}">
-                <div class="form-group">
-                    {{ search_form }}
-                    {% csrf_token %}
-                    <button class="btn"><img src="{% static 'img/ad.png' %}" width="30" height="30"
-                         alt="brand img"></button>
-                </div>
-            </form>
-        </div>
-{#    </section>#}
+        <form method='GET' action="{% url 'catalog ads' %}">
+            <div class="form-group">
+                {{ search_form }}
+                {% csrf_token %}
+                <button class="btn"><img src="{% static 'img/ad.png' %}" width="30" height="30"
+                                         alt="brand img"></button>
+            </div>
+        </form>
+    </div>
+    {#    </section>#}
 
-        <div class="container">
+    <div class="container">
 
         {% if ads %}
 
             <div class="row">
 
-                {% for ad in ads %}
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
+            {% for ad in ads %}
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
 
-                            <div class="card-body">
-                                <ul>
-                                    <li>
-                                        <img src="{% static 'img/exam.svg' %}" width="30" height="30"
-                                             alt="brand img"><span>Title: <b>{{ ad.title|upper }}</b></span>
-                                    </li>
-                                    <br>
-                                    <li>
-                                        <img src="{% static 'img/company.png' %}" width="30" height="30"
-                                             alt="brand img"><span>Company: <b>{{ ad.company_owner.company_name }}</b></span>
-                                    </li>
-                                    <br>
-                                    <li>
-                                        <img src="{% static 'img/time.png' %}" width="30" height="30"
-                                             alt="brand img"><span>Created at: <b>{{ ad.created_at|date:"Y-m-d" }}</b></span>
-                                    </li>
-                                    <br>
-                                    <div class="btn-group">
-                                        <a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a>
-                                        {#                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
-                                    </div>
-                                </ul>
+                        <div class="card-body">
+                            <ul>
+                                <li>
+                                    <img src="{% static 'img/exam.svg' %}" width="30" height="30"
+                                         alt="brand img"><span>Title: <b>{{ ad.title|upper }}</b></span>
+                                </li>
+                                <br>
+                                <li>
+                                    <img src="{% static 'img/company.png' %}" width="30" height="30"
+                                         alt="brand img"><span>Company: <b>{{ ad.company_owner.company_name }}</b></span>
+                                </li>
+                                <br>
+                                <li>
+                                    <img src="{% static 'img/time.png' %}" width="30" height="30"
+                                         alt="brand img"><span>Created at: <b>{{ ad.created_at|date:"Y-m-d" }}</b></span>
+                                </li>
+                                <br>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a>
+                                    {#                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>#}
+                                </div>
+                            </ul>
 
 
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                {% endfor %}
-                    {% else %}
+            {% endfor %}
+        {% else %}
             <hr>
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
@@ -81,10 +79,5 @@
             <hr>
         {% endif %}
 
-            </div>
         </div>
     </div>
-
-
-</main>
-

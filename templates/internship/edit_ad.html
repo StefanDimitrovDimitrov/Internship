@@ -2,38 +2,55 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4 text-center">Edit Menu</h1>
-    <p class="lead text-center">Make your ad more attractive adding what is important for your candidates.</p>
-  </div>
-</div>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Edit Menu</h1>
+            <p class="lead text-center">Make your ad more attractive adding what is important for your candidates.</p>
+        </div>
+    </div>
+
     <h1 class="text-center">Edit</h1>
+
+
     <div class="row d-flex justify-content-center">
 
-    <form method= "POST" action="{% url 'edit ad' ad.pk %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }}
+        <form method="POST" action="{% url 'edit ad' ad.pk %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
 
-        <div>
-            <button class="btn btn-warning btn-block">Save</button>
-        </div>
 
-    </form>
- </div>
-        <div class="row d-flex justify-content-center">
-        {% if ad.is_active %}
-            <div>
-                <a class="btn btn-danger btn-block" href="{% url 'deactivate ad' ad.pk %}">Deactivate</a>
+                <div class="text-center">
+                    {% if ad.is_active %}
+
+                        This ad is open! - <a type="button" class="btn btn-warning btn-inline btn-sm"
+                                              data-toggle="modal"
+                                              data-target="#ClosedModal">
+                        Deactivate
+                    </a>
+
+                        {% include 'shared/modal/deactivate-modal_ad.html' %}
+                    {% else %}
+
+
+                        This ad is closed! - <a type="button" class="btn btn-success btn-inline btn-sm"
+                                                data-toggle="modal"
+                                                data-target="#OpenModal">
+                        Activate
+
+                    </a>
+{% include 'shared/modal/activate-modal_ad.html' %}
+                    {% endif %}
+                </div>
+                <br>
+                            <div class="text-center">
+                <button class="btn btn-success btn-inline">Save Changes</button>
+
+
             </div>
-        {% else %}
-            <div>
-                <a class="btn btn-warning btn-block" href="{% url 'activate ad' ad.pk %}">Activate</a>
-            </div>
-        {% endif %}
+        </form>
 
 
- </div>
+    </div>
 
 
 {% endblock %}

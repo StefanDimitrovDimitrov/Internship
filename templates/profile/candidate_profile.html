@@ -1,4 +1,5 @@
 {% extends 'shared/base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -16,32 +17,42 @@
                 <div class="card mx-auto" style="width: 25rem;">
                     <img class="card-img-top" src="{{ info.profile_image.url }}" width=50% height="50%" alt="img">
                     <div class="card-body">
-                        <h5>First_name: {{ info.first_name }}</h5>
-                        <h5>Last_name: {{ info.last_name }}</h5>
-                        <br>
-                        <h5>Email: {{ info.email }}</h5>
-                        {% if info.CV %}
-                            <h5>Check your application: <a href="{{ info.CV.url }}">here</a></h5>
-                        {% else %}
 
-                            <p> You haven't upload a CV</p>
+                        <ul>
+                            <li>
+                                <img src="{% static 'img/fname.png' %}" width="30" height="30" alt="brand img"><span>Name: <b>{{ info.first_name }} {{ info.last_name }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="{% static 'img/email.png' %}" width="30" height="30"
+                                     alt="brand img"><span> Email: <b>{{ info.email }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="{% static 'img/cv.png' %}" width="30"
+                                     height="30" alt="brand img">
+                                {% if info.CV %}
+                                    <span>Check your application: <a href="{{ info.CV.url }}">here</a></span>
+                                {% else %}
 
-                        {% endif %}
+                                    <span>You haven't upload a CV</span>
 
-
-                        <a class="btn btn-warning btn-block" href="{% url 'edit candidate profile' info.user_id %}">Edit
-                            Profile</a>
-                        <a class="btn btn-warning btn-block"
-                           href="{% url 'change candidate credentials' info.user_id %}">Change
-                            Credentials</a>
-                        <a type="button" class="btn btn-danger btn-block" data-toggle="modal"
-                           data-target="#exampleModal">Delete</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                            <br>
+                            <a class="btn btn-warning btn-block" href="{% url 'edit candidate profile' info.user_id %}">Edit
+                                Profile</a>
+                            <a class="btn btn-warning btn-block"
+                               href="{% url 'change candidate credentials' info.user_id %}">Change
+                                Credentials</a>
+                            <a type="button" class="btn btn-danger btn-block" data-toggle="modal"
+                               data-target="#exampleModal">Delete</a>
 
                     </div>
                     <hr>
                 </div>
             </div>
-
             <div class="col-6">
                 <div class="card" style="width: 25rem;">
                     <h1 class="text-center">List of your Ads</h1>

@@ -31,10 +31,10 @@
 <body id="bootstrap-overrides">
 {% include 'shared/header.html' %}
 
+<main role="main">
 
+    {% block content %}
 
-{% block content %}
-    <main role="main">
 
         <div class="jumbotron">
             <div class="container">
@@ -47,12 +47,14 @@
         </div>
         <hr>
 
-            {% include 'shared/representation/ad representation.html' %}
-            {% include 'shared/representation/pagination.html' %}
+        {% include 'shared/representation/ad representation.html' %}
 
-    </main>
 
-{% endblock %}
+
+
+    {% endblock %}
+
+</main>
 
 {% include 'shared/footer.html' %}
 

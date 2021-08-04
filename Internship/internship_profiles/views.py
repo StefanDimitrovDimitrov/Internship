@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from Internship.comman.remove_old_img import remove_old_img
 from Internship.internship_profiles.signals import *
 # Create your views here.
 from Internship.internship_app.models import Internship_ad, AppliedTracking

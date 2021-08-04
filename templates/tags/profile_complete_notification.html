@@ -1,7 +1,8 @@
 {% if profile == 'Candidate' %}
 
     {% if not is_complete %}
-        <a id="candidate-color" class="nav-link complete-profile" href="{% url 'edit candidate profile' user_id %}">Complete your profile</a>
+        <a id="candidate-color" class="nav-link complete-profile" href="{% url 'edit candidate profile' user_id %}">Complete
+            your profile</a>
     {% endif %}
 
 {% else %}

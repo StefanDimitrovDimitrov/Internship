@@ -7,8 +7,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
 
-from Internship.comman.main import get_current_company
-from Internship.comman.remove_old_img import remove_old_img
+from Internship.common.main import get_current_company
+from Internship.common.main import remove_old_img
 from Internship.internship_app.forms import AdForm, ApplyForm
 from Internship.internship_app.models import Internship_ad, AppliedTracking
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
@@ -133,7 +133,7 @@ def deactivate_ad(request, pk):
     ad = Internship_ad.objects.get(pk=pk)
     ad.is_active = False
     ad.save()
-    return redirect('catalog ads')
+    return redirect('edit ad', pk=pk)
 
 
 @login_required
@@ -141,7 +141,7 @@ def activate_ad(request, pk):
     ad = Internship_ad.objects.get(pk=pk)
     ad.is_active = True
     ad.save()
-    return redirect('catalog ads')
+    return redirect('edit ad', pk=pk)
 
 
 def alert(param):

@@ -56,13 +56,16 @@
                             <div>
                                 <a class="btn btn-warning btn-block btn-lg" href="{% url 'edit ad' ad.pk %}">Edit</a>
                             </div>
-                            <div>
-                                <a class="btn btn-info btn-block btn-lg" href="{% url 'applied candidates' ad.pk %}">Applied
-                                    Candidates</a>
-                            </div>
-                            <div>
-                                <a class="btn btn-danger btn-block btn-lg" href="{% url 'delete ad' ad.pk %}">Delete</a>
-                            </div>
+                            <br>
+{#                            <div>#}
+{#                                <a class="btn btn-info btn-block btn-lg" href="{% url 'applied candidates' ad.pk %}">Applied#}
+{#                                    Candidates</a>#}
+{#                            </div>#}
+                            <a type="button" class="btn btn-danger btn-block btn-lg" data-toggle="modal"
+                               data-target="#exampleModal">
+                                Delete
+                            </a>
+                            {% include 'shared/modal/delete-modal_ad.html' %}
                         {% elif user.profile == 'Candidate' %}
                             <div>
                                 <a class="btn btn-danger btn-block btn-lg" href="{% url 'apply' ad.pk %}">Apply</a>
@@ -74,41 +77,20 @@
             <div class="col-8">
                 <div class="justify-content-md-center">
                     <div class="card-body">
-                        <h5 class="text-left">Description</h5>
+
+{% if id == ad.company_owner_id %}
+
+                                <a class="btn btn-info btn-lg" href="{% url 'applied candidates' ad.pk %}">Applied
+                                    Candidates</a>
+
+                        {% endif %}
+                        <hr>
+                        <h5 class="text-left">Description
+                        </h5>
                         <p>{% autoescape off %}{{ ad.description|safe }}{% endautoescape %}</p>
                     </div>
                 </div>
             </div>
-            {#        <div class="col-2">#}
-            {#            <div class="justify-content-md-center">#}
-            {##}
-            {##}
-            {#                {% if id == ad.company_owner_id %}#}
-            {#                    {% if candidates %}#}
-            {#                        {% for candidate in candidates %}#}
-            {#                            <div class="container">#}
-            {#                                <img src="{{ candidate.profile_image.url }}" class="img-fluid rounded-circle"#}
-            {#                                     alt="Cinque Terre">#}
-            {#                            </div>#}
-            {#                            <p>{{ candidate.email }}</p>#}
-            {#                            {% for record in list_applied_cv %}#}
-            {#                                CV:#}
-            {#                                {% if record.applied_candidate_id == candidate.user_id %}#}
-            {#                                    <a href="{{ record.CV.url }}">Application</a>#}
-            {#                                    <p>Applied at:{{ record.applied_at }}</p>#}
-            {#                                {% endif %}#}
-            {##}
-            {#                            {% endfor %}#}
-            {#                        {% endfor %}#}
-            {##}
-            {#                    {% else %}#}
-            {#                        <p>no candidates yet</p>#}
-            {#                    {% endif %}#}
-            {##}
-            {#                {% endif %}#}
-            {##}
-            {#            </div>#}
-            {#        </div>#}
         </div>
     </div>
 

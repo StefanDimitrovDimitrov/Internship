@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
-from phone_field import PhoneField
+
+
+from Internship.common.form_validators import company_phone_validator_len, company_phone_validator_digits
 
 UserModel = get_user_model()
 
@@ -43,18 +45,6 @@ class CandidateProfile(models.Model):
         on_delete=models.CASCADE,
         primary_key=True
     )
-
-
-def company_phone_validator_len(value):
-    if len(value) < 10:
-        raise ValidationError('Error with the Company Phone number')
-
-
-def company_phone_validator_digits(value):
-    try:
-        [int(d) for d in value]
-    except ValueError:
-        raise ValidationError('Error with the Company Phone number')
 
 
 class CompanyProfile(models.Model):
@@ -102,10 +92,3 @@ class CompanyProfile(models.Model):
         primary_key=True
     )
 
-#
-
-
-# def company_name_validator(value):
-#     MinLengthValidator(6)(value)
-#     if value[0] != value[0].upper():
-#         raise ValidationError('The name mus start with an uppercase letter')

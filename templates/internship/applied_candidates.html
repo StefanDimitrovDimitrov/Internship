@@ -84,8 +84,8 @@
                                          class="img-fluid rounded-circle mx-auto d-block" width=30% height="auto"
                                          alt="CV">
                                 </div>
-                                       <p>Email: {{ candidate.email }}</p>
-                                                                    {% for record in records %}
+                                <p>Email: {{ candidate.email }}</p>
+                                {% for record in records %}
                                     {% if record.applied_candidate_id == candidate.user_id %}
                                         <a href="{{ record.CV.url }}">Application</a> applied at:
                                         {{ record.applied_at }}

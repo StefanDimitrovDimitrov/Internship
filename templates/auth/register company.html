@@ -4,8 +4,8 @@
 
 {% block content %}
     <div class="jumbotron">
-            <div class="container">
-                <h1 class="display-4 text-center">Register your Company Profile</h1>
+        <div class="container">
+            <h1 class="display-4 text-center">Register your Company Profile</h1>
             <p class="lead text-center">Each Internship program is part of your growth.The Internship website will be
                 your
                 partner in this journey.</p>
@@ -13,14 +13,20 @@
     </div>
 
     <div class="text-center">
-    <h1 class="text-center">Register</h1>
+{#        <div class="container">#}
+{#                    <div class="card mx-auto" style="width: 25rem;">#}
+                       <br>
+                    <h1 class="row d-flex justify-content-center">Register</h1>
+                        <br>
+                        <form method="POST" action="{% url 'register company' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
 
-
-        <form method="POST" action="{% url 'register company' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form|crispy }}
-                <button class="btn btn-primary">Register</button>
-                <p>or <a href="{% url 'login' %}">Login</a></p>
-        </form>
-    </div>
+                            <button class="btn btn-primary">Register</button>
+                            <p>or <a href="{% url 'login' %}">Login</a></p>
+                        </form>
+                    </div>
+{#        </div>#}
+{#        </div>#}
+{#    </div>#}
 {% endblock %}

@@ -9,33 +9,31 @@
         <div class="container">
             <h1 class="display-4 text-center">Complete your profile</h1>
             <p class="lead text-center">Completing your profile you provide more details about you to your future
-                employees as well as your ads are listed with higher priority.
-                If you chose to leave this place all your ads will be deleted. If you decide to stay please complete
-                your profile.</p>
+                employees. After completing your profile you will be able to publish ads.</p>
         </div>
     </div>
 
     <div class="card mx-auto" style="width: 25rem;">
-    <img class="card-img-top" src="{{ info.company_logo.url }}" alt="img">
-    <div class="card-body">
-        <form method="POST" action="{% url 'edit company profile' info.user_id %}" enctype="multipart/form-data">
-            {% csrf_token %}
-             {% if errors %}
-                   <div class="alert alert-warning">
-    <strong>Warning!</strong> Please check again your phone number.
-  </div>
+        <img class="card-img-top" src="{{ info.company_logo.url }}" alt="img">
+        <div class="card-body">
+            <form method="POST" action="{% url 'edit company profile' info.user_id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if errors %}
+                    <div class="alert alert-warning">
+                        <strong>Warning!</strong> Please check again your phone number.
+                    </div>
                 {% endif %}
 
-            {{ form|crispy }}
+                {{ form|crispy }}
 
-            <br>
-            <div>
-                <button class="btn btn-success btn-block">Save</button>
-            </div>
+                <br>
+                <div>
+                    <button class="btn btn-success btn-block">Save</button>
+                </div>
 
-        </form>
+            </form>
 
-    </div>
+        </div>
     </div>
 
 

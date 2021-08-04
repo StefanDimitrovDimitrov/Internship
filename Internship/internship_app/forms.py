@@ -3,7 +3,7 @@ from django_summernote.fields import SummernoteTextFormField
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
 from Internship.choices.choices import CITY_CHOICES, FIELD_CHOICES, DURATION_CHOICES, EMPLOYMENT_TYPE
-from Internship.comman.bot_catcher_mixin import BotCatcherFormMixin
+from Internship.common.bot_catcher_mixin import BotCatcherFormMixin
 from Internship.internship_app.models import Internship_ad, AppliedTracking
 from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
@@ -14,7 +14,6 @@ class AdForm(forms.ModelForm, BotCatcherFormMixin):
         fields = '__all__'
         widgets = {
             'description': SummernoteWidget(),
-            # 'description': SummernoteInplaceWidget(),
         }
         exclude = ('user', 'company_owner', 'is_active', 'applied_candidates', 'created_at', 'modified_at')
 
@@ -33,4 +32,4 @@ class SortForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    text = forms.CharField(max_length=30, required=False)
+    text = forms.CharField(max_length=30, required=False, help_text='Search by company')
