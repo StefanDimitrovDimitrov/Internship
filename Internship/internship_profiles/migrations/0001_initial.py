@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, max_length=500)),
                 ('company_website', models.URLField(blank=True)),
                 ('company_address', models.CharField(blank=True, max_length=20)),
-                ('company_phone', models.CharField(blank=True, max_length=20, validators=[Internship.comman.form_validators.company_phone_validator_len, Internship.comman.form_validators.company_phone_validator_digits])),
+                ('company_phone', models.CharField(blank=True, max_length=20, validators=[Internship.common.form_validators.company_phone_validator_len, Internship.common.form_validators.company_phone_validator_digits])),
                 ('is_complete', models.BooleanField(default=False)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='internship_auth.internshipuser')),
             ],

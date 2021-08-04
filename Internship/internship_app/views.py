@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
 
-from Internship.common.main import get_current_company
+from Internship.common.main import get_current_company, get_current_ad, get_list_of_applied_candidates
 from Internship.common.main import remove_old_img
 from Internship.internship_app.forms import AdForm, ApplyForm
 from Internship.internship_app.models import Internship_ad, AppliedTracking
@@ -47,6 +47,7 @@ def catalog_ad(request):
 @login_required
 def create_ad(request):
     current_company = get_current_company(request)
+    form = AdForm()
     if request.method == "POST":
 
         form = AdForm(request.POST, request.FILES)
@@ -58,52 +59,29 @@ def create_ad(request):
             return redirect('catalog ads')
 
     context = {
-        'form': AdForm(),
+        'form': form,
         'company_profile': current_company
 
     }
     return render(request, 'internship/create_ad.html', context)
 
 
-
 def details_ad(request, pk):
-
-    ad = Internship_ad.objects.get(pk=pk)
-    ad_apply_candidates = AppliedTracking.objects.filter(application_id=pk)
-    all_candidates = CandidateProfile.objects.all()
-    list_of_applied_candidates = [c for c in all_candidates for record in ad_apply_candidates if
-                                  c.user_id == record.applied_candidate_id]
-    companies = CompanyProfile.objects.all()
-    company_owner = [company for company in companies if company.user_id == ad.company_owner_id][0]
-
-    list_of_applied_candidates = set(list_of_applied_candidates)
-
-    if request.user:
-        user_id = request.user.id
-        context = {
+    ad = get_current_ad(pk)
+    list_of_applied_candidates = get_list_of_applied_candidates(pk)
+    num_candidates = len(list_of_applied_candidates)
+    context = {
         'ad': ad,
-        'id': user_id,
         'candidates': list_of_applied_candidates,
-        'list_applied_cv': ad_apply_candidates,
-        'company_owner': company_owner
-        }
-    else:
-        context = {
-            'ad': ad,
-            'candidates': list_of_applied_candidates,
-            'list_applied_cv': ad_apply_candidates,
-            'company_owner': company_owner
-        }
-
-    # candidates = ad.applied_candidates.all()
-
+        'num_candidates': num_candidates
+    }
 
     return render(request, 'internship/details_ad.html', context)
 
 
 @login_required
 def edit_ad(request, pk):
-    ad = Internship_ad.objects.get(pk=pk)
+    ad = get_current_ad(pk)
     old_image = ''
     if request.method == "POST":
         if ad.image:
@@ -123,14 +101,14 @@ def edit_ad(request, pk):
 
 @login_required
 def delete_ad(request, pk):
-    ad = Internship_ad.objects.get(pk=pk)
+    ad = get_current_ad(pk)
     ad.delete()
     return redirect('catalog ads')
 
 
 @login_required
 def deactivate_ad(request, pk):
-    ad = Internship_ad.objects.get(pk=pk)
+    ad = get_current_ad(pk)
     ad.is_active = False
     ad.save()
     return redirect('edit ad', pk=pk)
@@ -138,22 +116,19 @@ def deactivate_ad(request, pk):
 
 @login_required
 def activate_ad(request, pk):
-    ad = Internship_ad.objects.get(pk=pk)
+    ad = get_current_ad(pk)
     ad.is_active = True
     ad.save()
     return redirect('edit ad', pk=pk)
 
 
-def alert(param):
-    return param
-
-
 @login_required
 def apply(request, pk):
-    ad = Internship_ad.objects.get(pk=pk)
+    ad = get_current_ad(pk)
+
     candidate = CandidateProfile.objects.get(user_id=request.user.id)
+
     form = ApplyForm(request.FILES)
-    CV = candidate.CV
 
     if request.method == "POST":
         form = ApplyForm(request.POST, request.FILES, instance=candidate)
@@ -173,29 +148,26 @@ def apply(request, pk):
     context = {
         'form': form,
         'ad': ad,
-        'cv': CV
+        'cv': candidate.CV
     }
     return render(request, 'internship/apply.html', context)
 
+
 def applied_candidates(request, pk):
-    ad = Internship_ad.objects.get(pk=pk)
+    ad = get_current_ad(pk)
     ad_apply_candidates = AppliedTracking.objects.filter(application_id=pk)
-    all_candidates = CandidateProfile.objects.all()
-    list_of_applied_candidates = [c for c in all_candidates for record in ad_apply_candidates if
-                                  c.user_id == record.applied_candidate_id]
+    list_of_applied_candidates = get_list_of_applied_candidates(pk)
+    num_candidates = len(list_of_applied_candidates)
 
-
-
-
-    context ={
-        'candidates':list_of_applied_candidates,
+    context = {
+        'candidates': list_of_applied_candidates,
         'ad': ad,
-        'records':ad_apply_candidates,
+        'records': ad_apply_candidates,
+        'num_candidates': num_candidates
     }
 
     return render(request, 'internship/applied_candidates.html', context)
 
 
 def about(request):
-
     return render(request, 'internship/about.html')

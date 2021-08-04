@@ -52,15 +52,11 @@
                         <hr>
                         <br>
 
-                        {% if id == ad.company_owner_id %}
+                        {% if user.id == ad.company_owner_id %}
                             <div>
                                 <a class="btn btn-warning btn-block btn-lg" href="{% url 'edit ad' ad.pk %}">Edit</a>
                             </div>
                             <br>
-{#                            <div>#}
-{#                                <a class="btn btn-info btn-block btn-lg" href="{% url 'applied candidates' ad.pk %}">Applied#}
-{#                                    Candidates</a>#}
-{#                            </div>#}
                             <a type="button" class="btn btn-danger btn-block btn-lg" data-toggle="modal"
                                data-target="#exampleModal">
                                 Delete
@@ -78,10 +74,10 @@
                 <div class="justify-content-md-center">
                     <div class="card-body">
 
-{% if id == ad.company_owner_id %}
+{% if user.id == ad.company_owner_id %}
 
                                 <a class="btn btn-info btn-lg" href="{% url 'applied candidates' ad.pk %}">Applied
-                                    Candidates</a>
+                                    Candidates: {{ num_candidates }}</a>
 
                         {% endif %}
                         <hr>

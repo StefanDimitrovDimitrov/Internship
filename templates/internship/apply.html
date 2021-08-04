@@ -26,20 +26,20 @@
                 <br>
             {% endif %}
 
-        <form method="POST" action="{% url 'apply' ad.pk %}" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'apply' ad.pk %}" enctype="multipart/form-data">
 
-            {% csrf_token %}
-            {{ form|crispy }}
+                {% csrf_token %}
+                {{ form|crispy }}
                 <button class="btn btn-success">Submit</button>
-        </form>
+            </form>
 
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
