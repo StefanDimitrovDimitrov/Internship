@@ -1,25 +1,35 @@
-{% extends 'shared/base.html' %}
+{% extends 'shared/../main/base.html' %}
 {% load crispy_forms_filters %}
+{% load static %}
 
 
 {% block content %}
+
     <div class="jumbotron">
-            <div class="container">
-                <h1 class="display-4 text-center">Register your Candidate Profile</h1>
+        <div class="container">
+            <h1 class="display-4 text-center">Register your Candidate Profile</h1>
             <p class="lead text-center">First step to your great career starts with this registration.Good Luck </p>
         </div>
     </div>
-<div class="text-center">
- <br>
-    <h1 class="text-center">Register</h1>
-     <br>
-        <form method="POST" action="{% url 'register candidate' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-             {{ form|crispy }}
-                <button class="btn btn-primary">Register</button>
-                <p>or <a href="{% url 'login' %}">Login</a></p>
+    <div class="container">
+        <div class="row">
+            <div class="col">
 
-        </form>
+            </div>
+            <div class="col">
+                <form method="POST" action="{% url 'register candidate' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-primary">Register</button>
+                    <p>or <a href="{% url 'login' %}">Login</a></p>
+                </form>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
     </div>
+
+
 
 {% endblock %}

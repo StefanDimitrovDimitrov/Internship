@@ -36,34 +36,34 @@
                     {% endif %}
                     {% if user.profile == 'Company' %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'company profile' user.id %}">My
-                                Profile {{ user.email }}</a>
+                            <a class="nav-link" href="{% url 'company profile' user.id %}"><b>My
+                                Profile {{ user.email }}</b></a>
                         </li>
 
                     {% else %}
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'candidate profile' user.id %}">My
-                                Profile {{ user.email }}!</a>
+                            <a class="nav-link" href="{% url 'candidate profile' user.id %}"><b>My
+                                Profile {{ user.email }}</b></a>
                         </li>
 
                     {% endif %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        <a class="nav-link" href="{% url 'logout' %}"><b>Logout</b></a>
                     </li>
                 {% else %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'login' %}"><b>Login</b></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'register candidate' %}">Register Candidate</a>
+                        <a class="nav-link" href="{% url 'register candidate' %}"><b>Register Candidate</b></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'register company' %}">Register Company</a>
+                        <a class="nav-link" href="{% url 'register company' %}"><b>Register Company</b></a>
                     </li>
                 {% endif %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'about' %}">About us</a></a>
+                    <a class="nav-link" href="{% url 'about' %}"><b>About us</b></a>
                 </li>
             </ul>
 

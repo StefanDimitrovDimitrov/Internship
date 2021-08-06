@@ -1,7 +1,7 @@
 <style>
 
 </style>
-{% extends 'shared/base.html' %}
+{% extends 'shared/../main/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -81,13 +81,13 @@
 
                 <div class="container">
                     <p><b>{{ ad.title }}</b></p>
-                    <p>Applied candidates <b>{{ 25 }}</b></p>
+                    <p>Applied candidates <b>{{ ad.num_candidates }}</b></p>
                     <p><a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a></p>
 
                     {% if ad.is_active %}
-                        <p>Active - Created: {{ ad.created_at }}</p>
+                        <p>Status: Active - Created: {{ ad.created_at }}</p>
                     {% else %}
-                        <h5> Closed </h5>
+                        <h5>Status: Closed </h5>
                     {% endif %}
                     <hr>
                 </div>

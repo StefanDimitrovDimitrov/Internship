@@ -1,10 +1,12 @@
 from django import forms
 
+from Internship.common.BootstrapFormMixin import BootstrapFormMixin
 from Internship.common.bot_catcher_mixin import BotCatcherFormMixin
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
 
-class CandidateForm(forms.ModelForm,BotCatcherFormMixin):
+class CandidateForm(forms.ModelForm,BotCatcherFormMixin,BootstrapFormMixin):
+
     class Meta:
         model = CandidateProfile
         fields = ('profile_image','first_name','last_name','CV')
@@ -15,7 +17,8 @@ class EditCandidateForm(CandidateForm):
     pass
 
 
-class CompanyForm(forms.ModelForm,BotCatcherFormMixin):
+class CompanyForm(BootstrapFormMixin,forms.ModelForm,BotCatcherFormMixin):
+
     class Meta:
         model = CompanyProfile
         fields = '__all__'
@@ -23,6 +26,7 @@ class CompanyForm(forms.ModelForm,BotCatcherFormMixin):
 
 
 class EditCompanyForm(CompanyForm):
+
     class Meta:
         model = CompanyProfile
         fields = ('company_logo','company_name', 'company_website','company_address','company_phone','description')

@@ -1,9 +1,7 @@
-import os
-
-from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+from Internship.common.main import get_current_company
 from Internship.internship_profiles.signals import *
 # Create your views here.
 from Internship.internship_app.models import Internship_ad, AppliedTracking
@@ -15,8 +13,13 @@ UserModel = get_user_model()
 
 
 def get_company_profile(request, pk):
-    company = CompanyProfile.objects.get(pk=pk)
+    company = get_current_company(pk)
     company_ads = Internship_ad.objects.filter(company_owner=pk)
+    records = AppliedTracking.objects.filter()
+
+    for ad in company_ads:
+        num_candidates = records.filter(application_id=ad.id).count()
+        ad.num_candidates = num_candidates
 
     context = {
         'info': company,

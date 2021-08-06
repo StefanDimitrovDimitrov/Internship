@@ -12,7 +12,7 @@ urlpatterns = [
     path('candidateProfile/<int:pk>', get_candidate_profile, name='candidate profile'),
     path('editCandidateProfile/<int:pk>', edit_candidate_profiles, name='edit candidate profile'),
 
-    path('deleteProfile/<int:pk>',delete_user, name='delete profile' )
+    path('deleteProfile/<int:pk>',delete_user, name='delete profile')
 ]
 
 

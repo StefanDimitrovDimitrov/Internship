@@ -7,7 +7,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
 
-from Internship.common.main import get_current_company, get_current_ad, get_list_of_applied_candidates
+from Internship.common.main import get_current_company, get_current_ad, get_list_of_applied_candidates, \
+    get_list_active_ads, get_current_company_from_request
 from Internship.common.main import remove_old_img
 from Internship.internship_app.forms import AdForm, ApplyForm
 from Internship.internship_app.models import Internship_ad, AppliedTracking
@@ -17,7 +18,7 @@ from django.contrib import messages
 
 class Home(ListView):
     model = Internship_ad
-    template_name = 'shared/base.html'
+    template_name = 'shared/../../templates/main/base.html'
     context_object_name = 'ads'
     paginate_by = 3
 
@@ -33,12 +34,10 @@ def catalog_companies(request):
 
 
 def catalog_ad(request):
-    list_all_ads = Internship_ad.objects.all()
-
-    ads = [ad for ad in list_all_ads if ad.is_active]
+    active_ads = get_list_active_ads()
 
     context = {
-        'ads': ads
+        'ads': active_ads
     }
 
     return render(request, 'internship/catalog_ads.html', context)
@@ -46,16 +45,15 @@ def catalog_ad(request):
 
 @login_required
 def create_ad(request):
-    current_company = get_current_company(request)
+    current_company = get_current_company_from_request(request)
     form = AdForm()
     if request.method == "POST":
 
         form = AdForm(request.POST, request.FILES)
         if form.is_valid():
             ad = form.save(commit=False)
-            ad.company_owner_id = current_company.user_id
+            ad.company_owner = current_company
             ad.save()
-            form.save()
             return redirect('catalog ads')
 
     context = {
@@ -142,7 +140,6 @@ def apply(request, pk):
                 new_record.application = ad
                 new_record.applied_candidate = candidate
                 new_record.save()
-                form.save()
                 return redirect('home')
 
     context = {

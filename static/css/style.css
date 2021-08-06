@@ -1,16 +1,16 @@
-#bootstrap-overrides{
+#bootstrap-overrides {
     background-color: white !important;
 }
 
 nav li {
-   position: relative;
+    position: relative;
 }
 
-nav div > ul > li > a::before{
+nav div > ul > li > a::before {
     content: '';
     display: block;
     height: 5px;
-    background-color: white;
+    background-color: teal;
 
     position: absolute;
     bottom: 0;
@@ -19,31 +19,33 @@ nav div > ul > li > a::before{
     transition: all ease-in-out 350ms;
 }
 
-nav a:hover::before{
+nav a:hover::before {
     width: 90%;
 }
 
-#candidate-color{
+#candidate-color {
     color: orange;
 }
 
-#company-color{
+#company-color {
     color: orange;
 }
 
-#candidate-color:hover{
-    color: white;
+#candidate-color:hover {
+    color: teal;
 }
 
-#company-color:hover{
-    color: white;
+#company-color:hover {
+    color: teal;
 }
 
 
-form{ margin: 0 auto; }
+form {
+    margin: 0 auto;
+}
 
 
- Resize images
+Resize images
 .container img {
     width: 20%;
     height: auto;
@@ -54,38 +56,53 @@ form{ margin: 0 auto; }
     height: auto;
 }
 
-ul li{ list-style-type: none; }
+ul li {
+    list-style-type: none;
+}
 
-#bmi {         /*my additional class name -for card*/
+#bmi { /*my additional class name -for card*/
     margin-left: 18%;
     margin-right: 18%;
     width: auto;
 }
 
-img+span {
-  margin-left: 10px;
+img + span {
+    margin-left: 10px;
 }
 
-.jumbotron{
+.jumbotron {
     margin-top: 40px;
 }
 
-footer{
-    color: teal;
+
+.bg-primary {
     background-color: white !important;
 }
 
-.bg-primary{
-    background-color: white!important;
-}
-.bg-custom-1{
+.bg-custom-1 {
     background-color: white;
 }
 
-.card{
+.card {
     background-color: white;
 }
 
 .p {
-      font-size: 100px;
+    font-size: 100px;
+}
+
+#main {
+    /*background-image: url('../img/background-img/Wall.jpg');*/
+    background-color: lightblue;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    margin-bottom: 5em;
+}
+
+#footer {
+    width: 100%;
+    background-color: lightblue;
+!important;
+
 }

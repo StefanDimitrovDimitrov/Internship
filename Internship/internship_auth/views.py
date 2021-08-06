@@ -10,8 +10,12 @@ from Internship.internship_profiles.models import CompanyProfile, CandidateProfi
 
 
 def register_candidate(request):
-    form = RegisterForm()
+    """
+    form_save is trigger a post save type signal. Which is responsible of creating Candidate Profile.
+    Check internship_profiles/signals.py for more details
+    """
 
+    form = RegisterForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
 
@@ -26,6 +30,11 @@ def register_candidate(request):
 
 
 def register_company(request):
+    """
+    form_save is trigger a post save type signal. Which is responsible of creating Company Profile.
+    Check internship_profiles/signals.py for more details
+    """
+
     form = RegisterForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -34,15 +43,8 @@ def register_company(request):
             company_user = form.save(commit=False)
             company_user.profile = "Company"
             company_user = form.save()
-
             login(request, company_user)
             return redirect('company profile', pk=request.user.pk)
-        else:
-            context = {
-                "form": form,
-
-            }
-        return render(request, 'auth/register company.html', context)
 
     context = {
         "form": form,
@@ -52,14 +54,14 @@ def register_company(request):
 
 
 def login_user(request):
+    form = LoginForm()
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('home')
-    else:
-        form = LoginForm()
+
     context = {
         'form': form,
     }
@@ -82,7 +84,7 @@ def change_candidate_credentials(request, pk):
             temp_object = form.save(commit=False)
             candidate_profile.email = temp_object.email
             candidate_profile.save()
-            temp_object = form.save()
+            temp_object.save()
             login(request, user)
             return redirect('candidate profile', pk=pk)
 
@@ -104,7 +106,7 @@ def change_company_credentials(request, pk):
             temp_object = form.save(commit=False)
             company_profile.email = temp_object.email
             company_profile.save()
-            temp_object = form.save()
+            temp_object.save()
             login(request, user)
             return redirect('company profile', pk=pk)
 

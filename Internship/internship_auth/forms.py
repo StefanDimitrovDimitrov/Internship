@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+from Internship.common.BootstrapFormMixin import BootstrapFormMixin
 from Internship.common.bot_catcher_mixin import BotCatcherFormMixin
 from Internship.internship_auth.models import InternshipUser
 from Internship.internship_profiles.forms import CompanyForm, CandidateForm
@@ -12,9 +13,7 @@ from Internship.internship_profiles.models import CompanyProfile
 UserModel = get_user_model()
 
 
-
-
-class RegisterForm(UserCreationForm,BotCatcherFormMixin):
+class RegisterForm(BootstrapFormMixin, UserCreationForm, BotCatcherFormMixin):
     class Meta:
         model = UserModel
         fields = ('email',)
@@ -23,11 +22,11 @@ class RegisterForm(UserCreationForm,BotCatcherFormMixin):
 class LoginForm(forms.Form):
     email = forms.EmailField(
         max_length=30,
+        widget=forms.TextInput(attrs={'class': 'form_control'})
     )
     password = forms.CharField(
         max_length=15,
-        widget=forms.PasswordInput(),
-    )
+        widget=forms.PasswordInput(attrs={'class': 'form_control'}))
 
     def clean_password(self):
         self.user = authenticate(
@@ -40,5 +39,3 @@ class LoginForm(forms.Form):
 
     def save(self):
         return self.user
-
-

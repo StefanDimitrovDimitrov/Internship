@@ -1,11 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.core.validators import MinLengthValidator
 from django.db import models
 
 
-from Internship.common.form_validators import company_phone_validator_len, company_phone_validator_digits
+from Internship.internship_profiles.validators import company_phone_validator_len, company_phone_validator_digits
 
 UserModel = get_user_model()
 
@@ -79,8 +77,8 @@ class CompanyProfile(models.Model):
     )
 
     company_phone = models.CharField(max_length=20,
-                                     blank=True, validators=[company_phone_validator_len,company_phone_validator_digits])
-    # help_text='Contact phone number')
+                                     blank=True, validators=[company_phone_validator_len,company_phone_validator_digits],
+                                     help_text='The number should contain 10 digits')
 
     is_complete = models.BooleanField(
         default=False

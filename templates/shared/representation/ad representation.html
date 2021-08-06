@@ -4,12 +4,12 @@
 {% if ads %}
 
 
-    <div class="container">
+    <div id="main-container" class="container">
 
         <div class="row">
-            {% for ad in ads %}
-                <div class="row align-items-md-stretch">
 
+            <div class="row align-items-md-stretch">
+                {% for ad in ads %}
                     <div class="col-md-4">
                         <div class="h-100 p-5 bg-light border rounded-3">
                             <h2><b>{{ ad.title|upper }}</b></h2>
@@ -20,12 +20,14 @@
                             <br>
                             <h6>Employment type: {{ ad.employment_type }}</h6>
                             <br>
-                            <a class="btn btn-outline-secondary" type="button" href="{% url 'details ad' ad.id %}">See more...</a>
+                            <a class="btn btn-outline-secondary" type="button" href="{% url 'details ad' ad.id %}">See
+                                more...
+                            </a>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
+            </div>
 
-            {% endfor %}
 
         </div>
     </div>
