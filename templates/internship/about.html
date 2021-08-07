@@ -1,4 +1,5 @@
 {% extends 'shared/../main/base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -10,4 +11,19 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row featurette">
+            <div class="col-md-5 order-md-2">
+                <h2 class="featurette-heading">Contact us</h2>
+
+                <p class="lead">LinkedIn: LinkedIn/Internship</p>
+                <p class="lead">Facebook: http://....</p>
+                <p class="lead">Phone:08888888888</p>
+                <p class="lead">Address: str. Ivan Vazov 10</p>
+            </div>
+            <div class="col-md-7 order-md-1">
+                <img src="{% static 'img/background-img/intern.jpg' %}" alt="internship pic">
+            </div>
+        </div>
+    </div>
 {% endblock %}

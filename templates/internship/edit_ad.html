@@ -12,40 +12,36 @@
     <h1 class="text-center">Edit</h1>
 
 
-    <div class="row d-flex justify-content-center">
 
+    <div class="col-md-4 offset-md-4">
         <form method="POST" action="{% url 'edit ad' ad.pk %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
 
 
-                <div class="text-center">
-                    {% if ad.is_active %}
+            <div class="text-center">
+                {% if ad.is_active %}
 
-                        This ad is open! - <a type="button" class="btn btn-warning btn-inline btn-sm"
-                                              data-toggle="modal"
-                                              data-target="#ClosedModal">
+                    This ad is open! -
+
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                            data-bs-target="#Closed">
                         Deactivate
-                    </a>
+                    </button>
+                    {% include 'shared/modal/deactivate-modal-ad.html' %}
 
-                        {% include 'shared/modal/deactivate-modal_ad.html' %}
-                    {% else %}
-
-
-                        This ad is closed! - <a type="button" class="btn btn-success btn-inline btn-sm"
-                                                data-toggle="modal"
-                                                data-target="#OpenModal">
+                {% else %}
+                    This ad is closed! -
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                            data-bs-target="#Open">
                         Activate
-
-                    </a>
-{% include 'shared/modal/activate-modal_ad.html' %}
-                    {% endif %}
-                </div>
-                <br>
-                            <div class="text-center">
-                <button class="btn btn-success btn-inline">Save Changes</button>
-
-
+                    </button>
+                    {% include 'shared/modal/activate-modal_ad.html' %}
+                {% endif %}
+            </div>
+            <br>
+            <div class="text-center">
+                <button class="btn btn-outline-success btn-inline">Save Changes</button>
             </div>
         </form>
 

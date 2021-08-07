@@ -1,0 +1,39 @@
+<div class="modal fade" id="Closed" tabindex="-1" aria-labelledby="ClosedLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ClosedLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please confirm that you want to close this ad.
+                The ad will not be visible for candidates.
+                You can review all inactive ads in your profile.
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</a>
+                <a type="button" class="btn btn-outline-danger" href="{% url 'deactivate ad' ad.pk %}">Deactivate</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="Closed" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</a>
+                <a type="button" class="btn btn-outline-danger" href="{% url 'deactivate ad' ad.pk %}">Deactivate</a>
+            </div>
+        </div>
+    </div>
+</div>

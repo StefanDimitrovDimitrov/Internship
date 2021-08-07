@@ -13,61 +13,63 @@
     <div class="container">
         <div class="row">
             <div class="col-8">
-
-                <div class="container">
-                    <h1 class="text-center">{{ ad.title }}</h1>
-                    <br>
-
-                    {% if id == ad.company_owner_id %}
-                        <div>
-                            <a class="btn btn-warning btn-block btn-lg" href="{% url 'edit ad' ad.pk %}">Edit</a>
+                {% if user.id == ad.company_owner_id %}
+                    <div class="container">
+                        <h1 class="text-center">{{ ad.title }}</h1>
+                        <div class="text-center">
+                            <a class="btn btn-outline-secondary btn-lg btn-outline-promary"
+                               href="{% url 'details ad' ad.pk %}">Back to ad
+                                Details</a>
                         </div>
-                        <div>
-                            <a class="btn btn-danger btn-block btn-lg" href="{% url 'delete ad' ad.pk %}">Delete</a>
-                        </div>
-                    {% elif user.profile == 'Candidate' %}
-                        <div>
-                            <a class="btn btn-danger btn-block btn-lg" href="{% url 'apply' ad.pk %}">Apply</a>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
 
-            <div class="container">
-                <div class="justify-content-md-center">
+                        <br>
+                        <div>
+                            </a>
+                        </div>
+                    </div>
 
-                    {% if user.id == ad.company_owner_id %}
-                        {% if candidates %}
-                            {% for candidate in candidates %}
-                                <div class="container">
-                                    <img class="rounded-circle" src="{{ candidate.profile_image.url }}"
-                                         alt="Generic placeholder image"
-                                         width="100" height="100" style="object-fit: scale-down">
-                                </div>
-                                <img src="https://img.icons8.com/color/48/000000/email.png"/>Email:
-                                {{ candidate.email }}
-                                <p></p>
+                    <div class="container">
+                        <div class="justify-content-md-center">
+                            {% if records %}
                                 {% for record in records %}
-                                    {% if record.applied_candidate_id == candidate.user_id %}
-                                        <a class="btn btn-lg btn-primary" style="float: right" href="{{ record.CV.url }}">View more...</a>
-                                        <br>
-                                    {% endif %}
+
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2">
+                                            <img class="rounded-circle"
+                                                 src="{{ record.applied_candidates.profile_image.url }}"
+                                                 alt="Generic placeholder image"
+                                                 width="100" height="100" style="object-fit: contain">
+                                        </div>
+                                        <div class="col-3">
+                                            <div>Email:{{ record.applied_candidates.email }}</div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div>Applied at: {{ record.applied_at|date:"D d M Y" }}</div>
+                                        </div>
+                                        <div class="col-2">
+                                            <p><a class="btn btn-lg btn-outline-success" style="float: right"
+                                                  href="{{ record.CV.url }}">View
+                                                CV</a></p>
+                                        </div>
+
+                                    </div>
+
+
+                                    </div>
+
+
 
                                 {% endfor %}
 
-
-                            {% endfor %}
-
-                        {% else %}
-                            <p>no candidates yet</p>
-                        {% endif %}
-
-                    {% endif %}
-
-                </div>
-            </div>
-        </div>
-    </div>
+                            {% else %}
+                                <p class="text-center">You don't have applied candidates yet</p>
+                            {% endif %}
 
 
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+                {% endif %}
 {% endblock %}

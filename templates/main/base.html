@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Internship</title>
-    <link rel="shorcut icon type='image/ico" href="{% static 'img/favicon.ico' %}">
+    <link rel="shorcut icon type='image/ico" href="{% static 'img/background-img/fav.png' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -16,18 +16,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
 </head>
 
 <body id="bootstrap-overrides">
@@ -38,17 +29,18 @@
     {% block content %}
 
 
+
         <div class="jumbotron">
             <div class="container">
                 <h1 class="display-4 text-center">Your growth starts here!</h1>
                 <p class="text-center">This is an internship website. A place where various companies can meet suitable
                     candidates for their internship initiatives.</p>
-                <div class="col text-center"><a class="btn btn-outline-secondary" href="{% url 'catalog ads' %}"
-                                                role="button">Learn more »</a></div>
+                <div class="col text-center"><a class="btn btn-outline-success" href="{% url 'catalog ads' %}"
+                                                role="button">Learn more...</a></div>
             </div>
         </div>
 
-        {% include 'shared/representation/ad representation.html' %}
+        {% include 'shared/representation/ad representation-home.html' %}
 
 
 
@@ -56,7 +48,8 @@
     {% endblock %}
 
 </main>
-
+<br>
+<br>
 {% include 'main/footer.html' %}
 
 </body>

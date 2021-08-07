@@ -1,5 +1,6 @@
 #bootstrap-overrides {
     background-color: white !important;
+    background-image: url("../img/background-img/two.jpg");
 }
 
 nav li {
@@ -10,7 +11,7 @@ nav div > ul > li > a::before {
     content: '';
     display: block;
     height: 5px;
-    background-color: teal;
+    background-color: #198754;
 
     position: absolute;
     bottom: 0;
@@ -32,11 +33,11 @@ nav a:hover::before {
 }
 
 #candidate-color:hover {
-    color: teal;
+    color: #198754;
 }
 
 #company-color:hover {
-    color: teal;
+    color: #198754;
 }
 
 
@@ -91,18 +92,30 @@ img + span {
     font-size: 100px;
 }
 
-#main {
-    /*background-image: url('../img/background-img/Wall.jpg');*/
-    background-color: lightblue;
-    width: 100%;
-    height: auto;
-    background-size: cover;
-    margin-bottom: 5em;
-}
+/*#main {*/
+/*    !*background-image: url('../img/background-img/Wall.jpg');*!*/
+/*    background-color: lightblue;*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    background-size: cover;*/
+/*    margin-bottom: 5em;*/
+/*}*/
 
 #footer {
     width: 100%;
-    background-color: lightblue;
+    background-color: white;
 !important;
+
+}
+
+.company-hover-left:hover {
+    border-left-style: solid;
+    border-color: #198754;
+
+}
+
+.company-hover_bottom:hover{
+        border-left-style: solid;
+    border-color: #198754;
 
 }

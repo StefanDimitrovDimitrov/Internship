@@ -13,70 +13,122 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
-                <div class="card mx-auto" style="width: 25rem;">
-                    <img class="card-img-top" src="{{ info.profile_image.url }}" width=50% height="50%" alt="img">
-                    <div class="card-body">
+            <div class="col-sm-4">
+                <div>
+                    <div class="text-center">
+                        <img class="rounded-circle" src="{{ info.profile_image.url }}" alt="Generic placeholder image"
+                             width="300" height="300" style="object-fit: scale-down">
+                    </div>
 
-                        <ul>
-                            <li>
-                                <img src="{% static 'img/fname.png' %}" width="30" height="30" alt="brand img"><span>Name: <b>{{ info.first_name }} {{ info.last_name }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/email.png' %}" width="30" height="30"
-                                     alt="brand img"><span> Email: <b>{{ info.email }}</b></span>
-                            </li>
-                            <br>
-                            <li>
-                                <img src="{% static 'img/cv.png' %}" width="30"
-                                     height="30" alt="brand img">
-                                {% if info.CV %}
-                                    <span>Check your application: <a href="{{ info.CV.url }}">here</a></span>
-                                {% else %}
 
-                                    <span>You haven't upload a CV</span>
+                    <ul>
+                        <li>
 
-                                {% endif %}
-                            </li>
-                        </ul>
-                            <br>
-                            <a class="btn btn-warning btn-block" href="{% url 'edit candidate profile' info.user_id %}">Edit
+                            <img src="{% static 'img/fname.png' %}" width="30" height="30"
+                                 alt="brand img"><span>Name: <b>{{ info.first_name }} {{ info.last_name }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="{% static 'img/email.png' %}" width="30" height="30"
+                                 alt="brand img"><span> Email: <b>{{ info.email }}</b></span>
+                        </li>
+                        <br>
+                        <li>
+                            <img src="{% static 'img/cv.png' %}" width="30"
+                                 height="30" alt="brand img">
+                            {% if info.CV %}
+                                <span>Check your application: <a href="{{ info.CV.url }}">here</a></span>
+                            {% else %}
+
+                                <span>You haven't upload a CV</span>
+
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <br>
+
+                    <div class="row">
+                        <div class="col">
+                            <a class="btn btn-outline-warning btn-block"
+                               href="{% url 'edit candidate profile' info.user_id %}">Update
                                 Profile</a>
-                            <a class="btn btn-warning btn-block"
+                        </div>
+                        <div class="col">
+                            <a class="btn btn-outline-warning btn-block"
                                href="{% url 'change candidate credentials' info.user_id %}">Change
                                 Credentials</a>
-                            <a type="button" class="btn btn-danger btn-block" data-toggle="modal"
-                               data-target="#exampleModal">Delete</a>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="text-center">
+
+
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                            Delete Profile
+                        </button>
+                        {% include 'shared/modal/delete-modal-profile.html' %}
 
                     </div>
-                    <hr>
+
+
                 </div>
             </div>
-            <div class="col-6">
-                <div class="card" style="width: 25rem;">
-                    <h1 class="text-center">List of your Ads</h1>
-                    <div class="card-body">
-                        {% if list_of_ads %}
-                            {% for ad in list_of_ads %}
+            <div class="col-8">
+                <br>
+                <br>
+                <br>
+                <br>
+                <h1 class="text-center">List of your Ads</h1>
+                <hr>
+                <div class="card-body">
+                    {% if list_of_ads %}
 
-                                <h3>{{ ad.title }}</h3>
-                                <img src="{{ ad.image.url }}" alt="ad_image">
-                                <a class="btn btn-primary" href="{% url 'details ad' ad.id %}">Details</a>
-                            {% endfor %}
-                        {% else %}
-                            <h6></h6>
-                            <p class="text-center">You are not applied yet or the ads are expired.</p>
+                        <div class="accordion" id="accordionExample">
+                        {% for ad in list_of_ads %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ ad.internship_ads.id }}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{ ad.internship_ads.id }}" aria-expanded="true"
+                                            aria-controls="collapse{{ ad.internship_ads.id }}">
+                                        <span class="text-center"
+                                              style="color:orange"><b>{{ ad.internship_ads.company_owner.company_name|upper }}</b></span>&nbsp-&nbsp<b>{{ ad.internship_ads.title|upper }}</b>
+                                    </button>
+                                </h2>
 
-                        {% endif %}
+
+                                <div id="collapse{{ ad.internship_ads.id }}" class="accordion-collapse collapse"
+                                     aria-labelledby="heading{{ ad.internship_ads.id }}"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="text-right">
+                                            <div class="text-left">
+                                                <img src="https://img.icons8.com/ios/40/000000/parse-from-clipboard.png"/>&nbspCV sent - <b>{{ ad.applied_at|date:"D d M Y" }}</b>
+                                            </div>
+                                            <span class="text-right">
+                                            <a class="btn btn-outline-success"
+                                               href="{% url 'details ad' ad.internship_ads.id %}">View more...</a>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        {% endfor %}
+                    {% else %}
+                        <h6></h6>
+                        <p class="text-center">You are not applied yet or the ads are expired.</p>
+
+                    {% endif %}
 
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
-    {% include 'shared/modal/delete-modal.html' %}
-
-
 {% endblock %}
 

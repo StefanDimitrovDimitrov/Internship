@@ -12,22 +12,22 @@
     </div>
 
 
-    <div class="card mx-auto" style="width: 25rem;">
-        <img class="card-img-top" src="{{ info.profile_image.url }}" alt="img">
-        <div class="card-body">
-
-            <form method="POST" action="{% url 'edit candidate profile' info.user_id %}" enctype="multipart/form-data">
-                {% csrf_token %}
-
-                {{ profile_form|crispy }}
-                <br>
-                <div>
-                    <button class="btn btn-success">Save</button>
-                </div>
-
-            </form>
+    <div class="col-sm-4 offset-sm-4">
+        <div class="text-center">
+            <img class="rounded-circle" src="{{ info.profile_image.url }}" alt="Generic placeholder image"
+                 width="300" height="300" style="object-fit: scale-down">
         </div>
+        <form method="POST" action="{% url 'edit candidate profile' info.user_id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ profile_form|crispy }}
+            <br>
+            <div>
+                <button class="btn btn-success">Save</button>
+            </div>
 
+        </form>
     </div>
+
+
 
 {% endblock %}

@@ -19,31 +19,25 @@ class AdForm(BootstrapFormMixin, forms.ModelForm, BotCatcherFormMixin):
         exclude = ('user', 'company_owner', 'is_active', 'applied_candidates', 'created_at', 'modified_at')
 
 
-class ApplyForm(forms.ModelForm, BotCatcherFormMixin, BootstrapFormMixin):
+class ApplyForm(BootstrapFormMixin, forms.ModelForm, BotCatcherFormMixin):
     class Meta:
         model = CandidateProfile
         fields = ('CV',)
 
 
-# class SortForm(forms.Form):
-#     city = forms.ChoiceField(choices=CITY_CHOICES)
-#     field = forms.ChoiceField(choices=FIELD_CHOICES)
-#     duration = forms.ChoiceField(choices=DURATION_CHOICES)
-#     employment_type = forms.ChoiceField(choices=EMPLOYMENT_TYPE)
-
 
 class SortForm(forms.Form):
     city = forms.CharField(
-        widget=forms.Select(choices=CITY_CHOICES, attrs={'class': 'form-select'}, ),
+        widget=forms.Select(choices=CITY_CHOICES, attrs={'class': 'form-select border rounded-pill'}, ),
     )
     field = forms.CharField(
-        widget=forms.Select(choices=FIELD_CHOICES, attrs={'class': 'form-select'}, ),
+        widget=forms.Select(choices=FIELD_CHOICES, attrs={'class': 'form-select border rounded-pill'}, ),
     )
     duration = forms.CharField(
-        widget=forms.Select(choices=DURATION_CHOICES, attrs={'class': 'form-select'}, ),
+        widget=forms.Select(choices=DURATION_CHOICES, attrs={'class': 'form-select border rounded-pill'}, ),
     )
     employment_type = forms.CharField(
-        widget=forms.Select(choices=EMPLOYMENT_TYPE, attrs={'class': 'form-select'}, ),
+        widget=forms.Select(choices=EMPLOYMENT_TYPE, attrs={'class': 'form-select border rounded-pill'}, ),
     )
 
 
@@ -51,6 +45,5 @@ class SearchForm(forms.Form):
     text = forms.CharField(
         max_length=30,
         required=False,
-        help_text='Search by company',
         widget=forms.TextInput
-        (attrs={'class': 'form_control'}))
+        (attrs={'class': 'form-control border rounded-pill'}))

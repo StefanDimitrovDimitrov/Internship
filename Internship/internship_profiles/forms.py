@@ -5,7 +5,7 @@ from Internship.common.bot_catcher_mixin import BotCatcherFormMixin
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
 
-class CandidateForm(forms.ModelForm,BotCatcherFormMixin,BootstrapFormMixin):
+class CandidateForm(BootstrapFormMixin,forms.ModelForm,BotCatcherFormMixin):
 
     class Meta:
         model = CandidateProfile
@@ -17,7 +17,7 @@ class EditCandidateForm(CandidateForm):
     pass
 
 
-class CompanyForm(BootstrapFormMixin,forms.ModelForm,BotCatcherFormMixin):
+class CompanyForm(BotCatcherFormMixin,BootstrapFormMixin,forms.ModelForm):
 
     class Meta:
         model = CompanyProfile

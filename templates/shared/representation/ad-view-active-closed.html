@@ -1,0 +1,12 @@
+<div class="container">
+    <p><img src="https://img.icons8.com/ios/40/000000/audio-description.png"/>&nbsp<b>{{ ad.title }}</b></p>
+    {% if user.id == info.user_id %}
+        <p><img src="https://img.icons8.com/ios/40/000000/parse-from-clipboard.png"/>&nbspApplied candidates: <b><a
+                href="{% url 'applied candidates' ad.id %}">{{ ad.num_candidates }}</a></b>
+        </p>
+    {% endif %}
+    <span><img src="https://img.icons8.com/ios/20/000000/pen.png"/> Created: {{ ad.created_at }}</span>
+    <p class="text-right"><a class="btn btn-outline-success"
+                             href="{% url 'details ad' ad.id %}">View more...</a>
+    </p>
+</div>

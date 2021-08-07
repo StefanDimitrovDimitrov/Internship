@@ -12,20 +12,21 @@
 
 
     <div class="container">
+
         <div class="row">
             <div class="col-4">
 
                 <div class="justify-content-md-center">
                     <div class="card-body">
-
-
                         <h1 class="text-center">{{ ad.title }}</h1>
+
+
                         <br>
                         <hr>
                         <br>
                         <ul>
                             <li>
-                                <img src="https://img.icons8.com/color/48/000000/company.png"/><span>Company: <b>{{ company_owner.company_name|upper }}</b></span>
+                                <img src="https://img.icons8.com/color/48/000000/company.png"/><span>Company: <b>{{ ad.company_owner.company_name|upper }}</b></span>
                             </li>
                             <br>
                             <li>
@@ -45,44 +46,69 @@
                             </li>
                             <br>
                         </ul>
-                        <br>
                         <hr>
                         <br>
 
                         {% if user.id == ad.company_owner_id %}
-                            <div>
-                                <a class="btn btn-warning btn-block btn-lg" href="{% url 'edit ad' ad.pk %}">Edit</a>
+
+
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-outline-warning btn-block btn-lg"
+                                       href="{% url 'edit ad' ad.pk %}">Edit</a>
+                                </div>
+                                <div class="col">
+
+
+                                    <a type="button" class="btn btn-outline-danger btn-lg" data-bs-toggle="modal"
+                                       data-bs-target="#exampleAd">
+                                        Delete Ad
+                                    </a>
+
+                                    {% include 'shared/modal/delete-modal-ad.html' %}
+
+
+                                </div>
                             </div>
-                            <br>
-                            <a type="button" class="btn btn-danger btn-block btn-lg" data-toggle="modal"
-                               data-target="#exampleModal">
-                                Delete
-                            </a>
-                            {% include 'shared/modal/delete-modal_ad.html' %}
+
+
+
+
                         {% elif user.profile == 'Candidate' %}
-                            <div>
-                                <a class="btn btn-danger btn-block btn-lg" href="{% url 'apply' ad.pk %}">Apply</a>
+                            <div class="text-center">
+                                <a class="btn btn-outline-success btn-lg"
+                                   href="{% url 'apply' ad.pk %}">Apply</a>
                             </div>
                         {% endif %}
+
+                        {% if request.user.is_anonymous %}
+                            <div class="text-center">
+                                <a class="btn btn-outline-success btn-lg"
+                                   href="{% url 'register candidate' %}">Apply</a>
+                            </div>
+                        {% endif %}
+
+
                     </div>
                 </div>
             </div>
             <div class="col-8">
                 <div class="justify-content-md-center">
                     <div class="card-body">
-
-                        {% if user.id == ad.company_owner_id %}
-
-                            <a class="btn btn-lg btn-primary" href="{% url 'applied candidates' ad.pk %}">Applied
-                                Candidates: {{ num_candidates }}</a>
-
-                        {% endif %}
-                        <hr>
-                        <h3 class="text-left">Description</h3>
                         <br>
+                        <br>
+
+                        <h3 class="text-center">Description</h3>
+                        <hr>
                         <p>{% autoescape off %}{{ ad.description|safe }}{% endautoescape %}</p>
                     </div>
                 </div>
+                {% if user.id == ad.company_owner_id %}
+                    <div class="text-center">
+                        <a class="btn btn-lg btn-outline-success" href="{% url 'applied candidates' ad.pk %}">Applied
+                            Candidates: {{ num_candidates }}</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

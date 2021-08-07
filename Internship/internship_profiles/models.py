@@ -38,12 +38,15 @@ class CandidateProfile(models.Model):
         default=False
     )
 
+
     user = models.OneToOneField(
         UserModel,
         on_delete=models.CASCADE,
         primary_key=True
     )
 
+    def __str__(self):
+        return self.email
 
 class CompanyProfile(models.Model):
     company_name = models.CharField(
@@ -90,3 +93,5 @@ class CompanyProfile(models.Model):
         primary_key=True
     )
 
+    def __str__(self):
+        return self.email

@@ -4,6 +4,7 @@
 {% extends 'shared/../main/base.html' %}
 {% load static %}
 
+
 {% block content %}
     <div class="jumbotron">
         <div class="container">
@@ -11,90 +12,136 @@
             <p class="lead text-center">Employer branding is important but more important is who you really are.</p>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
-            <div>
+            <div class="col-sm-6">
                 <div>
                     <div>
-                        <img class="rounded-circle" src="{{ info.company_logo.url }}" alt="Generic placeholder image"
-                             width="200" height="200" style="object-fit: scale-down">
-                    </div>
-                    <ul>
-                        <li>
-                            <img src="https://img.icons8.com/color/48/000000/company.png"/><span>Company: <b>{{ info.company_name }}</b></span>
-                        </li>
-                        <br>
-                        <li>
-                            <img src="https://img.icons8.com/color/48/000000/email.png"/><span> Email: <b>{{ info.email }}</b></span>
-                        </li>
-                        <br>
-                        <li>
-                            <img src="https://img.icons8.com/color/48/000000/contact-card.png"/><span>Address: <b>{{ info.company_address }}</b></span>
-                        </li>
-                        <br>
-                        <li>
-                            <img src="https://img.icons8.com/color/48/000000/coderwall.png"/><span>Website: <b>{{ info.company_website }}</b></span>
-                        </li>
-                        <br>
-                        <li>
-                            <img src="https://img.icons8.com/color/48/000000/phonelink-ring--v1.png"/><span>Phone: <b>{{ info.company_phone }}</b></span>
-                        </li>
-                    </ul>
-                    <hr>
-                    <h2 class="text-center">What we do and who we are...</h2>
-                    <br>
-                    <p>{{ info.description }}</p>
-                    <br>
-                    {% if user.id == info.user_id %}
+                        <div class="text-center">
+                            <img class="rounded-circle" src="{{ info.company_logo.url }}"
+                                 alt="Generic placeholder image"
+                                 width="300" height="300" style="object-fit: scale-down">
+                        </div>
+                        <ul>
+                            <li>
+                                <img src="https://img.icons8.com/color/48/000000/company.png"/><span>Company: <b>{{ info.company_name }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="https://img.icons8.com/color/48/000000/email.png"/><span> Email: <b>{{ info.email }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="https://img.icons8.com/color/48/000000/contact-card.png"/><span>Address: <b>{{ info.company_address }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="https://img.icons8.com/color/48/000000/coderwall.png"/><span>Website: <b>{{ info.company_website }}</b></span>
+                            </li>
+                            <br>
+                            <li>
+                                <img src="https://img.icons8.com/color/48/000000/phonelink-ring--v1.png"/><span>Phone: <b>{{ info.company_phone }}</b></span>
+                            </li>
+                        </ul>
                         <hr>
-                        <a class="btn btn-warning btn-block" href="{% url 'edit company profile' info.user_id %}">Edit
-                            Profile</a>
-                        <a class="btn btn-warning btn-block"
-                           href="{% url 'change company credentials' info.user_id %}">Change
-                            Credentials</a>
+                        {% if user.id == info.user_id %}
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-outline-warning btn-block"
+                                       href="{% url 'edit company profile' info.user_id %}">Edit
+                                        Profile</a>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-outline-warning btn-block"
+                                       href="{% url 'change company credentials' info.user_id %}">Change
+                                        Credentials</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                    Delete Profile
+                                </button>
+                                {% include 'shared/modal/delete-modal-profile.html' %}
+                            </div>
+                        {% endif %}
+                        <h2 class="text-center">What we do and who we are...</h2>
+                        <br>
+                        <p>{{ info.description }}</p>
+                        <br>
 
-                        <a type="button" class="btn btn-danger btn-block" data-toggle="modal"
-                           data-target="#exampleModal">
-                            Delete
-                        </a>
-                        {% include 'shared/modal/delete-modal.html' %}
-                        <hr>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-10">
-            <h1>Your job adds:</h1>
-
-            <hr>
-
-            {% if not company_ads %}
-                <h5>It looks a bit lonely here...</h5>
-                <p>You have to complete your profile to be able to publish an ad.</p>
+            <div class="col-sm-6">
                 <br>
-                <h3><a href="{% url 'create ad' %}" style="color: black">Publish your first ad here </a></h3>
-
-            {% endif %}
-
-            {% for ad in company_ads %}
-
-                <div class="container">
-                    <p><b>{{ ad.title }}</b></p>
-                    <p>Applied candidates <b>{{ ad.num_candidates }}</b></p>
-                    <p><a class="btn btn-info" href="{% url 'details ad' ad.id %}">Details »</a></p>
-
-                    {% if ad.is_active %}
-                        <p>Status: Active - Created: {{ ad.created_at }}</p>
-                    {% else %}
-                        <h5>Status: Closed </h5>
-                    {% endif %}
-                    <hr>
+                <br>
+                <br>
+                <h1 class="text-center">Job ads</h1>
+                <hr>
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseOne"
+                                    aria-expanded="true"
+                                    aria-controls="panelsStayOpen-collapseOne">
+                                Active Job Ads: {{ company_ads_active.count }}
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                             aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body">
+                                {% if not company_ads_active %}
+                                    <h5>It looks a bit lonely here...</h5>
+                                    <p>You have to complete your profile to be able to publish an
+                                        ad.</p>
+                                    <br>
+                                    <h3><a href="{% url 'create ad' %}" style="color: black">Publish
+                                        your
+                                        first ad
+                                        here </a></h3>
+                                {% endif %}
+                                {% for ad in company_ads_active %}
+                                    {% include 'shared/representation/ad-view-active-closed.html' %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            {% endfor %}
 
+                {% if user.id == info.user_id %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button collapsed" type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseTwo"
+                                    aria-expanded="false"
+                                    aria-controls="panelsStayOpen-collapseTwo">
+                                Closed Job Ads: {{ company_ads_closed.count }}
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                             aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="accordion-body">
+                                {% if not company_ads_closed %}
+                                    <h5>You don't have closed Ads</h5>
+                                {% endif %}
+
+
+
+                                {% for ad in company_ads_closed %}
+                                    {% include 'shared/representation/ad-view-active-closed.html' %}
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-    </div>
     </div>
 
 {% endblock %}

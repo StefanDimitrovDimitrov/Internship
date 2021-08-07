@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from Internship.common.main import get_current_company
+from Internship.common.main import get_current_company, get_current_ad, get_list_of_applied_candidates
 from Internship.internship_profiles.signals import *
 # Create your views here.
 from Internship.internship_app.models import Internship_ad, AppliedTracking
@@ -14,16 +14,23 @@ UserModel = get_user_model()
 
 def get_company_profile(request, pk):
     company = get_current_company(pk)
-    company_ads = Internship_ad.objects.filter(company_owner=pk)
+    company_ads_active = Internship_ad.objects.filter(company_owner=pk).filter(is_active=True)
+    company_ads_closed = Internship_ad.objects.filter(company_owner=pk).filter(is_active=False)
+
     records = AppliedTracking.objects.filter()
 
-    for ad in company_ads:
-        num_candidates = records.filter(application_id=ad.id).count()
+    for ad in company_ads_active:
+        num_candidates = records.filter(internship_ads=ad.id).count()
+        ad.num_candidates = num_candidates
+
+    for ad in company_ads_closed:
+        num_candidates = records.filter(internship_ads=ad.id).count()
         ad.num_candidates = num_candidates
 
     context = {
         'info': company,
-        'company_ads': company_ads
+        'company_ads_active': company_ads_active,
+        'company_ads_closed': company_ads_closed
     }
 
     return render(request, 'profile/company_profile.html', context)
@@ -57,14 +64,11 @@ def edit_company_profile(request, pk):
 @login_required
 def get_candidate_profile(request, pk):
     candidate = CandidateProfile.objects.get(pk=pk)
-    candidate_ads = AppliedTracking.objects.filter(applied_candidate_id=pk)
-    all_ads = Internship_ad.objects.all()
-    list_of_ads = [ad for ad in all_ads for candidate_ad in candidate_ads if ad.id == candidate_ad.application_id]
-    print(list_of_ads)
-
+    candidate_ads = AppliedTracking.objects.filter(applied_candidates_id=pk).distinct('internship_ads_id')
+    list_of_ads = reversed(candidate_ads)
     context = {
         'info': candidate,
-        'list_of_ads': list_of_ads
+        'list_of_ads': list_of_ads,
     }
 
     return render(request, 'profile/candidate_profile.html', context)
@@ -95,3 +99,22 @@ def delete_user(request, pk):
     user = UserModel.objects.get(pk=pk)
     user.delete()
     return redirect('home')
+
+
+@login_required
+def applied_candidates(request, pk):
+    ad = get_current_ad(pk)
+    ad_apply_candidates = AppliedTracking.objects.filter(internship_ads=pk)
+
+
+    # list_of_applied_candidates = get_list_of_applied_candidates(pk)
+    num_candidates = len(ad_apply_candidates)
+
+    context = {
+        # 'candidates': list_of_applied_candidates,
+        'ad': ad,
+        'records': ad_apply_candidates,
+        'num_candidates': num_candidates
+    }
+
+    return render(request, 'internship/applied_candidates.html', context)

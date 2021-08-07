@@ -1,7 +1,7 @@
 from django.urls import path
 
 from Internship.internship_app.views import catalog_companies, catalog_ad, create_ad, details_ad, edit_ad, \
-    delete_ad, apply, deactivate_ad, activate_ad, Home, applied_candidates, about
+    delete_ad, apply, deactivate_ad, activate_ad, Home, about
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
@@ -15,5 +15,5 @@ urlpatterns = [
     path('deactivate/<int:pk>', deactivate_ad, name='deactivate ad'),
     path('activate/<int:pk>', activate_ad, name='activate ad'),
     path('apply/<int:pk>', apply, name='apply'),
-    path('applied_candidates/<int:pk>', applied_candidates, name='applied candidates')
+
 ]

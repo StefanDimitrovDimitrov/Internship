@@ -8,15 +8,13 @@
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4 text-center">Register your Candidate Profile</h1>
-            <p class="lead text-center">First step to your great career starts with this registration.Good Luck </p>
+            <p class="lead text-center">First step to your great career starts with this registration.</p>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col">
 
-            </div>
-            <div class="col">
+            <div class="col-md-4 offset-md-4">
                 <form method="POST" action="{% url 'register candidate' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
@@ -24,9 +22,7 @@
                     <p>or <a href="{% url 'login' %}">Login</a></p>
                 </form>
             </div>
-            <div class="col">
 
-            </div>
         </div>
     </div>
 

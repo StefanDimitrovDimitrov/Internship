@@ -50,3 +50,6 @@ class InternshipUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     objects = InternshipUserManager()
+
+    def __str__(self):
+        return self.email

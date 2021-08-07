@@ -24,7 +24,7 @@ class Home(ListView):
 
 
 def catalog_companies(request):
-    companies = CompanyProfile.objects.filter(is_complete=True)
+    companies = CompanyProfile.objects.filter(is_complete=True).order_by('company_name')
 
     context = {
         'companies': companies
@@ -80,13 +80,11 @@ def details_ad(request, pk):
 @login_required
 def edit_ad(request, pk):
     ad = get_current_ad(pk)
-    old_image = ''
+
     if request.method == "POST":
-        if ad.image:
-            old_image = ad.image.path
+
         form = AdForm(request.POST, request.FILES, instance=ad)
         if form.is_valid():
-            remove_old_img(old_image)
             form.save()
             return redirect('details ad', pk=pk)
 
@@ -137,10 +135,10 @@ def apply(request, pk):
             else:
                 new_record = AppliedTracking()
                 new_record.CV = applied_form.CV
-                new_record.application = ad
-                new_record.applied_candidate = candidate
+                new_record.internship_ads = ad
+                new_record.applied_candidates = candidate
                 new_record.save()
-                return redirect('home')
+                return redirect('candidate profile', request.user.pk)
 
     context = {
         'form': form,
@@ -150,21 +148,14 @@ def apply(request, pk):
     return render(request, 'internship/apply.html', context)
 
 
-def applied_candidates(request, pk):
-    ad = get_current_ad(pk)
-    ad_apply_candidates = AppliedTracking.objects.filter(application_id=pk)
-    list_of_applied_candidates = get_list_of_applied_candidates(pk)
-    num_candidates = len(list_of_applied_candidates)
-
-    context = {
-        'candidates': list_of_applied_candidates,
-        'ad': ad,
-        'records': ad_apply_candidates,
-        'num_candidates': num_candidates
-    }
-
-    return render(request, 'internship/applied_candidates.html', context)
-
 
 def about(request):
+    records = AppliedTracking.objects.all()
+
+    for record in records:
+
+        ads_list = record.internship_ads.title
+        candidates = record.applied_candidates.email
+
+
     return render(request, 'internship/about.html')

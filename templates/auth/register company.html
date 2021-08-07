@@ -11,26 +11,21 @@
                 partner in this journey.</p>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
-            <div class="col">
 
-            </div>
-            <div class="col">
+            <div class="col-md-4 offset-md-4">
                 <form method="POST" action="{% url 'register company' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
-
                     <button class="btn btn-primary">Register</button>
                     <p>or <a href="{% url 'login' %}">Login</a></p>
                 </form>
             </div>
-            <div class="col">
 
-            </div>
         </div>
     </div>
+
 
 
 {% endblock %}

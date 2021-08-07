@@ -11,7 +11,6 @@
 
 
     <div class="card m-3 mx-auto" style=" width: 50rem;">
-        <img class="card-img-top" src="{{ ad.image.url }}" alt="image ad">
         <div class="card-body">
             <h5 class="card-title">Title: {{ ad.title }}</h5>
             <p class="card-text">Field: {{ ad.field }}</p>
@@ -21,15 +20,18 @@
             <br>
             <hr>
             <br>
-            {% if cv %}
-                <div>Apply with your current <a href="{{ cv.url }}">CV</a> or upload a new One.</div>
-                <br>
-            {% endif %}
+
 
             <form method="POST" action="{% url 'apply' ad.pk %}" enctype="multipart/form-data">
 
                 {% csrf_token %}
-                {{ form|crispy }}
+                <p class="text-center"><b>CV</b></p>
+                {{ form.CV}}
+                <br>
+                {% if cv %}
+                <div>Apply with your current <a href="{{ cv.url }}">CV</a> or upload a new One.</div>
+                <br>
+            {% endif %}
                 <button class="btn btn-success">Submit</button>
             </form>
 

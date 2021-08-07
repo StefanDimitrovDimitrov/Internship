@@ -13,7 +13,6 @@ UserModel = get_user_model()
 
 from django.utils import timezone
 
-
 from django.utils import timezone
 
 
@@ -27,15 +26,24 @@ class Internship_ad(models.Model):
     field = models.CharField(max_length=30, choices=FIELD_CHOICES, default=TYPE_UNKNOWN)
     employment_type = models.CharField(max_length=15, choices=EMPLOYMENT_TYPE, default=TYPE_UNKNOWN)
     duration = models.CharField(max_length=30, choices=DURATION_CHOICES, default=TYPE_UNKNOWN)
-    image = models.ImageField(upload_to='company',)
+    # image = models.ImageField(upload_to='company',)
     description = SummernoteTextField(max_length=30000)
     is_active = models.BooleanField(default=True)
 
     company_owner = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title
+
+
 
 class AppliedTracking(models.Model):
-    applied_at = models.DateTimeField(default=datetime.now, editable=False)
-    CV = models.FileField(upload_to='intern_cv',blank=True)
-    applied_candidate = models.ForeignKey(CandidateProfile, on_delete=models.CASCADE)
-    application = models.ForeignKey(Internship_ad, on_delete=models.CASCADE)
+    applied_at = models.DateTimeField(
+        default=datetime.now,
+        editable=False
+    )
+    CV = models.FileField(upload_to='intern_cv', blank=True)
+
+    applied_candidates = models.ForeignKey(CandidateProfile, on_delete=models.CASCADE)
+
+    internship_ads = models.ForeignKey(Internship_ad, on_delete=models.CASCADE)
