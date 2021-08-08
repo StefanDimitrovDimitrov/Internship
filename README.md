@@ -40,8 +40,10 @@
     
 3. Internship app
 
-    - Two models: Internship_add and AppliedTracking
+    - Two models: Internship_ad and AppliedTracking
     - the ads are visible for all type of users. Only register candidates are able to apply for them.
+    - An ad can be active/open or inactive/closed. If the ad is open candidates can see it and applied for it if the ad is closed only company owner can see it.
+      -The ad's company owner has FULL CRUD operations over the ad
     - Internship_ad has relation one to many  to Company Profile
     - AppliedTracing has relation one to many  to Candidate profile ,  Internship_ad
     - AppliedTracing contains when the candidate is applied, and the path to his/her CВ as well as the both mentioned relations
