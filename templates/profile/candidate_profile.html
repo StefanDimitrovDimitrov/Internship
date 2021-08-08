@@ -24,18 +24,15 @@
                     <ul>
                         <li>
 
-                            <img src="{% static 'img/fname.png' %}" width="30" height="30"
-                                 alt="brand img"><span>Name: <b>{{ info.first_name }} {{ info.last_name }}</b></span>
+                            <img src="https://img.icons8.com/plasticine/50/000000/worker-id-card.png"/><span>Name: <b>{{ info.first_name }} {{ info.last_name }}</b></span>
                         </li>
                         <br>
                         <li>
-                            <img src="{% static 'img/email.png' %}" width="30" height="30"
-                                 alt="brand img"><span> Email: <b>{{ info.email }}</b></span>
+                            <img src="https://img.icons8.com/fluency/50/000000/email-sign.png"/><span> Email: <b>{{ info.email }}</b></span>
                         </li>
                         <br>
                         <li>
-                            <img src="{% static 'img/cv.png' %}" width="30"
-                                 height="30" alt="brand img">
+                            <img src="https://img.icons8.com/ios/50/000000/parse-from-clipboard.png"/>
                             {% if info.CV %}
                                 <span>Check your application: <a href="{{ info.CV.url }}">here</a></span>
                             {% else %}

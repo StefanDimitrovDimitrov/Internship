@@ -21,7 +21,7 @@ class Internship_ad(models.Model):
     created_at = models.DateTimeField(default=datetime.now(), editable=False)
     modified_at = models.DateTimeField(default=datetime.now, editable=False)
 
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=70)
     city = models.CharField(max_length=30, choices=CITY_CHOICES, default=TYPE_UNKNOWN)
     field = models.CharField(max_length=30, choices=FIELD_CHOICES, default=TYPE_UNKNOWN)
     employment_type = models.CharField(max_length=15, choices=EMPLOYMENT_TYPE, default=TYPE_UNKNOWN)

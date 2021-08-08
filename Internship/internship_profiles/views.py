@@ -39,22 +39,23 @@ def get_company_profile(request, pk):
 @login_required
 def edit_company_profile(request, pk):
     company = CompanyProfile.objects.get(pk=pk)
+    form = EditCompanyForm(instance=company)
 
     if request.method == "POST":
-        edit_profile_form = EditCompanyForm(request.POST, request.FILES, instance=company)
-        if edit_profile_form.is_valid():
-            edit_profile_form.save()
+        form = EditCompanyForm(request.POST, request.FILES, instance=company)
+        if form.is_valid():
+            form.save()
             return redirect('company profile', pk=pk)
-        else:
-            context = {
-                'form': EditCompanyForm(instance=company),
-                'info': company,
-                'errors': edit_profile_form.errors
-            }
-            return render(request, 'profile/edit_company_profile.html', context)
+        # else:
+        #     context = {
+        #         'form': EditCompanyForm(instance=company),
+        #         'info': company,
+        #         'errors': edit_profile_form.errors
+        #     }
+        #     return render(request, 'profile/edit_company_profile.html', context)
 
     context = {
-        'form': EditCompanyForm(instance=company),
+        'form': form,
         'info': company,
     }
 

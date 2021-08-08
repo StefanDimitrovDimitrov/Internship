@@ -75,7 +75,7 @@ class CompanyProfile(models.Model):
     )
 
     company_address = models.CharField(
-        max_length=20,
+        max_length=50,
         blank=True
     )
 
