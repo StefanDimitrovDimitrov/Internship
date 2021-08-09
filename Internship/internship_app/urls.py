@@ -1,12 +1,12 @@
 from django.urls import path
 
-from Internship.internship_app.views import catalog_companies, catalog_ad, create_ad, details_ad, edit_ad, \
-    delete_ad, apply, deactivate_ad, activate_ad, Home, about
+from Internship.internship_app.views import catalog_ad, create_ad, details_ad, edit_ad, \
+    delete_ad, apply, deactivate_ad, activate_ad, Home, about, CatalogCompanies
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
-    path('about/',about, name='about'),
-    path('companies/', catalog_companies, name='catalog companies'),
+    path('about/', about, name='about'),
+    path('companies/', CatalogCompanies.as_view(), name='catalog companies'),
     path('ads/', catalog_ad, name='catalog ads'),
     path('create/', create_ad, name='create ad'),
     path('details/<int:pk>', details_ad, name='details ad'),

@@ -17,9 +17,12 @@ def search_company(context):
     company = CompanyProfile.objects.filter(
         is_complete=True).filter(
         company_name__icontains=params['text']
-    )
+    ).order_by('company_name')
+
+    count_result = company.count()
 
     return {
+        'count_result':count_result,
         'companies': company,
         'search_form': SearchForm(initial=params),
         'params': params['text']

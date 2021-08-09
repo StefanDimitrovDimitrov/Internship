@@ -110,9 +110,10 @@ def applied_candidates(request, pk):
 
     # list_of_applied_candidates = get_list_of_applied_candidates(pk)
     num_candidates = len(ad_apply_candidates)
-
+    count=0
     context = {
         # 'candidates': list_of_applied_candidates,
+        'count':count,
         'ad': ad,
         'records': ad_apply_candidates,
         'num_candidates': num_candidates

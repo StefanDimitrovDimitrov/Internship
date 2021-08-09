@@ -28,7 +28,7 @@
                             </li>
                             <br>
                             <li>
-                                <img src="https://img.icons8.com/color/48/000000/email.png"/><span> Email: <b>{{ info.email }}</b></span>
+                                <img src="https://img.icons8.com/fluency/48/000000/email-sign.png"/><span> Email: <b>{{ info.email }}</b></span>
                             </li>
                             <br>
                             <li>
@@ -48,27 +48,30 @@
                             <div class="row">
                                 <div class="col">
                                     <a class="btn btn-outline-warning btn-block"
-                                       href="{% url 'edit company profile' info.user_id %}">Edit
-                                        Profile</a>
+                                       href="{% url 'edit company profile' info.user_id %}"><b>Edit
+                                        Profile</b></a>
                                 </div>
                                 <div class="col">
                                     <a class="btn btn-outline-warning btn-block"
-                                       href="{% url 'change company credentials' info.user_id %}">Change
-                                        Credentials</a>
+                                       href="{% url 'change company credentials' info.user_id %}"><b>Change
+                                        Credentials</b></a>
                                 </div>
                             </div>
                             <br>
                             <div class="text-center">
                                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
-                                    Delete Profile
+                                    <b>Delete Profile</b>
                                 </button>
                                 {% include 'shared/modal/delete-modal-profile.html' %}
                             </div>
                         {% endif %}
                         <h2 class="text-center">What we do and who we are...</h2>
                         <br>
-                        <p>{{ info.description }}</p>
+
+                        <p class="box">{{ info.description }}</p>
+
+
                         <br>
 
                     </div>
@@ -81,7 +84,7 @@
                 <h1 class="text-center">Job ads</h1>
                 <hr>
                 <div class="accordion" id="accordionPanelsStayOpenExample">
-                    <div class="accordion-item">
+                    <div class="accordion-item box">
                         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#panelsStayOpen-collapseOne"
@@ -112,7 +115,7 @@
                 </div>
 
                 {% if user.id == info.user_id %}
-                    <div class="accordion-item">
+                    <div class="accordion-item box">
                         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                             <button class="accordion-button collapsed" type="button"
                                     data-bs-toggle="collapse"

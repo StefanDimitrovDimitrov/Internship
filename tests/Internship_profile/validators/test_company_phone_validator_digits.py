@@ -13,5 +13,11 @@ class ValidatePhoneNumDigitsTests(TestCase):
         self.assertIsNotNone(context.exception)
 
     def test_whenPhoneNumContainsOnlyNumbers_expectToNothing(self):
-        value = '000000000000000000000'
-        company_phone_validator_digits(value)
+        value = '00000000000000000000'
+        msg_error = ''
+        try:
+            company_phone_validator_digits(value)
+        except ValueError as e:
+            msg_error = e
+
+        self.assertEqual(msg_error, '')

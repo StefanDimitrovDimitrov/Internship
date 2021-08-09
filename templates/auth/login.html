@@ -21,7 +21,7 @@
                     {{ form|crispy }}
 
                     <br>
-                    <button class="btn btn-primary">Login</button>
+                    <button class="btn btn-outline-primary">Login</button>
                     <p>or <a href="{% url 'register company' %}?next={{ request.GET.next }}">Register Candidate</a> / <a
                             href="{% url 'register candidate' %}?next={{ request.GET.next }}">Company</a></p>
 

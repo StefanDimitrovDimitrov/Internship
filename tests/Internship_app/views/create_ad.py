@@ -25,7 +25,6 @@ class CompanyProfileTest(TestCase):
             field='Information Technology',
             employment_type='full-time',
             duration='1 month',
-            image='path/to/image.png',
             description='Some test description',
             is_active=True,
             company_owner=self.current_company
@@ -34,4 +33,5 @@ class CompanyProfileTest(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse('company profile', args=[1]))
 
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(adv.company_owner, self.current_company)

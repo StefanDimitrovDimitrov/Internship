@@ -4,6 +4,7 @@ from django.template import Library
 from Internship.internship_app.forms import SortForm, SearchForm
 from Internship.internship_app.models import Internship_ad
 from itertools import chain
+from django.db.models import Q
 
 register = Library()
 
@@ -12,25 +13,21 @@ register = Library()
 def sort_ads(context):
     params = extract_filter_values(context.request.GET)
 
-    ads_list1 = Internship_ad.objects.filter(
-        city__icontains=params['city'],
-        field__icontains=params['field'],
-        duration__icontains=params['duration'],
-        employment_type__icontains=params['employment_type'],
-        title__icontains=params['text']
+    ads = Internship_ad.objects.filter(
+        Q(city__icontains=params['city']) &
+        Q(field__icontains=params['field']) &
+        Q(duration__icontains=params['duration']) &
+        Q(employment_type__icontains=params['employment_type']) &(
+             Q(title__icontains=params['text']) |
+             Q(company_owner__company_name__icontains=params['text']) |
+             Q(city__icontains=params['text']) |
+             Q(field__icontains=params['text']) |
+             Q(duration__icontains=params['text']) |
+             Q(employment_type__icontains=params['text'])
+         )
+    ).order_by('created_at')
 
-    )
-    ads_list2 = Internship_ad.objects.filter(
-        city__icontains=params['city'],
-        field__icontains=params['field'],
-        duration__icontains=params['duration'],
-        employment_type__icontains=params['employment_type'],
-        company_owner__company_name__icontains=params['text']
-    )
-
-    ads = set(chain(ads_list1, ads_list2))
-
-
+    ads = reversed(ads)
     return {
         'ads': ads,
         'sort_form': SortForm(initial=params),

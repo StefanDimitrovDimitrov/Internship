@@ -43,27 +43,27 @@
                         </li>
                     </ul>
                     <br>
-
-                    <div class="row">
-                        <div class="col">
-                            <a class="btn btn-outline-warning btn-block"
-                               href="{% url 'edit candidate profile' info.user_id %}">Update
-                                Profile</a>
+                    <div>
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-outline-warning btn-block"
+                                   href="{% url 'edit candidate profile' info.user_id %}"><b>Update
+                                    Profile</b></a>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-outline-warning btn-block"
+                                   href="{% url 'change candidate credentials' info.user_id %}"><b>Change
+                                    Credentials</b></a>
+                            </div>
                         </div>
-                        <div class="col">
-                            <a class="btn btn-outline-warning btn-block"
-                               href="{% url 'change candidate credentials' info.user_id %}">Change
-                                Credentials</a>
-                        </div>
+                        <br>
                     </div>
-                    <br>
-
                     <div class="text-center">
 
 
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                            Delete Profile
+                            <b>Delete Profile</b>
                         </button>
                         {% include 'shared/modal/delete-modal-profile.html' %}
 
@@ -82,9 +82,9 @@
                 <div class="card-body">
                     {% if list_of_ads %}
 
-                        <div class="accordion" id="accordionExample">
+                        <div class="accordion box" id="accordionExample">
                         {% for ad in list_of_ads %}
-                            <div class="accordion-item">
+                            <div class="accordion-item box">
                                 <h2 class="accordion-header" id="heading{{ ad.internship_ads.id }}">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse{{ ad.internship_ads.id }}" aria-expanded="true"
@@ -101,7 +101,8 @@
                                     <div class="accordion-body">
                                         <div class="text-right">
                                             <div class="text-left">
-                                                <img src="https://img.icons8.com/ios/40/000000/parse-from-clipboard.png"/>&nbspCV sent - <b>{{ ad.applied_at|date:"D d M Y" }}</b>
+                                                <img src="https://img.icons8.com/ios/40/000000/parse-from-clipboard.png"/>&nbspCV
+                                                sent - <b>{{ ad.applied_at|date:"D d M Y" }}</b>
                                             </div>
                                             <span class="text-right">
                                             <a class="btn btn-outline-success"

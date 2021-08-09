@@ -9,9 +9,17 @@
 
         <div class="row align-items-md-stretch">
             {% for ad in ads %}
-                <div class="col-md-4 company-hover_bottom">
-                    <div class="h-100 p-5 bg-light border rounded-3">
-                        <h2><img src="https://img.icons8.com/cotton/64/000000/survey.png"/><b>{{ ad.title|upper }}</b></h2>
+
+                {#                bg-light border#}
+
+                <div class="col-md-4 box">
+{#                                        <div class="col-md-4 bg-light border">#}
+
+                    <div class="h-100 p-4 rounded-5">
+
+                        <h3><img
+                                src="https://img.icons8.com/cotton/64/000000/survey.png"/><b>{{ ad.title|upper }}</b>
+                        </h3>
                         <br>
                         <h5>Published by <b>{{ ad.company_owner.company_name }}</b></h5>
                         <br>
@@ -19,10 +27,13 @@
                         <br>
                         <h6>Employment type: {{ ad.employment_type }}</h6>
                         <br>
-                        <a class="btn btn-outline-success" type="button" href="{% url 'details ad' ad.id %}">See
-                            more...
-                        </a>
+                        <div class="text-right">
+                            <a class="btn btn-outline-success" type="button" href="{% url 'details ad' ad.id %}">See
+                                more...
+                            </a>
+                        </div>
                     </div>
+
                 </div>
             {% endfor %}
         </div>

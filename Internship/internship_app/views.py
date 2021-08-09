@@ -8,8 +8,8 @@ from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
 
 from Internship.common.main import get_current_company, get_current_ad, get_list_of_applied_candidates, \
-    get_list_active_ads, get_current_company_from_request
-from Internship.common.main import remove_old_img
+    get_current_company_from_request
+
 from Internship.internship_app.forms import AdForm, ApplyForm
 from Internship.internship_app.models import Internship_ad, AppliedTracking
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
@@ -21,24 +21,19 @@ class Home(ListView):
     template_name = 'shared/../../templates/main/base.html'
     context_object_name = 'ads'
     paginate_by = 3
+    ordering = ['-created_at']
 
 
-def catalog_companies(request):
-    companies = CompanyProfile.objects.filter(is_complete=True).order_by('company_name')
-
-    context = {
-        'companies': companies
-    }
-
-    return render(request, 'internship/catalog_companies.html', context)
+class CatalogCompanies(ListView):
+    model = CompanyProfile
+    template_name = 'internship/catalog_companies.html'
+    context_object_name = 'companies'
 
 
 def catalog_ad(request):
-    active_ads = get_list_active_ads()
+    active_ads = Internship_ad.objects.filter(is_active=True)
 
-    context = {
-        'ads': active_ads
-    }
+    context = {'ads': active_ads}
 
     return render(request, 'internship/catalog_ads.html', context)
 
@@ -148,14 +143,11 @@ def apply(request, pk):
     return render(request, 'internship/apply.html', context)
 
 
-
 def about(request):
     records = AppliedTracking.objects.all()
 
     for record in records:
-
         ads_list = record.internship_ads.title
         candidates = record.applied_candidates.email
-
 
     return render(request, 'internship/about.html')

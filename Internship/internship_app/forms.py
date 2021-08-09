@@ -43,6 +43,7 @@ class SortForm(forms.Form):
 
 class SearchForm(forms.Form):
     text = forms.CharField(
+        label="Search",
         max_length=30,
         required=False,
         widget=forms.TextInput

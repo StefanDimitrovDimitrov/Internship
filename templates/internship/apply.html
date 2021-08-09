@@ -25,7 +25,7 @@
             <form method="POST" action="{% url 'apply' ad.pk %}" enctype="multipart/form-data">
 
                 {% csrf_token %}
-                <p class="text-center"><b>CV</b></p>
+                <p><b>Upload a CV</b></p>
                 {{ form.CV}}
                 <br>
                 {% if cv %}

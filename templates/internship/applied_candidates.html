@@ -2,74 +2,66 @@
 
 {% block content %}
     {% load static %}
-
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Ad Overview</h1>
-            <p class="lead text-center">Did you know how amazing is this opportunity?</p>
+    {% if user.id == ad.company_owner_id %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">List of Candidates</h1>
+                <p class="lead text-center">Needle in a haystack</p>
+            </div>
         </div>
+
+        <div class="container">
+            <h1 class="text-center">{{ ad.title }}</h1>
+            <div class="text-center">
+                <a class="btn btn-outline-secondary btn-lg btn-outline-promary"
+                   href="{% url 'details ad' ad.pk %}">Back to ad
+                    Details</a>
+            </div>
+        </div>
+        <hr>
+
+
+
+        {% if records %}
+            <div class="container justify-content-md-center">
+            <table class="table table table-borderless">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Applied Date</th>
+                    <th scope="col">CV</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for record in records %}
+
+                    <tr class="box">
+                        <th scope="row" class="align-middle">{{ forloop.counter }}</th>
+                        <td><img class="rounded-circle"
+                                 src="{{ record.applied_candidates.profile_image.url }}"
+                                 alt="Generic placeholder image"
+                                 width="100" height="100" style="object-fit: contain"></td>
+                        <td class="align-middle">{{ record.applied_candidates.email }}</td>
+                        <td class="align-middle">{{ record.applied_at|date:"D d M Y" }}</td>
+                        <td class="align-middle"><a class="btn btn-md btn-outline-success"
+                                                    href="{{ record.CV.url }}">View
+                            CV</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+            <p class="text-center">You don't have applied candidates yet</p>
+        {% endif %}
+
+
+
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-8">
-                {% if user.id == ad.company_owner_id %}
-                    <div class="container">
-                        <h1 class="text-center">{{ ad.title }}</h1>
-                        <div class="text-center">
-                            <a class="btn btn-outline-secondary btn-lg btn-outline-promary"
-                               href="{% url 'details ad' ad.pk %}">Back to ad
-                                Details</a>
-                        </div>
 
-                        <br>
-                        <div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="justify-content-md-center">
-                            {% if records %}
-                                {% for record in records %}
-
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2">
-                                            <img class="rounded-circle"
-                                                 src="{{ record.applied_candidates.profile_image.url }}"
-                                                 alt="Generic placeholder image"
-                                                 width="100" height="100" style="object-fit: contain">
-                                        </div>
-                                        <div class="col-3">
-                                            <div>Email:{{ record.applied_candidates.email }}</div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div>Applied at: {{ record.applied_at|date:"D d M Y" }}</div>
-                                        </div>
-                                        <div class="col-2">
-                                            <p><a class="btn btn-lg btn-outline-success" style="float: right"
-                                                  href="{{ record.CV.url }}">View
-                                                CV</a></p>
-                                        </div>
-
-                                    </div>
-
-
-                                    </div>
-
-
-
-                                {% endfor %}
-
-                            {% else %}
-                                <p class="text-center">You don't have applied candidates yet</p>
-                            {% endif %}
-
-
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-
-                {% endif %}
+    {% endif %}
 {% endblock %}
