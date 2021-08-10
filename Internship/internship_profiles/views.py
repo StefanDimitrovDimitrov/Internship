@@ -65,7 +65,8 @@ def edit_company_profile(request, pk):
 @login_required
 def get_candidate_profile(request, pk):
     candidate = CandidateProfile.objects.get(pk=pk)
-    candidate_ads = AppliedTracking.objects.filter(applied_candidates_id=pk).distinct('internship_ads_id')
+    # candidate_ads = AppliedTracking.objects.filter(applied_candidates_id=pk).distinct('internship_ads_id')
+    candidate_ads = AppliedTracking.objects.filter(applied_candidates_id=pk)
     list_of_ads = reversed(candidate_ads)
     context = {
         'info': candidate,

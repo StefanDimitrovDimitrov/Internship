@@ -10,7 +10,7 @@ from Internship.internship_profiles.models import CompanyProfile
 UserModel = get_user_model()
 
 
-class CompanyProfileTest(TestCase):
+class CreateAd(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = UserModel.objects.create_user(email='Google@gmail.com', password='Donatelo123!', profile='Company')

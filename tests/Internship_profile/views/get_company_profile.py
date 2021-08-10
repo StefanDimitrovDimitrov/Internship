@@ -31,7 +31,6 @@ class CompanyProfileTest(TestCase):
             field='Information Technology',
             employment_type='full-time',
             duration='1 month',
-            image='path/to/image.png',
             description='asdhadhakljdh',
             is_active=True,
             company_owner=current_company
@@ -40,5 +39,9 @@ class CompanyProfileTest(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse('company profile', args=[1]))
 
-
+        self.assertEqual(200, response.status_code)
         self.assertEqual(adv.company_owner, current_company)
+
+    def test_postDetails_whenUserLoggedInAndChangesImage_shouldChangeImage(self):
+        self.client.force_login(self.user)
+

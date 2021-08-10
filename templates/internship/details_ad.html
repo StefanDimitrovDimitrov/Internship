@@ -62,7 +62,7 @@
 
                                     <a type="button" class="btn btn-outline-danger btn-lg" data-bs-toggle="modal"
                                        data-bs-target="#exampleAd">
-                                        Delete Ad
+                                        <b>Delete Ad</b>
                                     </a>
 
                                     {% include 'shared/modal/delete-modal-ad.html' %}
@@ -77,14 +77,14 @@
                         {% elif user.profile == 'Candidate' %}
                             <div class="text-center">
                                 <a class="btn btn-outline-success btn-lg"
-                                   href="{% url 'apply' ad.pk %}">Apply</a>
+                                   href="{% url 'apply' ad.pk %}"><b>Apply</b></a>
                             </div>
                         {% endif %}
 
                         {% if request.user.is_anonymous %}
                             <div class="text-center">
                                 <a class="btn btn-outline-success btn-lg"
-                                   href="{% url 'register candidate' %}">Apply</a>
+                                   href="{% url 'register candidate' %}"><b>Apply</b></a>
                             </div>
                         {% endif %}
 
@@ -105,8 +105,8 @@
                 </div>
                 {% if user.id == ad.company_owner_id %}
                     <div class="text-center">
-                        <a class="btn btn-lg btn-outline-success" href="{% url 'applied candidates' ad.pk %}">Applied
-                            Candidates: {{ num_candidates }}</a>
+                        <a class="btn btn-lg btn-outline-success" href="{% url 'applied candidates' ad.pk %}"><b>Applied
+                            Candidates:</b> {{ num_candidates }}</a>
                     </div>
                 {% endif %}
             </div>

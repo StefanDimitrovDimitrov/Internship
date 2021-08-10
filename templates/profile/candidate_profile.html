@@ -85,18 +85,18 @@
                         <div class="accordion box" id="accordionExample">
                         {% for ad in list_of_ads %}
                             <div class="accordion-item box">
-                                <h2 class="accordion-header" id="heading{{ ad.internship_ads.id }}">
+                                <h2 class="accordion-header" id="heading{{ forloop.counter }}">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse{{ ad.internship_ads.id }}" aria-expanded="true"
-                                            aria-controls="collapse{{ ad.internship_ads.id }}">
+                                            data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true"
+                                            aria-controls="collapse{{ forloop.counter }}">
                                         <span class="text-center"
                                               style="color:orange"><b>{{ ad.internship_ads.company_owner.company_name|upper }}</b></span>&nbsp-&nbsp<b>{{ ad.internship_ads.title|upper }}</b>
                                     </button>
                                 </h2>
 
 
-                                <div id="collapse{{ ad.internship_ads.id }}" class="accordion-collapse collapse"
-                                     aria-labelledby="heading{{ ad.internship_ads.id }}"
+                                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse"
+                                     aria-labelledby="heading{{ forloop.counter }}"
                                      data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="text-right">

@@ -52,12 +52,10 @@ class CompanyProfile(models.Model):
     company_name = models.CharField(
         max_length=35,
         blank=True,
-
     )
 
     email = models.EmailField(
         unique=True,
-
     )
 
     company_logo = models.ImageField(
