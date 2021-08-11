@@ -116,9 +116,7 @@ def activate_ad(request, pk):
 @login_required
 def apply(request, pk):
     ad = get_current_ad(pk)
-
     candidate = CandidateProfile.objects.get(user_id=request.user.id)
-
     form = ApplyForm(request.FILES)
 
     if request.method == "POST":
