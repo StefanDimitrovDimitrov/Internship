@@ -3,7 +3,7 @@
 
 
 0. The web app has 3 registered apps accessible in the admin panel. 
-    - Internship app
+    - Internship ad
     - Internship auth
     - Internship profile
 
