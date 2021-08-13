@@ -14,17 +14,18 @@ TECHNOLOGIES:
 
 
 ![img.png](img.png)
-0. The web app has 3 registered apps accessible in the admin panel. 
+The web app has 3 registered apps accessible in the admin panel. 
     * Internship app
     * Internship auth
     * Internship profile
+_________________________________________
 
-1. Internship auth
+Internship auth
     - The user model is extended. 
     - The registration is through email and password.
     - The users can change their credentials
     
-2. Internship profile 
+Internship profile 
    - There are 3 types of profile: Candidate profile and Company Profile, Admin profile(superuser). Also, we have Anonymous users by default
    - Candidate Profile:
      ![img_1.png](img_1.png)
