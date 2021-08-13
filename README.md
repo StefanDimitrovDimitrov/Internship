@@ -15,7 +15,7 @@ TECHNOLOGIES:
 
 ![img.png](img.png)
 0. The web app has 3 registered apps accessible in the admin panel. 
-    - Internship ad
+    - Internship app
     - Internship auth
     - Internship profile
 
