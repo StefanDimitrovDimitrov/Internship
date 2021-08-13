@@ -38,7 +38,7 @@
       - can to filter or search ads
       - can to search companies
     
-3. Internship app
+3. Internship ad
 
     - Two models: Internship_ad and AppliedTracking
     - the ads are visible for all type of users. Only register candidates are able to apply for them.
