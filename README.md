@@ -16,27 +16,27 @@ TECHNOLOGIES:
 
 
 ![img.png](img.png)
-#The web app has 3 registered apps accessible in the admin panel. 
+#The web app has 3 registered apps accessible in the admin panel.
     - Internship app
     - Internship auth
     - Internship profile
 
 #Internship auth
-    - The user model is extended. 
+    - The user model is extended.
     - The registration is through email and password.
     - The users can change their credentials
-    
-#Internship profile 
+
+#Internship profile
        - There are 4 types of profile:
             -   Anonymous profile(by default)
             -   Candidate profile
             -   Company profile
             -   Administrator
-       
+
    Candidate Profile:
      ![img_1.png](img_1.png)
 
-        - can update personal information such as first and last name CV and photo image. 
+        - can update personal information such as first and last name CV and photo image.
         - can access all registered companies and their ads.
         - can apply for a certain position
         - can apply with his/her uploaded CV оr to upload a new one
@@ -45,10 +45,10 @@ TECHNOLOGIES:
         - can delete his/her profile
         - can filter or search ads
         - can search companies
-     
+
    Company Profile
      ![img_2.png](img_2.png)
-     
+
       - can update company information: logo, web address, phone, etc
       - the company has to complete its profile to be able to create ads.
       - when the company completes the profile it is visible in the company catalog view.
@@ -60,7 +60,7 @@ TECHNOLOGIES:
         ![img_5.png](img_5.png)
       - can to filter or search ads
       - can to search companies
-    
+
 #Internship ad
 ![img_3.png](img_3.png)
 
@@ -93,4 +93,3 @@ TECHNOLOGIES:
 ![img_8.png](img_8.png)
 
     - bootstrap class: form-control mixin
-
