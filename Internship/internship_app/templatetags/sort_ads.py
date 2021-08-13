@@ -27,7 +27,6 @@ def sort_ads(context):
          )
     ).order_by('created_at')
 
-    ads = reversed(ads)
     return {
         'ads': ads,
         'sort_form': SortForm(initial=params),

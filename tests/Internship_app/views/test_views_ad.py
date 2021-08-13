@@ -1,10 +1,12 @@
 from datetime import datetime
 
 from django.contrib.auth.models import User
+from django.http import request
 from django.urls import reverse, resolve
 from django.test import TestCase, Client
 
 from Internship.internship_app.models import Internship_ad, AppliedTracking
+from Internship.internship_app.views import edit_ad
 from Internship.internship_auth.models import InternshipUser
 from Internship.internship_profiles.models import CompanyProfile, UserModel, CandidateProfile
 
@@ -24,7 +26,7 @@ class TestViews(TestCase):
             title='Test Ad',
             city='Sofia',
             field='Information Technology',
-            employment_type='full-time',
+            employment_type='Full-Time',
             duration='1 month',
             description='Some test description',
             is_active=True,
@@ -84,12 +86,21 @@ class TestViews(TestCase):
 
     def test_ad_edit_POST(self):
         self.client.force_login(self.user_company)
-        response = self.client.get(self.edit_url)
-
-        self.adv1.title = 'TitleChange'
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEquals(self.adv1.title, 'TitleChange')
+        response = self.client.post(self.edit_url, {
+            'created_at': '2021-09-04 06:00:00.000000',
+            'modified_at': '2021-09-04 06:00:00.000000',
+            'title': 'TitleChanged',
+            'city': 'Sofia',
+            'field': 'Information Technology',
+            'employment_type': 'Full-Time',
+            'duration': '1 month',
+            'description': 'Some test description',
+            'is_active': True,
+            'company_owner': self.current_company
+        })
+        change_ad = Internship_ad.objects.first()
+        self.assertEqual(response.status_code, 302)
+        self.assertEquals(change_ad.title, 'TitleChanged')
 
 
     def test_ad_deactivate_POST(self):

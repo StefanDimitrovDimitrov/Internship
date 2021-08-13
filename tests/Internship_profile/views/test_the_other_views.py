@@ -1,12 +1,14 @@
 from datetime import datetime
 
 from django.contrib.auth import get_user_model, logout
+from django.core.exceptions import ValidationError
+from django.db import IntegrityError
 from django.http import request
 from django.test import TestCase, Client
 from django.urls import reverse
 
 from Internship.internship_app.models import Internship_ad
-from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
+from Internship.internship_profiles.models import CompanyProfile, CandidateProfile, company_name_validator_unique
 
 UserModel = get_user_model()
 
@@ -74,9 +76,9 @@ class TestProfiles(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profile/company_profile.html')
+
     def test_get_company_profile_with_active_ads_GET(self):
         self.client.force_login(self.user_company)
-
 
         response = self.client.get(self.company_profile_url)
 
@@ -114,17 +116,13 @@ class TestProfiles(TestCase):
         self.assertEqual(len(ads), 0)
         self.assertTemplateUsed(response, 'profile/company_profile.html')
 
-
-
     def test_edit_company_profile_change_Name_POST(self):
         self.client.force_login(self.user_company)
-
 
         response = self.client.get(self.company_profile_edit_url)
         self.current_company.company_name = 'New Name'
 
         self.assertEqual(self.current_company.company_name, 'New Name')
-
 
     def test_get_candidate_profile_GET(self):
         self.client.force_login(self.user_candidate)
@@ -136,7 +134,6 @@ class TestProfiles(TestCase):
     def test_edit_candidate_profile_change_first_name_POST(self):
         self.client.force_login(self.user_candidate)
 
-
         response = self.client.get(self.candidate_profile_edit_url)
         self.current_candidate.first_name = 'Maria'
 
@@ -147,20 +144,20 @@ class TestProfiles(TestCase):
 
         self.user_candidate.delete()
 
-        candidates_profiles = CandidateProfile.objects.filter(user_id = self.user_candidate.id)
+        candidates_profiles = CandidateProfile.objects.filter(user_id=self.user_candidate.id)
 
         self.assertEquals(len(candidates_profiles), 0)
 
     def test_change_company_name_with_already_existing_company_name(self):
         self.user_company2 = UserModel.objects.create_user(email='Google2@gmail.com', password='Donatelo123!',
-                                                          profile='Company')
-        self.current_company = CompanyProfile.objects.get(user_id=self.user_company.id)
+                                                               profile='Company')
+        self.user_company3 = UserModel.objects.create_user(email='Google3@gmail.com', password='Donatelo123!',
+                                                               profile='Company')
 
-        self.user_company2.email = 'Google@gmail.com'
+        self.company2 = CompanyProfile.objects.get(user_id=self.user_company2.id)
+        self.company3 = CompanyProfile.objects.get(user_id=self.user_company3.id)
+        self.company2.company_name = 'Name2'
+        self.company3.company_name = 'Name2'
 
-        self.assertEqual(self.user_company2.email, 'Google@gmail.com')
-        self.assertEqual(self.user_company.email, 'Google@gmail.com')
-
-        # with self.assertRaises(IntegrityError):
-        #     self.user_candidate2 = UserModel.objects.create_user(email='C1@gmail.com', password='Donatelo123!',
-        #                                                          profile='Candidate')
+        with self.assertRaises(ValidationError):
+            self.assertEqual(self.company2.company_name, self.company3.company_name)

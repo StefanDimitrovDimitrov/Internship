@@ -1,11 +1,18 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
 from Internship.internship_profiles.validators import company_phone_validator_len, company_phone_validator_digits
-
 UserModel = get_user_model()
+#
+# def company_name_validator_unique(value):
+#     all_companies = CompanyProfile.objects.all()
+#     for company in all_companies:
+#         if company.company_name != '' and company.company_name == value:
+#
+#             raise ValidationError("A company with this name already exists")
 
 
 # Create your models here.
@@ -51,6 +58,7 @@ class CandidateProfile(models.Model):
 class CompanyProfile(models.Model):
     company_name = models.CharField(
         max_length=35,
+        # validators=[company_name_validator_unique],
         blank=True,
     )
 
@@ -78,7 +86,8 @@ class CompanyProfile(models.Model):
     )
 
     company_phone = models.CharField(max_length=20,
-                                     blank=True, validators=[company_phone_validator_len,company_phone_validator_digits],
+                                     blank=True,
+                                     validators=[company_phone_validator_len,company_phone_validator_digits],
                                      help_text='The number should contain 10 digits')
 
     is_complete = models.BooleanField(
@@ -93,3 +102,7 @@ class CompanyProfile(models.Model):
 
     def __str__(self):
         return self.email
+
+
+
+

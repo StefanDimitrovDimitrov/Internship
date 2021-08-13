@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 
 from Internship.common.main import get_current_company, get_current_ad, get_list_of_applied_candidates
@@ -44,16 +45,22 @@ def edit_company_profile(request, pk):
     if request.method == "POST":
         form = EditCompanyForm(request.POST, request.FILES, instance=company)
         if form.is_valid():
-            form.save()
-            return redirect('company profile', pk=pk)
-        # else:
-        #     context = {
-        #         'form': EditCompanyForm(instance=company),
-        #         'info': company,
-        #         'errors': edit_profile_form.errors
-        #     }
-        #     return render(request, 'profile/edit_company_profile.html', context)
+            current_company_info = form.save(commit=False)
 
+            if current_company_info != '':
+                all_companies = CompanyProfile.objects.all()
+                for companies in all_companies:
+                    if companies.user_id != pk:
+                        if companies.company_name == current_company_info.company_name:
+                            context = {
+                                'form': EditCompanyForm(instance=company),
+                                'info': company,
+                                'errors': ValidationError('A company with this name already exists')
+                            }
+                            return render(request, 'profile/edit_company_profile.html', context)
+
+            current_company_info.save()
+            return redirect('company profile', pk=pk)
     context = {
         'form': form,
         'info': company,
@@ -65,9 +72,11 @@ def edit_company_profile(request, pk):
 @login_required
 def get_candidate_profile(request, pk):
     candidate = CandidateProfile.objects.get(pk=pk)
-    # candidate_ads = AppliedTracking.objects.filter(applied_candidates_id=pk).distinct('internship_ads_id')
-    candidate_ads = AppliedTracking.objects.filter(applied_candidates_id=pk)
-    list_of_ads = reversed(candidate_ads)
+    records = AppliedTracking.objects.filter(internship_ads__is_active=True).filter(applied_candidates_id=pk).order_by(
+        'applied_at')
+
+    list_of_ads = records
+
     context = {
         'info': candidate,
         'list_of_ads': list_of_ads,
@@ -108,13 +117,12 @@ def applied_candidates(request, pk):
     ad = get_current_ad(pk)
     ad_apply_candidates = AppliedTracking.objects.filter(internship_ads=pk)
 
-
     # list_of_applied_candidates = get_list_of_applied_candidates(pk)
     num_candidates = len(ad_apply_candidates)
-    count=0
+    count = 0
     context = {
         # 'candidates': list_of_applied_candidates,
-        'count':count,
+        'count': count,
         'ad': ad,
         'records': ad_apply_candidates,
         'num_candidates': num_candidates
