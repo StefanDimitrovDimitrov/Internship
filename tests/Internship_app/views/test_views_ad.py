@@ -33,9 +33,6 @@ class TestViews(TestCase):
             company_owner=self.current_company
         )
 
-
-
-
         self.list_url = reverse('home')
         self.details_url = reverse('details ad', args=[self.adv1.id])
         self.create_url = reverse('create ad')
@@ -76,13 +73,25 @@ class TestViews(TestCase):
 
     def test_ad_create_POST(self):
         self.client.force_login(self.user_company)
-        response = self.client.get(self.create_url)
+        response = self.client.post(self.create_url,{
+            'created_at': '2021-09-04 06:00:00.000000',
+            'modified_at': '2021-09-04 06:00:00.000000',
+            'title': 'FirstAd',
+            'city': 'Plovdiv',
+            'field': 'Information Technology',
+            'employment_type': 'Full-Time',
+            'duration': '1 month',
+            'description': 'Some test description',
+            'is_active': True,
+            'company_owner': self.current_company
+        })
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEquals(self.adv1.title, 'Test Ad')
-        self.assertEquals(self.adv1.city, 'Sofia')
-        self.assertEquals(self.adv1.duration, '1 month')
-        self.assertEquals(self.adv1.company_owner, self.current_company)
+        self.assertEqual(response.status_code, 302)
+        adv = Internship_ad.objects.filter(title__icontains='FirstAd')[0]
+        self.assertEquals(adv.title, 'FirstAd')
+        self.assertEquals(adv.city, 'Plovdiv')
+        self.assertEquals(adv.duration, '1 month')
+        self.assertEquals(adv.company_owner, self.current_company)
 
     def test_ad_edit_POST(self):
         self.client.force_login(self.user_company)
@@ -106,51 +115,37 @@ class TestViews(TestCase):
     def test_ad_deactivate_POST(self):
         self.client.force_login(self.user_company)
         self.adv1.is_active = True
-        response = self.client.get(self.deactivate_url)
+        response = self.client.post(self.deactivate_url,{self.adv1.is_active:False})
 
-        self.adv1.is_active = False
-
+        current_ad = Internship_ad.objects.get(id=self.adv1.id)
         self.assertEqual(response.status_code, 302)
-        self.assertEquals(self.adv1.is_active, False)
+        self.assertEquals(current_ad.is_active, False)
 
     def test_ad_activate_POST(self):
         self.client.force_login(self.user_company)
 
         self.adv1.is_active = False
 
-        response = self.client.get(self.activate_url)
+        response = self.client.get(self.activate_url,{self.adv1.is_active:True})
 
         self.adv1.is_active = True
-
+        current_ad = Internship_ad.objects.get(id=self.adv1.id)
         self.assertEqual(response.status_code, 302)
-        self.assertEquals(self.adv1.is_active, True)
+        self.assertEquals(current_ad.is_active, True)
 
     def test_ad_apply_POST(self):
 
-
-        # candidate = CandidateProfile.objects.create(
-        #     first_name= '',
-        #     last_name= '',
-        #     email='Google1@gmail.com',
-        #     profile_image='InitialProfilePics/pic.png',
-        #     CV='intern_cv/new_cv.docx',
-        #     is_complete=False,
-        #     user = self.user_candidate,
-        # )
         self.client.force_login(self.user_candidate)
-        response = self.client.get(self.apply_url)
-
-        self.current_candidate.CV = 'intern_cv/new_cv.docx'
+        response = self.client.post(self.apply_url,{self.current_candidate.CV: 'intern_cv/new_cv.docx'})
 
         new_applied_candidate = AppliedTracking()
-        new_applied_candidate.CV = self.current_candidate.CV
 
         self.assertEqual(response.status_code, 200)
-        self.assertEquals(new_applied_candidate.CV, new_applied_candidate.CV)
+        self.assertEquals(new_applied_candidate.CV, self.current_candidate.CV)
 
     def test_ad_delete_POST(self):
         self.client.force_login(self.user_company)
-        response = self.client.get(self.delete_url)
+        response = self.client.post(self.delete_url)
 
         self.adv1.delete()
 
