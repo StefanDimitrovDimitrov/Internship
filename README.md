@@ -16,6 +16,7 @@ TECHNOLOGIES:
 
 
 ![img.png](img.png)
+
 #The web app has 3 registered apps accessible in the admin panel.
     - Internship app
     - Internship auth
@@ -34,7 +35,8 @@ TECHNOLOGIES:
             -   Administrator
 
    Candidate Profile:
-     ![img_1.png](img_1.png)
+
+![img_1.png](img_1.png)
 
         - can update personal information such as first and last name CV and photo image.
         - can access all registered companies and their ads.
@@ -47,7 +49,8 @@ TECHNOLOGIES:
         - can search companies
 
    Company Profile
-     ![img_2.png](img_2.png)
+     
+![img_2.png](img_2.png)
 
       - can update company information: logo, web address, phone, etc
       - the company has to complete its profile to be able to create ads.
@@ -62,6 +65,7 @@ TECHNOLOGIES:
       - can to search companies
 
 #Internship ad
+
 ![img_3.png](img_3.png)
 
     - Two models: Internship_ad and AppliedTracking
@@ -74,7 +78,8 @@ TECHNOLOGIES:
     - Internship_ad has relation one to many  to Company Profile
     - AppliedTracing has relation one to many  to Candidate profile ,  Internship_ad
     - AppliedTracing contains when the candidate is applied, and the path to his/her CВ as well as the both mentioned relations
-    ![img_6.png](img_6.png)
+
+![img_6.png](img_6.png)
 
 #Admin panel
     -The ad has admin panel for easy customer management and administration
