@@ -15,9 +15,9 @@ TECHNOLOGIES:
 
 ![img.png](img.png)
 0. The web app has 3 registered apps accessible in the admin panel. 
-    - Internship app
-    - Internship auth
-    - Internship profile
+    * Internship app
+    * Internship auth
+    * Internship profile
 
 1. Internship auth
     - The user model is extended. 
