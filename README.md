@@ -5,6 +5,8 @@ TECHNOLOGIES:
 
     - Django Framework
     - PostgreSQL
+    - HTML5
+    - CSS
     - Pillow
     - Bootstrap5
     - Django-crispy-forms
@@ -88,5 +90,7 @@ TECHNOLOGIES:
     - bot catcher mixin
     - debug toolbar
     - profile completion message
+![img_8.png](img_8.png)
+
     - bootstrap class: form-control mixin
 
