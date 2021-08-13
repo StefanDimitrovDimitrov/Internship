@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4 text-center">You can review your personal information</h1>
@@ -10,7 +9,6 @@
                 are. </p>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -19,11 +17,8 @@
                         <img class="rounded-circle" src="{{ info.profile_image.url }}" alt="Generic placeholder image"
                              width="300" height="300" style="object-fit: scale-down">
                     </div>
-
-
                     <ul>
                         <li>
-
                             <img src="https://img.icons8.com/plasticine/50/000000/worker-id-card.png"/><span>Name: <b>{{ info.first_name }} {{ info.last_name }}</b></span>
                         </li>
                         <br>
@@ -36,9 +31,7 @@
                             {% if info.CV %}
                                 <span>Check your application: <a href="{{ info.CV.url }}">here</a></span>
                             {% else %}
-
                                 <span>You haven't upload a CV</span>
-
                             {% endif %}
                         </li>
                     </ul>
@@ -59,17 +52,12 @@
                         <br>
                     </div>
                     <div class="text-center">
-
-
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
                             <b>Delete Profile</b>
                         </button>
                         {% include 'shared/modal/delete-modal-profile.html' %}
-
                     </div>
-
-
                 </div>
             </div>
             <div class="col-8">
@@ -81,7 +69,6 @@
                 <hr>
                 <div class="card-body">
                     {% if list_of_ads %}
-
                         <div class="accordion box" id="accordionExample">
                         {% for ad in list_of_ads %}
                             <div class="accordion-item box">
@@ -93,8 +80,6 @@
                                               style="color:orange"><b>{{ ad.internship_ads.company_owner.company_name|upper }}</b></span>&nbsp-&nbsp<b>{{ ad.internship_ads.title|upper }}</b>
                                     </button>
                                 </h2>
-
-
                                 <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse"
                                      aria-labelledby="heading{{ forloop.counter }}"
                                      data-bs-parent="#accordionExample">
@@ -112,8 +97,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         {% endfor %}
                     {% else %}
                         <h6><p class="text-center box">You are not applied yet or the ads are expired.</p></h6>
@@ -122,8 +105,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 {% endblock %}
 

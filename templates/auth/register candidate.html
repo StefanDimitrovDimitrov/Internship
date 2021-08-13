@@ -13,7 +13,6 @@
     </div>
     <div class="container">
         <div class="row">
-
             <div class="col-md-4 offset-md-4">
                 <form method="POST" action="{% url 'register candidate' %}" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -22,10 +21,6 @@
                     <p>or <a href="{% url 'login' %}">Login</a></p>
                 </form>
             </div>
-
         </div>
     </div>
-
-
-
 {% endblock %}

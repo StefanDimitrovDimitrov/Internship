@@ -22,11 +22,11 @@ class RegisterForm(BootstrapFormMixin, UserCreationForm, BotCatcherFormMixin):
 class LoginForm(forms.Form):
     email = forms.EmailField(
         max_length=30,
-        widget=forms.EmailInput(attrs={'class':'form-control'})
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
     )
     password = forms.CharField(
         max_length=15,
-        widget=forms.PasswordInput(attrs={'class':'form-control'}))
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     def clean_password(self):
         self.user = authenticate(

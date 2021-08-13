@@ -19,7 +19,6 @@ def user_created(sender, instance, created, **kwargs):
         profile.save()
 
 
-
 @receiver(pre_save, sender=CandidateProfile)
 def check_is_complete(sender, instance, update_fields=None, **kwargs):
     if instance.first_name and instance.last_name and instance.email and instance.profile_image and instance.CV:
@@ -28,10 +27,9 @@ def check_is_complete(sender, instance, update_fields=None, **kwargs):
         instance.is_complete = False
 
 
-
 @receiver(pre_save, sender=CompanyProfile)
 def check_is_complete(sender, instance, update_fields=None, **kwargs):
-    if instance.company_name and instance.email and instance.company_logo and instance.description and instance.company_phone\
+    if instance.company_name and instance.email and instance.company_logo and instance.description and instance.company_phone \
             and instance.company_address and instance.company_website:
         instance.is_complete = True
     else:

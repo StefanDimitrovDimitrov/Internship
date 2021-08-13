@@ -142,10 +142,4 @@ def apply(request, pk):
 
 
 def about(request):
-    records = AppliedTracking.objects.all()
-
-    for record in records:
-        ads_list = record.internship_ads.title
-        candidates = record.applied_candidates.email
-
     return render(request, 'internship/about.html')

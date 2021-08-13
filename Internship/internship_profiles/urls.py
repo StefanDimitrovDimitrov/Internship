@@ -9,11 +9,8 @@ urlpatterns = [
     path('editCompanyProfile/<int:pk>', edit_company_profile, name='edit company profile'),
     path('applied_candidates/<int:pk>', applied_candidates, name='applied candidates'),
 
-
     path('candidateProfile/<int:pk>', get_candidate_profile, name='candidate profile'),
     path('editCandidateProfile/<int:pk>', edit_candidate_profiles, name='edit candidate profile'),
 
-    path('deleteProfile/<int:pk>',delete_user, name='delete profile')
+    path('deleteProfile/<int:pk>', delete_user, name='delete profile')
 ]
-
-

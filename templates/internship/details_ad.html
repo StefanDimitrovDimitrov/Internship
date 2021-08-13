@@ -9,18 +9,12 @@
             <p class="lead text-center">Did you know how amazing is this opportunity?</p>
         </div>
     </div>
-
-
     <div class="container">
-
         <div class="row">
             <div class="col-4">
-
                 <div class="justify-content-md-center">
                     <div class="card-body">
                         <h1 class="text-center">{{ ad.title }}</h1>
-
-
                         <br>
                         <hr>
                         <br>
@@ -48,47 +42,32 @@
                         </ul>
                         <hr>
                         <br>
-
                         {% if user.id == ad.company_owner_id %}
-
-
                             <div class="row">
                                 <div class="col">
                                     <a class="btn btn-outline-warning btn-block btn-lg"
                                        href="{% url 'edit ad' ad.pk %}"><b>Edit</b></a>
                                 </div>
                                 <div class="col">
-
-
                                     <a type="button" class="btn btn-outline-danger btn-lg" data-bs-toggle="modal"
                                        data-bs-target="#exampleAd">
                                         <b>Delete Ad</b>
                                     </a>
-
                                     {% include 'shared/modal/delete-modal-ad.html' %}
-
-
                                 </div>
                             </div>
-
-
-
-
                         {% elif user.profile == 'Candidate' %}
                             <div class="text-center">
                                 <a class="btn btn-outline-success btn-lg"
                                    href="{% url 'apply' ad.pk %}"><b>Apply</b></a>
                             </div>
                         {% endif %}
-
                         {% if request.user.is_anonymous %}
                             <div class="text-center">
                                 <a class="btn btn-outline-success btn-lg"
                                    href="{% url 'register candidate' %}"><b>Apply</b></a>
                             </div>
                         {% endif %}
-
-
                     </div>
                 </div>
             </div>
@@ -97,7 +76,6 @@
                     <div class="card-body">
                         <br>
                         <br>
-
                         <h3 class="text-center">Description</h3>
                         <hr>
                         <p>{% autoescape off %}{{ ad.description|safe }}{% endautoescape %}</p>
@@ -112,6 +90,4 @@
             </div>
         </div>
     </div>
-
-
 {% endblock %}

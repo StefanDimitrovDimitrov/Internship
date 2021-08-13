@@ -9,10 +9,7 @@
             <p class="lead text-center">What is important for your future stars?</p>
         </div>
     </div>
-
     {% if company_profile.is_complete %}
-
-
         <h1 class="text-center">Ad</h1>
         <div class="col-md-4 offset-md-4">
             <form action="{% url 'create ad' %}" method="post" enctype="multipart/form-data">
@@ -20,13 +17,9 @@
                 {{ form.error }}
                 {{ form|crispy }}
                 <button class="btn btn-outline-success btn-lg"><b>Create</b></button>
-
             </form>
         </div>
-
     {% else %}
-
         <h1 class="text-center">Please complete your profile and create your Internship ad here.</h1>
-
     {% endif %}
 {% endblock %}

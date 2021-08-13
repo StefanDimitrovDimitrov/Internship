@@ -8,28 +8,19 @@
             <p class="lead text-center">Make your ad more attractive adding what is important for your candidates.</p>
         </div>
     </div>
-
     <h1 class="text-center">Edit</h1>
-
-
-
     <div class="col-md-4 offset-md-4">
         <form method="POST" action="{% url 'edit ad' ad.pk %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
-
-
             <div class="text-center">
                 {% if ad.is_active %}
-
                     This ad is open! -
-
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
                             data-bs-target="#Closed">
                         Deactivate
                     </button>
                     {% include 'shared/modal/deactivate-modal-ad.html' %}
-
                 {% else %}
                     This ad is closed! -
                     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
@@ -44,9 +35,5 @@
                 <button class="btn btn-outline-success btn-inline"><b>Save Changes</b></button>
             </div>
         </form>
-
-
     </div>
-
-
 {% endblock %}

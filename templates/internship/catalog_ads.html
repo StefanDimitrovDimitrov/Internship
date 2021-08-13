@@ -4,26 +4,21 @@
 {% block content %}
 
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4 text-center">Search and Filter Internships ads</h1>
-    <p class="lead text-center">If you look harder you will find what you want.</p>
-  </div>
-</div>
-
-
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4 text-center">Search and Filter Internships ads</h1>
+            <p class="lead text-center">If you look harder you will find what you want.</p>
+        </div>
+    </div>
     {% if ads %}
-
         {% sort_ads %}
-
-
     {% else %}
         <hr>
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container">
-                            <h1 class="display-4 text-center">No available openings at the moment.</h1>
-                        </div>
-                    </div>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center">No available openings at the moment.</h1>
+            </div>
+        </div>
         <hr>
-        {% endif %}
+    {% endif %}
 {% endblock %}

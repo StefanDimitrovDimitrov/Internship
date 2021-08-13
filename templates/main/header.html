@@ -14,7 +14,8 @@
 
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'home' %}"><b><img src="{%static "img/background-img/fav.png"%}"/><span>INternSHIP</span></b></a>
+                    <a class="nav-link" href="{% url 'home' %}"><b><img
+                            src="{% static "img/background-img/fav.png" %}"/><span>INternSHIP</span></b></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'catalog companies' %}"><b>Companies</b></a>
@@ -28,7 +29,6 @@
                     </li>
                 {% endif %}
             </ul>
-
             <ul class="navbar-nav ml-auth">
                 {% if user.is_authenticated %}
                     {% if not user.is_superuser %}
@@ -39,14 +39,11 @@
                             <a class="nav-link" href="{% url 'company profile' user.id %}"><b>My
                                 Profile {{ user.email }}</b></a>
                         </li>
-
                     {% else %}
-
                         <li class="nav-item active">
                             <a class="nav-link" href="{% url 'candidate profile' user.id %}"><b>My
                                 Profile {{ user.email }}</b></a>
                         </li>
-
                     {% endif %}
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'logout' %}"><b>Logout</b></a>
@@ -66,7 +63,6 @@
                     <a class="nav-link" href="{% url 'about' %}"><b>About us</b></a>
                 </li>
             </ul>
-
         </div>
     </nav>
 </header>

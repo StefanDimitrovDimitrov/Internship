@@ -5,10 +5,11 @@ from django.contrib import admin
 
 from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
+
 class InternShipAdmin(admin.ModelAdmin):
-    list_display=['title','city','field','employment_type',]
-    sorted_by=['is_active']
-    list_filter=['is_active']
+    list_display = ['title', 'city', 'field', 'employment_type', ]
+    sorted_by = ['is_active']
+    list_filter = ['is_active']
 
 
 admin.site.register(CandidateProfile)

@@ -116,12 +116,9 @@ def delete_user(request, pk):
 def applied_candidates(request, pk):
     ad = get_current_ad(pk)
     ad_apply_candidates = AppliedTracking.objects.filter(internship_ads=pk)
-
-    # list_of_applied_candidates = get_list_of_applied_candidates(pk)
     num_candidates = len(ad_apply_candidates)
     count = 0
     context = {
-        # 'candidates': list_of_applied_candidates,
         'count': count,
         'ad': ad,
         'records': ad_apply_candidates,

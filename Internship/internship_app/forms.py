@@ -25,7 +25,6 @@ class ApplyForm(BootstrapFormMixin, forms.ModelForm, BotCatcherFormMixin):
         fields = ('CV',)
 
 
-
 class SortForm(forms.Form):
     city = forms.CharField(
         widget=forms.Select(choices=CITY_CHOICES, attrs={'class': 'form-select border rounded-pill'}, ),
