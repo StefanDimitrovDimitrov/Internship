@@ -3,12 +3,12 @@
 
 TECHNOLOGIES:
 
-Django Framework
-PostgreSQL
-Pillow
-bootstrap5
-django-crispy-forms
-django-summernote
+- Django Framework
+- PostgreSQL
+- Pillow
+- Bootstrap5
+- Django-crispy-forms
+- Django-summernote
 
 
 
@@ -46,7 +46,9 @@ django-summernote
       - can create an ads.
       - all company ads are available in the Advertisements view as well as in the company profile
       - the owner of the ad can create, update, delete, format and deactivate/activate the ad.
+
       - also, the company has access to all candidates applied for certain position
+        ![img_5.png](img_5.png)
       - can to filter or search ads
       - can to search companies
     
@@ -56,10 +58,11 @@ django-summernote
     - the ads are visible for all type of users. Only register candidates are able to apply for them.
     - An ad can be active/open or inactive/closed. If the ad is open candidates can see it and applied for it if the ad is closed only company owner can see it.
       -The ad's company owner has FULL CRUD operations over the ad
+      ![img_7.png](img_7.png)
     - Internship_ad has relation one to many  to Company Profile
     - AppliedTracing has relation one to many  to Candidate profile ,  Internship_ad
     - AppliedTracing contains when the candidate is applied, and the path to his/her CВ as well as the both mentioned relations
-    
+    ![img_6.png](img_6.png)
 
 4. Admin panel
     -The ad has admin panel for easy customer management and administration
