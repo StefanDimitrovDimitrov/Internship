@@ -1,7 +1,19 @@
 # Internship
  * A platform for offering internship programs
 
+TECHNOLOGIES:
 
+Django Framework
+PostgreSQL
+Pillow
+bootstrap5
+django-crispy-forms
+django-summernote
+
+
+
+
+![img.png](img.png)
 0. The web app has 3 registered apps accessible in the admin panel. 
     - Internship ad
     - Internship auth
@@ -15,7 +27,7 @@
 2. Internship profile 
    - There are 3 types of profile: Candidate profile and Company Profile, Admin profile(superuser). Also, we have Anonymous users by default
    - Candidate Profile:
-     
+     ![img_1.png](img_1.png)
         - can update personal information such as first and last name CV and photo image. 
         - can access all registered companies and their ads.
         - can apply for a certain position
@@ -27,7 +39,7 @@
         - can search companies
      
    - Company Profile
-     
+     ![img_2.png](img_2.png)
       - can update company information: logo, web address, phone, etc
       - the company has to complete its profile to be able to create ads.
       - when the company completes the profile it is visible in the company catalog view.
@@ -39,7 +51,7 @@
       - can to search companies
     
 3. Internship ad
-
+![img_3.png](img_3.png)
     - Two models: Internship_ad and AppliedTracking
     - the ads are visible for all type of users. Only register candidates are able to apply for them.
     - An ad can be active/open or inactive/closed. If the ad is open candidates can see it and applied for it if the ad is closed only company owner can see it.
@@ -53,34 +65,13 @@
     -The ad has admin panel for easy customer management and administration
 
 Additional functionality
-
+![img_4.png](img_4.png)
 - admin panel
-- search 
+- search
 - filter
 - paginator
 - bot catcher mixin
 - debug toolbar
 - profile completion message
 - bootstrap class: form-control mixin
-
-Libraries:
-
-
-Recuirments:
-asgiref==3.4.1
-beautifulsoup4==4.9.3
-bootstrap4==0.1.0
-Django==3.2.5
-django-bootstrap-form==3.4
-django-bootstrap4==3.0.1
-django-crispy-forms==1.12.0
-django-debug-toolbar==3.2.1
-django-summernote==0.8.11.6
-Pillow==8.3.1
-psycopg2==2.9.1
-pytz==2021.1
-soupsieve==2.2.1
-sqlparse==0.4.1
-
-
 
