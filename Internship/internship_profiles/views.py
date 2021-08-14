@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.shortcuts import render, redirect
 
 from Internship.common.main import get_current_company, get_current_ad, get_list_of_applied_candidates
@@ -14,7 +14,12 @@ UserModel = get_user_model()
 
 
 def get_company_profile(request, pk):
-    company = get_current_company(pk)
+
+    try:
+        company = get_current_company(pk)
+    except ObjectDoesNotExist:
+        return redirect('home')
+
     company_ads_active = Internship_ad.objects.filter(company_owner=pk).filter(is_active=True)
     company_ads_closed = Internship_ad.objects.filter(company_owner=pk).filter(is_active=False)
 
@@ -75,7 +80,13 @@ def edit_company_profile(request, pk):
 
 @login_required
 def get_candidate_profile(request, pk):
-    candidate = CandidateProfile.objects.get(pk=pk)
+
+    try:
+        candidate = CandidateProfile.objects.get(pk=pk)
+    except ObjectDoesNotExist:
+        return redirect('home')
+
+
     records = AppliedTracking.objects.filter(internship_ads__is_active=True).filter(applied_candidates_id=pk).order_by(
         'applied_at')
 

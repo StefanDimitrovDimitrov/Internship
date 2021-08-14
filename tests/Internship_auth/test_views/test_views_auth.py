@@ -42,23 +42,6 @@ class TestAuth(TestCase):
             self.user_candidate2 = UserModel.objects.create_user(email='C1@gmail.com', password='Donatelo123!',
                                                                  profile='Candidate')
 
-    def test_change_candidate_credentials_email_POST_successfully(self):
-        response = self.client.post(self.register_candidate_url,
-                                    {'email': 'C1@gmail.com', 'password1': 'Donatelo123!', 'password2': 'Donatelo123!'})
-        get_candidate = CandidateProfile.objects.first()
-
-        self.assertEqual(get_candidate.email, 'C1@gmail.com')
-
-        test_change_candidate_credential_url = reverse('change candidate credentials',
-                                                            args=[get_candidate.user_id])
-
-        response = self.client.post(test_change_candidate_credential_url,
-                                    {'email': 'C2@gmail.com', 'password1': 'Donatelo123!', 'password2': 'Donatelo123!'})
-
-        all_candidates = CandidateProfile.objects.all()
-        get_candidate = CandidateProfile.objects.first()
-        self.assertEquals(len(all_candidates), 1)
-        self.assertEqual(get_candidate.email, 'C2@gmail.com')
 
     def test_change_candidate_credentials_password_POST_successfully(self):
         response = self.client.post(self.register_candidate_url,
@@ -71,7 +54,7 @@ class TestAuth(TestCase):
                                                             args=[get_candidate.user_id])
 
         response = self.client.post(test_change_candidate_credential_url,
-                                    {'email': 'C1@gmail.com', 'password1': 'Donatelo1234!', 'password2': 'Donatelo1234!'})
+                                    {'old_password': 'Donatelo123!', 'new_password1': 'Donatelo1234!', 'new_password2': 'Donatelo1234!'})
 
         get_user_candidate = UserModel.objects.get(id = get_candidate.user_id)
         pass2 = get_user_candidate.password
@@ -99,23 +82,6 @@ class TestAuth(TestCase):
             self.user_company = UserModel.objects.create_user(email='Company1@gmail.com', password='Donatelo123!',
                                                               profile='Company')
 
-    def test_change_company_credentials_Email_successfully_POST(self):
-        response = self.client.post(self.register_company_url,
-                                    {'email': 'Company1@gmail.com', 'password1': 'Donatelo123!', 'password2': 'Donatelo123!'})
-        get_company = CompanyProfile.objects.first()
-
-        self.assertEqual(get_company.email, 'Company1@gmail.com')
-
-        test_change_company_credential_url = reverse('change company credentials',
-                                                            args=[get_company.user_id])
-
-        response = self.client.post(test_change_company_credential_url,
-                                    {'email': 'Company2@gmail.com', 'password1': 'Donatelo123!', 'password2': 'Donatelo123!'})
-
-        all_companies = CompanyProfile.objects.all()
-        get_company = CompanyProfile.objects.first()
-        self.assertEquals(len( all_companies), 1)
-        self.assertEqual(get_company.email, 'Company2@gmail.com')
 
     def test_change_company_credentials_password_successfully_POST(self):
         response = self.client.post(self.register_company_url,
@@ -128,8 +94,7 @@ class TestAuth(TestCase):
                                                        args=[get_company.user_id])
 
         response = self.client.post(test_change_company_credential_url,
-                                    {'email': 'Company1@gmail.com', 'password1': 'Donatelo1234!',
-                                     'password2': 'Donatelo1234!'})
+                                    {'old_password': 'Donatelo123!', 'new_password1': 'Donatelo1234!', 'new_password2': 'Donatelo1234!'})
 
         get_user_company = UserModel.objects.get(id=get_company.user_id)
         pass2 = get_user_company.password

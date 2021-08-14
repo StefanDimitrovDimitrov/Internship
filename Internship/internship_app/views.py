@@ -1,6 +1,7 @@
 import os
 
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 
 # Create your test_views here.
@@ -49,7 +50,7 @@ def create_ad(request):
             ad = form.save(commit=False)
             ad.company_owner = current_company
             ad.save()
-            return redirect('catalog ads')
+            return redirect('details ad', ad.pk)
 
     context = {
         'form': form,
@@ -60,7 +61,12 @@ def create_ad(request):
 
 
 def details_ad(request, pk):
-    ad = get_current_ad(pk)
+
+    try:
+        ad = get_current_ad(pk)
+    except ObjectDoesNotExist:
+        return redirect('home')
+
     list_of_applied_candidates = get_list_of_applied_candidates(pk)
     num_candidates = len(list_of_applied_candidates)
     context = {
@@ -94,7 +100,7 @@ def edit_ad(request, pk):
 def delete_ad(request, pk):
     ad = get_current_ad(pk)
     ad.delete()
-    return redirect('catalog ads')
+    return redirect('company profile', request.user.pk)
 
 
 @login_required

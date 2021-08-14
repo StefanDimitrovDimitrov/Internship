@@ -25,7 +25,7 @@ def sort_ads(context):
              Q(duration__icontains=params['text']) |
              Q(employment_type__icontains=params['text'])
          )
-    ).order_by('created_at')
+    ).filter(is_active=True).order_by('created_at')
 
     return {
         'ads': ads,
