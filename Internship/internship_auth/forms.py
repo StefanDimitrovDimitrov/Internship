@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
@@ -18,6 +18,8 @@ class RegisterForm(BootstrapFormMixin, UserCreationForm, BotCatcherFormMixin):
         model = UserModel
         fields = ('email',)
 
+class ChangePassword(BootstrapFormMixin, PasswordChangeForm):
+    pass
 
 class LoginForm(forms.Form):
     email = forms.EmailField(

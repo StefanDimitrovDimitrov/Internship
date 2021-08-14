@@ -1,10 +1,11 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from Internship.internship_auth.forms import LoginForm, UserModel, \
-    RegisterForm
+    RegisterForm, ChangePassword
 
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
@@ -77,19 +78,16 @@ def logout_user(request):
 @login_required
 def change_candidate_credentials(request, pk):
     user = UserModel.objects.get(pk=pk)
-    candidate_profile = CandidateProfile.objects.get(user_id=pk)
+    form = ChangePassword(user=request.user)
     if request.method == "POST":
-        form = RegisterForm(request.POST, instance=user)
+        form = ChangePassword(data=request.POST, user=request.user)
         if form.is_valid():
-            temp_object = form.save(commit=False)
-            candidate_profile.email = temp_object.email
-            candidate_profile.save()
-            temp_object.save()
-            login(request, user)
+            form.save()
+            update_session_auth_hash(request, form.user)
             return redirect('candidate profile', pk=pk)
 
     context = {
-        'form': RegisterForm(instance=user),
+        'form': form,
         'user': user
     }
 
@@ -99,19 +97,16 @@ def change_candidate_credentials(request, pk):
 @login_required
 def change_company_credentials(request, pk):
     user = UserModel.objects.get(pk=pk)
-    company_profile = CompanyProfile.objects.get(pk=pk)
+    form = ChangePassword(user=request.user)
     if request.method == "POST":
-        form = RegisterForm(request.POST, instance=user)
+        form = ChangePassword(data=request.POST, user=request.user)
         if form.is_valid():
-            temp_object = form.save(commit=False)
-            company_profile.email = temp_object.email
-            company_profile.save()
-            temp_object.save()
-            login(request, user)
+            form.save()
+            update_session_auth_hash(request, form.user)
             return redirect('company profile', pk=pk)
 
     context = {
-        'form': RegisterForm(instance=user),
+        'form': form,
         'user': user
     }
 

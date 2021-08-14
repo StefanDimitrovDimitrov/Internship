@@ -71,7 +71,7 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'internship/create_ad.html')
 
-    def test_ad_create_POST(self):
+    def test_ad_create_POST_successfully(self):
         self.client.force_login(self.user_company)
         response = self.client.post(self.create_url,{
             'created_at': '2021-09-04 06:00:00.000000',

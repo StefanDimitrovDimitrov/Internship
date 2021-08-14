@@ -8,8 +8,8 @@ from Internship.internship_profiles.models import CompanyProfile, CandidateProfi
 class CandidateForm(BootstrapFormMixin, forms.ModelForm, BotCatcherFormMixin):
     class Meta:
         model = CandidateProfile
-        fields = ('profile_image', 'first_name', 'last_name', 'CV')
-        exclude = ('user', 'email', 'is_complete')
+        fields = ('profile_image','email', 'first_name', 'last_name', 'CV')
+        exclude = ('user', 'is_complete')
 
 
 class EditCandidateForm(CandidateForm):
@@ -20,11 +20,11 @@ class CompanyForm(BotCatcherFormMixin, BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = CompanyProfile
         fields = '__all__'
-        exclude = ('user', 'email', 'is_complete')
+        exclude = ('user', 'is_complete')
 
 
 class EditCompanyForm(CompanyForm):
     class Meta:
         model = CompanyProfile
-        fields = ('company_logo', 'company_name', 'company_website', 'company_address', 'company_phone', 'description')
-        exclude = ('user', 'email', 'is_complete',)
+        fields = ('company_logo', 'company_name','email', 'company_website', 'company_address', 'company_phone', 'description')
+        exclude = ('user', 'is_complete',)

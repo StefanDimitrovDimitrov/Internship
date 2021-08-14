@@ -59,6 +59,10 @@ def edit_company_profile(request, pk):
                             }
                             return render(request, 'profile/edit_company_profile.html', context)
 
+
+
+            request.user.email = current_company_info.email
+            request.user.save()
             current_company_info.save()
             return redirect('company profile', pk=pk)
     context = {
@@ -94,6 +98,9 @@ def edit_candidate_profiles(request, pk):
         profile_form = EditCandidateForm(request.POST, request.FILES, instance=candidate)
 
         if profile_form.is_valid():
+            temp_info = profile_form.save(commit=False)
+            request.user.email = temp_info.email
+            request.user.save()
             profile_form.save()
             return redirect('candidate profile', pk=pk)
 
