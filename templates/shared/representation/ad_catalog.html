@@ -1,7 +1,7 @@
 <div class="container">
 
     {% if ads %}
-        <h6 class="text-center">JOB ADVERTISEMENTS</h6>
+        <h6 class="text-center">JOB ADVERTISEMENTS - {{ count_ads }}</h6>
         <br>
         <div class="accordion" id="accordionExample">
         {% for ad in ads %}

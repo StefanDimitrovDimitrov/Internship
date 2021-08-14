@@ -25,10 +25,13 @@ def sort_ads(context):
              Q(duration__icontains=params['text']) |
              Q(employment_type__icontains=params['text'])
          )
-    ).filter(is_active=True).order_by('created_at')
+    ).filter(is_active=True).order_by('-created_at')
+
+    count_ads = ads.count()
 
     return {
         'ads': ads,
+        'count_ads': count_ads,
         'sort_form': SortForm(initial=params),
         'search_form': SearchForm(initial=params),
     }

@@ -133,7 +133,7 @@ def delete_user(request, pk):
 @login_required
 def applied_candidates(request, pk):
     ad = get_current_ad(pk)
-    ad_apply_candidates = AppliedTracking.objects.filter(internship_ads=pk)
+    ad_apply_candidates = AppliedTracking.objects.filter(internship_ads=pk).order_by('-applied_at')
     num_candidates = len(ad_apply_candidates)
     count = 0
     context = {
