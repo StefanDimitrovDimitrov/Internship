@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 
-# Create your views here.
+# Create your test_views here.
 from Internship.internship_auth.forms import LoginForm, UserModel, \
     RegisterForm, ChangePassword
 

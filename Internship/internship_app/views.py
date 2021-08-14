@@ -3,7 +3,7 @@ import os
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-# Create your views here.
+# Create your test_views here.
 from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
 
@@ -124,6 +124,7 @@ def apply(request, pk):
         if form.is_valid():
             applied_form = form.save(commit=False)
             if not applied_form.CV:
+                form.add_error('CV','You have to upload your CV!')
                 messages.info(request, 'You have to upload your CV!')
             else:
                 new_record = AppliedTracking()
