@@ -1,17 +1,6 @@
-from unittest import TestCase
-
-from django.core.exceptions import ValidationError
 from django.test import SimpleTestCase
 
 from Internship.internship_app.forms import AdForm, ApplyForm
-
-'''
-adFOrm
-ApplyForm
-SortForm
-SearchForm
-'''
-
 
 
 class TestForms(SimpleTestCase):
