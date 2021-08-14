@@ -78,8 +78,7 @@ class CompanyProfile(models.Model):
 
     company_phone = models.CharField(max_length=20,
                                      blank=True,
-                                     validators=[company_phone_validator_len, company_phone_validator_digits],
-                                     help_text='The number should contain 10 digits')
+                                     validators=[company_phone_validator_len, company_phone_validator_digits])
 
     is_complete = models.BooleanField(
         default=False

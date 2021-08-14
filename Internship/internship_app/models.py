@@ -37,5 +37,4 @@ class AppliedTracking(models.Model):
     CV = models.FileField(upload_to='intern_cv', blank=True)
 
     applied_candidates = models.ForeignKey(CandidateProfile, on_delete=models.CASCADE)
-
     internship_ads = models.ForeignKey(Internship_ad, on_delete=models.CASCADE)
