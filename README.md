@@ -36,7 +36,7 @@ TECHNOLOGIES:
 
    Candidate Profile:
 
-![img_1.png](img_1.png)
+![img_9.png](img_9.png)
 
         - can update personal information such as first and last name CV and photo image.
         - can access all registered companies and their ads.
@@ -50,7 +50,7 @@ TECHNOLOGIES:
 
    Company Profile
      
-![img_2.png](img_2.png)
+![img_10.png](img_10.png)
 
       - can update company information: logo, web address, phone, etc
       - the company has to complete its profile to be able to create ads.
