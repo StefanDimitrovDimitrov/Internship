@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-os1iwsj-zywg7d6n_anxygtpg=79uuzl2&sy6)8h#5y1cn)=d5
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['internship-2021.herokuapp.com']
+ALLOWED_HOSTS = ['internship-2021.herokuapp.com','127.0.0.1']
 
 INSTALLED_APPS = [
     'Internship',
