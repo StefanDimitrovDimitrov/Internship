@@ -1,3 +1,5 @@
+import django_heroku
+
 from os.path import join
 from pathlib import Path
 
@@ -127,3 +129,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SUMMERNOTE_THEME = 'bs4'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+django_heroku.settings(locals())
