@@ -114,7 +114,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = join(BASE_DIR, 'media/')
+MEDIA_ROOT = join(BASE_DIR, '../media/')
 LOGIN_URL = reverse_lazy('sign in')
 
 AUTH_USER_MODEL = 'internship_auth.InternshipUser'
