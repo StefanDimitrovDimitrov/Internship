@@ -4,7 +4,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 from Internship.internship_auth.models import InternshipUser
-from Internship.internship_profiles import CompanyProfile, CandidateProfile
+from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
 UserModel = get_user_model()
 

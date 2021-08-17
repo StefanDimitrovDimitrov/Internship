@@ -1,8 +1,8 @@
 from django.urls import reverse
 from django.test import TestCase, Client
 
-from Internship.internship_app import Internship_ad, AppliedTracking
-from Internship.internship_profiles import CompanyProfile, UserModel, CandidateProfile
+from Internship.internship_app.models import UserModel, Internship_ad, AppliedTracking
+from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
 
 class TestViews(TestCase):

@@ -4,8 +4,8 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from Internship.internship_app import Internship_ad
-from Internship.internship_profiles import CompanyProfile, CandidateProfile
+from Internship.internship_app.models import Internship_ad
+from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
 UserModel = get_user_model()
 
