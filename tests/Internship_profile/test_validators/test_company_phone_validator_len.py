@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from Internship.internship_profiles.validators import company_phone_validator_len
+from Internship.internship_profiles import company_phone_validator_len
 
 
 class ValidatePhoneNumLen(TestCase):

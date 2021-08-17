@@ -1,7 +1,7 @@
 from django.urls import reverse, resolve
 from django.test import SimpleTestCase
 
-from Internship.internship_profiles.views import get_company_profile, edit_company_profile, applied_candidates, \
+from Internship.internship_profiles import get_company_profile, edit_company_profile, applied_candidates, \
     get_candidate_profile, delete_user, edit_candidate_profiles
 
 

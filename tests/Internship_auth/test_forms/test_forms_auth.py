@@ -1,10 +1,7 @@
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
 from django.test import TestCase, Client
 
-from django.test import SimpleTestCase
-
-from Internship.internship_auth.forms import RegisterForm, ChangePassword, LoginForm
+from Internship.internship_auth.forms import RegisterForm, LoginForm
 
 
 UserModel = get_user_model()

@@ -1,7 +1,7 @@
 from django.urls import reverse,resolve
 from django.test import SimpleTestCase
 
-from Internship.internship_app.views import Home, about, CatalogCompanies, catalog_ad, create_ad, details_ad, edit_ad, \
+from Internship.internship_app import Home, about, CatalogCompanies, catalog_ad, create_ad, details_ad, edit_ad, \
     delete_ad, deactivate_ad, activate_ad, apply
 
 

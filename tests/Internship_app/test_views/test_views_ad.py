@@ -1,14 +1,8 @@
-from datetime import datetime
-
-from django.contrib.auth.models import User
-from django.http import request
-from django.urls import reverse, resolve
+from django.urls import reverse
 from django.test import TestCase, Client
 
-from Internship.internship_app.models import Internship_ad, AppliedTracking
-from Internship.internship_app.views import edit_ad
-from Internship.internship_auth.models import InternshipUser
-from Internship.internship_profiles.models import CompanyProfile, UserModel, CandidateProfile
+from Internship.internship_app import Internship_ad, AppliedTracking
+from Internship.internship_profiles import CompanyProfile, UserModel, CandidateProfile
 
 
 class TestViews(TestCase):
@@ -55,21 +49,21 @@ class TestViews(TestCase):
         response = self.client.get(self.company_catalog_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'internship/catalog_companies.html')
+        self.assertTemplateUsed(response, 'Internship/catalog_companies.html')
 
     def test_ad_details_GET(self):
         self.client.force_login(self.user_company)
         response = self.client.get(self.details_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'internship/details_ad.html')
+        self.assertTemplateUsed(response, 'Internship/details_ad.html')
 
     def test_ad_create_GET(self):
         self.client.force_login(self.user_company)
         response = self.client.get(self.create_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'internship/create_ad.html')
+        self.assertTemplateUsed(response, 'Internship/create_ad.html')
 
     def test_ad_create_POST_successfully(self):
         self.client.force_login(self.user_company)

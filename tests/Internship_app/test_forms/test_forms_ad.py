@@ -1,6 +1,6 @@
 from django.test import SimpleTestCase
 
-from Internship.internship_app.forms import AdForm, ApplyForm
+from Internship.internship_app import AdForm, ApplyForm
 
 
 class TestForms(SimpleTestCase):

@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from Internship.internship_profiles.forms import CandidateForm
+from Internship.internship_profiles import CandidateForm
 
 '''
 
