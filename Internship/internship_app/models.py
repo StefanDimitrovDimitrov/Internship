@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 
 from django_summernote.fields import SummernoteTextField
 
@@ -11,8 +11,8 @@ UserModel = get_user_model()
 
 
 class Internship_ad(models.Model):
-    created_at = models.DateTimeField(default=datetime.now(), editable=False)
-    modified_at = models.DateTimeField(default=datetime.now, editable=False)
+    created_at = models.DateTimeField(default=timezone.now(), editable=False)
+    modified_at = models.DateTimeField(default=timezone.now, editable=False)
 
     title = models.CharField(max_length=70)
     city = models.CharField(max_length=30, choices=CITY_CHOICES, default=TYPE_UNKNOWN)
@@ -30,7 +30,7 @@ class Internship_ad(models.Model):
 
 class AppliedTracking(models.Model):
     applied_at = models.DateTimeField(
-        default=datetime.now,
+        default=timezone.now,
         editable=False
     )
     CV = models.FileField(upload_to='intern_cv', blank=True)
