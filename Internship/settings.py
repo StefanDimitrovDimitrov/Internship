@@ -75,23 +75,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Internship.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'internship_db',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
+#         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': 'internship_db',
-#         'USER': 'postgres',
-#         'PASSWORD': '1234qwe',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd8op344tf5losh',
+        'USER': 'riaeaaeyjxnetl',
+        'PASSWORD': 'a5c9ae7d04da246f2eeaa6c8055402a1dc8337a43aa70e51a07b94185eb0b8c3',
+        'HOST': 'ec2-3-248-103-75.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
