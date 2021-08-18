@@ -1,68 +1,75 @@
 {% load static %}
 {% load profile_complete_notification %}
 
-
 <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" style="background-color: teal">
-        <a class="navbar-brand" href="{% url 'home' %}">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
-            <ul class="navbar-nav mr-auto ">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'home' %}"><b><img
-                            src="{% static "img/background-img/fav.png" %}"/><span>INternSHIP</span></b></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'catalog companies' %}"><b>Companies</b></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'catalog ads' %}"><b>Advertisements</b></a>
-                </li>
-                {% if user.is_authenticated and  user.profile == 'Company' %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'create ad' %}"><b>Create Ad</b></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}"><img
+                                src="{% static "img/background-img/fav.png" %}"/></a>
                     </li>
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav ml-auth">
-                {% if user.is_authenticated %}
-                    {% if not user.is_superuser %}
-                        {% profile_complete_notification %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}"><b>INternSHIP</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'catalog companies' %}"><b>Companies</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'catalog ads' %}"><b>Advertisements</b></a>
+                    </li>
+                    {% if user.is_authenticated and  user.profile == 'Company' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create ad' %}"><b>Create Ad</b></a>
+                        </li>
                     {% endif %}
-                    {% if user.profile == 'Company' %}
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'company profile' user.id %}"><b>My
-                                Profile {{ user.email }}</b></a>
+                </ul>
+
+
+                <ul class="navbar-nav ml-auth align-items-center">
+
+                    {% if user.is_authenticated %}
+                        {% if not user.is_superuser %}
+                            {% profile_complete_notification %}
+                        {% endif %}
+                        {% if user.profile == 'Company' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'company profile' user.id %}"><b>My
+                                    Profile {{ user.email }}</b></a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'candidate profile' user.id %}"><b>My
+                                    Profile {{ user.email }}</b></a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}"><b>Logout</b></a>
                         </li>
                     {% else %}
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{% url 'candidate profile' user.id %}"><b>My
-                                Profile {{ user.email }}</b></a>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}"><b>Login</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register candidate' %}"><b>Register Candidate</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register company' %}"><b>Register Company</b></a>
                         </li>
                     {% endif %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'logout' %}"><b>Logout</b></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}"><b>About us</b></a>
                     </li>
-                {% else %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'login' %}"><b>Login</b></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'register candidate' %}"><b>Register Candidate</b></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'register company' %}"><b>Register Company</b></a>
-                    </li>
-                {% endif %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'about' %}"><b>About us</b></a>
-                </li>
-            </ul>
+                </ul>
+
+            </div>
         </div>
     </nav>
 </header>

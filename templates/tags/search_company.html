@@ -41,14 +41,14 @@
                                  alt="Generic placeholder image"
                                  width="100" height="100" style="object-fit: contain">
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <h2>{{ company.company_name }}</h2>
                         </div>
                         <div class="col-md-3">
                             <a href="{{ company.company_website }}"
                                style="color: black">{{ company.company_website }}</a>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <a class="btn btn-lg btn-outline-success"
                                href="{% url 'company profile' company.user_id %}"
                                role="button">View more...</a>
