@@ -1,12 +1,8 @@
-<style>
-
-</style>
 {% extends 'shared/../main/base.html' %}
 {% load static %}
 
 
 {% block content %}
-
     <div class="h-100 p-5 border rounded-3 jumbotron">
         <div class="container text-center">
             <h2 class="display-4">Company Information</h2>
@@ -57,15 +53,17 @@
                                        href="{% url 'change company credentials' info.user_id %}"><b>Change
                                         Password</b></a>
                                 </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                        <b>Delete Profile</b>
+                                    </button>
+                                    {% include 'shared/modal/delete-modal-profile.html' %}
+                                </div>
                             </div>
+                            <hr>
                             <br>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                    <b>Delete Profile</b>
-                                </button>
-                                {% include 'shared/modal/delete-modal-profile.html' %}
-                            </div>
+
                         {% endif %}
                         <h2 class="text-center">What we do and who we are...</h2>
                         <br>
@@ -109,6 +107,7 @@
                                 {% endif %}
                                 {% for ad in company_ads_active %}
                                     {% include 'shared/representation/ad-view-active-closed.html' %}
+                                    <br>
                                 {% endfor %}
                             </div>
                         </div>
@@ -133,12 +132,9 @@
                                     <h5>You don't have closed Ads</h5>
                                 {% endif %}
 
-
-
                                 {% for ad in company_ads_closed %}
                                     {% include 'shared/representation/ad-view-active-closed.html' %}
                                 {% endfor %}
-
 
                             </div>
                         </div>
