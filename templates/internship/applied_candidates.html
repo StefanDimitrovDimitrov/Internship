@@ -37,10 +37,18 @@
                 {% for record in records %}
                     <tr class="box">
                         <th scope="row" class="align-middle">{{ forloop.counter }}</th>
-                        <td><img class="rounded-circle"
-                                 src="{{ record.applied_candidates.profile_image.url }}"
-                                 alt="Generic placeholder image"
-                                 width="100" height="100" style="object-fit: contain"></td>
+
+                        {% if record.applied_candidates.profile_image.url %}
+                            <td><img class="rounded-circle"
+                                     src="{{ record.applied_candidates.profile_image.url }}"
+                                     alt="Generic placeholder image"
+                                     width="100" height="100" style="object-fit: contain"></td>
+                        {% else %}
+                            <td><img class="rounded-circle"
+                                     src="{% static "img/InitialProfilePics/pic.png" %}"
+                                     alt="Generic placeholder image"
+                                     width="100" height="100" style="object-fit: contain"></td>
+                        {% endif %}
                         <td class="align-middle">{{ record.applied_candidates.email }}</td>
                         <td class="align-middle">{{ record.applied_at|date:"D d M Y" }}</td>
                         <td class="align-middle"><a class="btn btn-md btn-outline-success"
