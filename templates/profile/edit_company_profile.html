@@ -16,7 +16,17 @@
 
 
     <div class="card mx-auto" style="width: 25rem;">
-        <img class="card-img-top" src="{{ info.company_logo.url }}" alt="img">
+        {% if info.company_logo.url %}
+
+            <img class="rounded-circle" src="{{ info.company_logo.url }}"
+                 alt="Generic placeholder image"
+                 width="300" height="300" style="object-fit: scale-down">
+        {% else %}
+            <img class="rounded-circle" src="{% static 'InitialProfilePics/Logo.jpg' %}"
+                 alt="Generic placeholder image"
+                 width="300" height="300" style="object-fit: scale-down">
+
+        {% endif %}
         <div class="card-body">
             <form method="POST" action="{% url 'edit company profile' info.user_id %}" enctype="multipart/form-data">
                 {% csrf_token %}

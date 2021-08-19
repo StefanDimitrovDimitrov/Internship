@@ -14,11 +14,23 @@
             <div class="col-sm-6">
                 <div>
                     <div>
-                        <div class="text-center">
-                            <img class="rounded-circle" src="{{ info.company_logo.url }}"
-                                 alt="Generic placeholder image"
-                                 width="300" height="300" style="object-fit: scale-down">
-                        </div>
+
+                        {% if info.company_logo.url %}
+                            <div class="text-center">
+                                <img class="rounded-circle" src="{{ info.company_logo.url }}"
+                                     alt="Generic placeholder image"
+                                     width="300" height="300" style="object-fit: scale-down">
+                            </div>
+
+                        {% else %}
+
+                            <div class="text-center">
+                                <img class="rounded-circle" src="{% static 'InitialProfilePics/Logo.jpg' %}"
+                                     alt="Generic placeholder image"
+                                     width="300" height="300" style="object-fit: scale-down">
+                            </div>
+                        {% endif %}
+
                         <ul>
                             <li>
                                 <img src="https://img.icons8.com/color/48/000000/company.png"/><span>Company: <b>{{ info.company_name }}</b></span>
