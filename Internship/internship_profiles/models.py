@@ -23,11 +23,11 @@ class CandidateProfile(models.Model):
 
     profile_image = cloudinary_model.CloudinaryField(
         resource_type='image',
-        default='InitialProfilePics/pic.png',
+        blank=True,
     )
 
-    CV = cloudinary_model.CloudinaryField(
-        resource_type='file',
+    CV = models.FileField(
+        upload_to='intern_cv',
         blank=True,
     )
 
@@ -57,7 +57,7 @@ class CompanyProfile(models.Model):
 
     company_logo = cloudinary_model.CloudinaryField(
         resource_type='image',
-        default='InitialProfilePics/Logo.jpg',
+        blank=True,
     )
 
     description = models.TextField(
