@@ -27,7 +27,7 @@ class CandidateProfile(models.Model):
     )
 
     CV = cloudinary_model.CloudinaryField(
-        resource_type='image',
+        resource_type='auto',
         blank=True,
     )
 
