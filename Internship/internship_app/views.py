@@ -131,7 +131,7 @@ def apply(request, pk):
                 messages.info(request, 'You have to upload your CV!')
             else:
                 new_record = AppliedTracking()
-                # new_record.CV = applied_form.CV
+                new_record.CV = applied_form.CV
                 new_record.internship_ads = ad
                 new_record.applied_candidates = candidate
                 new_record.save()
