@@ -4,7 +4,7 @@ from django.db import models
 from Internship.internship_profiles.validators import company_phone_validator_len, company_phone_validator_digits
 
 UserModel = get_user_model()
-
+from cloudinary import models as cloudinary_model
 
 class CandidateProfile(models.Model):
     first_name = models.CharField(
@@ -21,8 +21,8 @@ class CandidateProfile(models.Model):
         unique=True,
     )
 
-    profile_image = models.ImageField(
-        upload_to='intern_profile',
+    profile_image = cloudinary_model.CloudinaryField(
+        resource_type='image',
         default='InitialProfilePics/pic.png',
     )
 
@@ -55,8 +55,8 @@ class CompanyProfile(models.Model):
         unique=True,
     )
 
-    company_logo = models.ImageField(
-        upload_to='company_logo',
+    company_logo = cloudinary_model.CloudinaryField(
+        resource_type='image',
         default='InitialProfilePics/Logo.jpg',
     )
 

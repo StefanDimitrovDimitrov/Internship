@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.urls import reverse_lazy
-
+import cloudinary
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -139,3 +139,11 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # django_heroku.settings(locals())
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+cloudinary.config(
+  cloud_name = "dhavld11j",
+  api_key = "137955467533472",
+  api_secret = "zmrAQXommqofywnVJENgkIk9sx8",
+  secure = True
+)
