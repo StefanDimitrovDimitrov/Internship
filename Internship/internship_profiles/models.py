@@ -26,8 +26,8 @@ class CandidateProfile(models.Model):
         blank=True,
     )
 
-    CV = models.FileField(
-        upload_to='intern_cv',
+    CV = cloudinary_model.CloudinaryField(
+        resource_type='image',
         blank=True,
     )
 

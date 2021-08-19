@@ -12,8 +12,10 @@ class CandidateForm(BootstrapFormMixin, forms.ModelForm, BotCatcherFormMixin):
 
 
 
-class EditCandidateForm(CandidateForm):
-    pass
+class EditCandidateForm(BootstrapFormMixin, forms.ModelForm, BotCatcherFormMixin):
+    class Meta:
+        model = CandidateProfile
+        fields = ('profile_image', 'email', 'first_name', 'last_name', 'CV')
 
 
 class CompanyForm(BotCatcherFormMixin, BootstrapFormMixin, forms.ModelForm):
