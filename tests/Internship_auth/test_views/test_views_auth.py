@@ -1,15 +1,10 @@
-import email.charset
-from datetime import datetime
-
-from django.contrib.auth import get_user_model, logout
+from django.contrib.auth import get_user_model
 from django.db.utils import IntegrityError
-from django.http import request
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from Internship.internship_app.models import Internship_ad
 from Internship.internship_auth.models import InternshipUser
-from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
+from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
 UserModel = get_user_model()
 

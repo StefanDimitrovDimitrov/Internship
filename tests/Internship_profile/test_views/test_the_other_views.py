@@ -1,10 +1,6 @@
-import contextvars
 from datetime import datetime
 
-from django.contrib.auth import get_user_model, logout
-from django.core.exceptions import ValidationError
-from django.db import IntegrityError
-from django.http import request
+from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
 

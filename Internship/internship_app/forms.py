@@ -1,12 +1,11 @@
 from django import forms
-from django_summernote.fields import SummernoteTextFormField
-from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from django_summernote.widgets import SummernoteWidget
 
 from Internship.choices.choices import CITY_CHOICES, FIELD_CHOICES, DURATION_CHOICES, EMPLOYMENT_TYPE
 from Internship.common.BootstrapFormMixin import BootstrapFormMixin
 from Internship.common.bot_catcher_mixin import BotCatcherFormMixin
-from Internship.internship_app.models import Internship_ad, AppliedTracking
-from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
+from Internship.internship_app.models import Internship_ad
+from Internship.internship_profiles.models import CandidateProfile
 
 
 class AdForm(BootstrapFormMixin, forms.ModelForm, BotCatcherFormMixin):

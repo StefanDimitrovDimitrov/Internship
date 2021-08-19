@@ -1,10 +1,5 @@
-from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import redirect
-
-
 from Internship.internship_app.models import Internship_ad, AppliedTracking
 from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
-import os
 
 
 def get_current_company_from_request(request):

@@ -1,7 +1,5 @@
 from django.template import Library
 
-from Internship.internship_app.forms import SortForm
-from Internship.internship_app.models import Internship_ad
 from Internship.internship_profiles.models import CandidateProfile, CompanyProfile
 
 register = Library()

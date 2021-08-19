@@ -1,15 +1,12 @@
-<style>
-
-</style>
 {% extends 'shared/../main/base.html' %}
 {% load static %}
 
 
 {% block content %}
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-4 text-center">Company Information</h1>
-            <p class="lead text-center">Employer branding is important but more important is who you really are.</p>
+    <div class="h-100 p-5 border rounded-3 jumbotron">
+        <div class="container text-center">
+            <h2 class="display-4">Company Information</h2>
+            <p>Employer branding is important but more important is who you really are.</p>
         </div>
     </div>
     <div class="container">
@@ -17,11 +14,23 @@
             <div class="col-sm-6">
                 <div>
                     <div>
-                        <div class="text-center">
-                            <img class="rounded-circle" src="{{ info.company_logo.url }}"
-                                 alt="Generic placeholder image"
-                                 width="300" height="300" style="object-fit: scale-down">
-                        </div>
+
+                        {% if info.company_logo.url %}
+                            <div class="text-center">
+                                <img class="rounded-circle" src="{{ info.company_logo.url }}"
+                                     alt="Generic placeholder image"
+                                     width="300" height="300" style="object-fit: scale-down">
+                            </div>
+
+                        {% else %}
+
+                            <div class="text-center">
+                                <img class="rounded-circle" src="{% static 'img/InitialProfilePics/Logo.jpg' %}"
+                                     alt="Generic placeholder image"
+                                     width="300" height="300" style="object-fit: scale-down">
+                            </div>
+                        {% endif %}
+
                         <ul>
                             <li>
                                 <img src="https://img.icons8.com/color/48/000000/company.png"/><span>Company: <b>{{ info.company_name }}</b></span>
@@ -56,15 +65,17 @@
                                        href="{% url 'change company credentials' info.user_id %}"><b>Change
                                         Password</b></a>
                                 </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                        <b>Delete Profile</b>
+                                    </button>
+                                    {% include 'shared/modal/delete-modal-profile.html' %}
+                                </div>
                             </div>
+                            <hr>
                             <br>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                    <b>Delete Profile</b>
-                                </button>
-                                {% include 'shared/modal/delete-modal-profile.html' %}
-                            </div>
+
                         {% endif %}
                         <h2 class="text-center">What we do and who we are...</h2>
                         <br>
@@ -108,6 +119,7 @@
                                 {% endif %}
                                 {% for ad in company_ads_active %}
                                     {% include 'shared/representation/ad-view-active-closed.html' %}
+                                    <br>
                                 {% endfor %}
                             </div>
                         </div>
@@ -132,12 +144,9 @@
                                     <h5>You don't have closed Ads</h5>
                                 {% endif %}
 
-
-
                                 {% for ad in company_ads_closed %}
                                     {% include 'shared/representation/ad-view-active-closed.html' %}
                                 {% endfor %}
-
 
                             </div>
                         </div>

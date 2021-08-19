@@ -1,9 +1,6 @@
-from django.contrib.postgres.search import SearchVector
 from django.template import Library
 
-from Internship.internship_app.forms import SortForm, SearchForm
-from Internship.internship_app.models import Internship_ad
-from itertools import chain
+from Internship.internship_app.forms import SearchForm
 
 from Internship.internship_profiles.models import CompanyProfile
 

@@ -1,20 +1,33 @@
 {% extends 'shared/../main/base.html' %}
+{% load static %}
 {% load crispy_forms_filters %}
 
 {% block content %}
 
     {% load bootstrap %}
     {% load crispy_forms_tags %}
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-4 text-center">Complete your profile</h1>
-            <p class="lead text-center">Completing your profile you provide more details about you to your future
+
+    <div class="h-100 p-5 border rounded-3 jumbotron">
+        <div class="container text-center">
+            <h2 class="display-4">Complete your profile</h2>
+            <p>Completing your profile you provide more details about you to your future
                 employees. After completing your profile you will be able to publish ads.</p>
         </div>
     </div>
 
+
     <div class="card mx-auto" style="width: 25rem;">
-        <img class="card-img-top" src="{{ info.company_logo.url }}" alt="img">
+        {% if info.company_logo.url %}
+
+            <img class="rounded-circle" src="{{ info.company_logo.url }}"
+                 alt="Generic placeholder image"
+                 width="300" height="300" style="object-fit: scale-down">
+        {% else %}
+            <img class="rounded-circle" src="{% static 'img/InitialProfilePics/Logo.jpg' %}"
+                 alt="Generic placeholder image"
+                 width="300" height="300" style="object-fit: scale-down">
+
+        {% endif %}
         <div class="card-body">
             <form method="POST" action="{% url 'edit company profile' info.user_id %}" enctype="multipart/form-data">
                 {% csrf_token %}

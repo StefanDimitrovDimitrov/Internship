@@ -1,11 +1,10 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 from django.db import models
 
 from Internship.internship_profiles.validators import company_phone_validator_len, company_phone_validator_digits
 
 UserModel = get_user_model()
+from cloudinary import models as cloudinary_model
 
 
 class CandidateProfile(models.Model):
@@ -23,13 +22,13 @@ class CandidateProfile(models.Model):
         unique=True,
     )
 
-    profile_image = models.ImageField(
-        upload_to='intern_profile',
-        default='InitialProfilePics/pic.png',
+    profile_image = cloudinary_model.CloudinaryField(
+        resource_type='image',
+        blank=True,
     )
 
-    CV = models.FileField(
-        upload_to='intern_cv',
+    CV = cloudinary_model.CloudinaryField(
+        resource_type='auto',
         blank=True,
     )
 
@@ -57,9 +56,9 @@ class CompanyProfile(models.Model):
         unique=True,
     )
 
-    company_logo = models.ImageField(
-        upload_to='company_logo',
-        default='InitialProfilePics/Logo.jpg',
+    company_logo = cloudinary_model.CloudinaryField(
+        resource_type='image',
+        blank=True,
     )
 
     description = models.TextField(

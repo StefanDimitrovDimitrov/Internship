@@ -1,13 +1,10 @@
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 
 # Create your test_views here.
 from Internship.internship_auth.forms import LoginForm, UserModel, \
     RegisterForm, ChangePassword
-
-from Internship.internship_profiles.models import CompanyProfile, CandidateProfile
 
 
 def register_candidate(request):

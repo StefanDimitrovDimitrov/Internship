@@ -3,12 +3,15 @@
 {% block content %}
     {% load static %}
     {% if user.id == ad.company_owner_id %}
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4 text-center">List of Candidates</h1>
-                <p class="lead text-center">Needle in a haystack</p>
+
+        <div class="h-100 p-5 border rounded-3 jumbotron">
+            <div class="container text-center">
+                <h2 class="display-4">List of Candidates</h2>
+                <p>Needle in a haystack.</p>
             </div>
         </div>
+
+
         <div class="container">
             <h1 class="text-center">{{ ad.title }}</h1>
             <div class="text-center">
@@ -34,10 +37,18 @@
                 {% for record in records %}
                     <tr class="box">
                         <th scope="row" class="align-middle">{{ forloop.counter }}</th>
-                        <td><img class="rounded-circle"
-                                 src="{{ record.applied_candidates.profile_image.url }}"
-                                 alt="Generic placeholder image"
-                                 width="100" height="100" style="object-fit: contain"></td>
+
+                        {% if record.applied_candidates.profile_image.url %}
+                            <td><img class="rounded-circle"
+                                     src="{{ record.applied_candidates.profile_image.url }}"
+                                     alt="Generic placeholder image"
+                                     width="100" height="100" style="object-fit: contain"></td>
+                        {% else %}
+                            <td><img class="rounded-circle"
+                                     src="{% static "img/InitialProfilePics/pic.png" %}"
+                                     alt="Generic placeholder image"
+                                     width="100" height="100" style="object-fit: contain"></td>
+                        {% endif %}
                         <td class="align-middle">{{ record.applied_candidates.email }}</td>
                         <td class="align-middle">{{ record.applied_at|date:"D d M Y" }}</td>
                         <td class="align-middle"><a class="btn btn-md btn-outline-success"
@@ -48,7 +59,7 @@
                 </tbody>
             </table>
         {% else %}
-            <p class="text-center">You don't have applied candidates yet</p>
+            <h5 class="text-center">You don't have applied candidates yet.</h5>
         {% endif %}
     </div>
     {% endif %}

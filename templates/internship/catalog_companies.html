@@ -3,23 +3,24 @@
 {% load static %}
 
 {% block content %}
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Company Catalog</h1>
-            <p class="lead text-center">This is the place where you can find your future employer</p>
+    <div class="h-100 p-5 border rounded-3 jumbotron">
+        <div class="container text-center">
+            <h2 class="display-4">Company Catalog</h2>
+            <p>This is the place where you can find your future employer.</p>
         </div>
     </div>
+
     {% if companies %}
         {% search_company %}
     {% else %}
         <hr>
-        <div class="jumbotron jumbotron-fluid">
+
             <div class="container">
                 <h1 class="display-4 text-center">It looks quite empty now but this will change!</h1>
                 <br>
                 <h2>Stay tuned..</h2>
             </div>
-        </div>
+
         <hr>
     {% endif %}
 {% endblock %}

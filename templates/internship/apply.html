@@ -2,12 +2,15 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Apply for this opportunity</h1>
-            <p class="lead text-center">You can apply using your current CV or uploading new one.</p>
+
+    <div class="h-100 p-5 border rounded-3 jumbotron">
+        <div class="container text-center">
+            <h2 class="display-4">Apply for this opportunity</h2>
+            <p>You can apply using your current CV or uploading new one.</p>
         </div>
     </div>
+
+
     <div class="card m-3 mx-auto" style=" width: 50rem;">
         <div class="card-body">
             <h5 class="card-title">Title: {{ ad.title }}</h5>

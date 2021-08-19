@@ -2,12 +2,14 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Edit Menu</h1>
-            <p class="lead text-center">Make your ad more attractive adding what is important for your candidates.</p>
+
+    <div class="h-100 p-5 border rounded-3 jumbotron">
+        <div class="container text-center">
+            <h2 class="display-4">Edit Menu</h2>
+            <p>Make your ad more attractive adding what is important for your candidates.</p>
         </div>
     </div>
+
     <h1 class="text-center">Edit</h1>
     <div class="col-md-4 offset-md-4">
         <form method="POST" action="{% url 'edit ad' ad.pk %}" enctype="multipart/form-data">

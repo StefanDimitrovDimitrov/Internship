@@ -1,22 +1,30 @@
 {% extends 'shared/../main/base.html' %}
+{% load static %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-4 text-center">Complete your profile</h1>
-            <p class="lead text-center">Completing your profile you will have the opportunity to apply with the uploaded
+    <div class="h-100 p-5 border rounded-3 jumbotron">
+        <div class="container text-center">
+            <h2 class="display-4">Complete your profile</h2>
+            <p>Completing your profile you will have the opportunity to apply with the uploaded
                 CV.</p>
         </div>
     </div>
 
 
     <div class="col-sm-4 offset-sm-4">
-        <div class="text-center">
-            <img class="rounded-circle" src="{{ info.profile_image.url }}" alt="Generic placeholder image"
-                 width="300" height="300" style="object-fit: scale-down">
-        </div>
+        {% if not info.profile_image.url %}
+            <div class="text-center">
+                <img class="rounded-circle" src="{% static "img/InitialProfilePics/pic.png" %}"
+                     alt="Generic placeholder image"
+                     width="300" height="300" style="object-fit: scale-down">
+            </div>
+        {% else %}
+            <div class="text-center">
+                <img class="rounded-circle" src="{{ info.profile_image.url }}" alt="Generic placeholder image"
+                     width="300" height="300" style="object-fit: scale-down">
+            </div>
+        {% endif %}
         <form method="POST" action="{% url 'edit candidate profile' info.user_id %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ profile_form|crispy }}

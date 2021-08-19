@@ -1,14 +1,10 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 from Internship.common.BootstrapFormMixin import BootstrapFormMixin
 from Internship.common.bot_catcher_mixin import BotCatcherFormMixin
-from Internship.internship_auth.models import InternshipUser
-from Internship.internship_profiles.forms import CompanyForm, CandidateForm
-from Internship.internship_profiles.models import CompanyProfile
 
 UserModel = get_user_model()
 

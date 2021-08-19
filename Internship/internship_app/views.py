@@ -1,14 +1,11 @@
-import os
-
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 
 # Create your test_views here.
 from django.views.generic import ListView
-from django.views.generic.detail import SingleObjectMixin
 
-from Internship.common.main import get_current_company, get_current_ad, get_list_of_applied_candidates, \
+from Internship.common.main import get_current_ad, get_list_of_applied_candidates, \
     get_current_company_from_request
 
 from Internship.internship_app.forms import AdForm, ApplyForm
