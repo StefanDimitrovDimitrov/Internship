@@ -6,6 +6,7 @@ from Internship.internship_profiles.validators import company_phone_validator_le
 UserModel = get_user_model()
 from cloudinary import models as cloudinary_model
 
+
 class CandidateProfile(models.Model):
     first_name = models.CharField(
         max_length=20,

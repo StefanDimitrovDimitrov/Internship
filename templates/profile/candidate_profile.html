@@ -15,10 +15,17 @@
         <div class="row">
             <div class="col-sm-5">
                 <div>
+                {% if not info.profile_image.url  %}
+                 <div class="text-center">
+                        <img class="rounded-circle" src="{% static "img/InitialProfilePics/pic.png" %}" alt="Generic placeholder image"
+                             width="300" height="300" style="object-fit: scale-down">
+                    </div>
+                {% else %}
                     <div class="text-center">
                         <img class="rounded-circle" src="{{ info.profile_image.url }}" alt="Generic placeholder image"
                              width="300" height="300" style="object-fit: scale-down">
                     </div>
+                {% endif %}
                     <ul>
                         <li>
                             <img src="https://img.icons8.com/plasticine/50/000000/worker-id-card.png"/><span>Name: <b>{{ info.first_name }} {{ info.last_name }}</b></span>
