@@ -25,11 +25,11 @@
 
 
     <br>
-    <h6 class="text-center">COMPANIES -  {{ count_result }}</h6>
+    <h6 class="text-center">COMPANIES - {{ count_result }}</h6>
     <hr>
     <br>
     {% for company in companies %}
-  {% include 'shared/representation/pagination.html' %}
+        {% include 'shared/representation/pagination.html' %}
         <div class="container col-md-6 offset-md-3">
             <div class="row">
                 <div class="row d-flex align-items-center">
@@ -60,17 +60,15 @@
     {% endfor %}
 {% else %}
     <hr>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4 text-center">Looks like we don't have any matches for "{{ params }}"</h1>
-            <div class="d-flex justify-content-center align-items-center">
-                <img src="{% static 'img/company.png' %}" width="30" height="30"
-                     alt="brand img"><span><a class="btn btn-outline-info" href="{% url 'catalog companies' %}"><b>Back</b></a></span>
 
-            </div>
-
+    <div class="container">
+        <h1 class="display-4 text-center">Looks like we don't have any matches for "{{ params }}"</h1>
+        <div class="d-flex justify-content-center align-items-center">
+            <img src="{% static 'img/company.png' %}" width="30" height="30"
+                 alt="brand img"><span><a class="btn btn-outline-info" href="{% url 'catalog companies' %}"><b>Back</b></a></span>
         </div>
     </div>
+
     <hr>
 {% endif %}
 
