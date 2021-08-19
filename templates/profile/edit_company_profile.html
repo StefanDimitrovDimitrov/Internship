@@ -1,4 +1,5 @@
 {% extends 'shared/../main/base.html' %}
+{% load static %}
 {% load crispy_forms_filters %}
 
 {% block content %}
@@ -22,7 +23,7 @@
                  alt="Generic placeholder image"
                  width="300" height="300" style="object-fit: scale-down">
         {% else %}
-            <img class="rounded-circle" src="{% static 'InitialProfilePics/Logo.jpg' %}"
+            <img class="rounded-circle" src="{% static 'img/InitialProfilePics/Logo.jpg' %}"
                  alt="Generic placeholder image"
                  width="300" height="300" style="object-fit: scale-down">
 
