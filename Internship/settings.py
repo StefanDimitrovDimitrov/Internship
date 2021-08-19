@@ -1,5 +1,3 @@
-
-
 from os.path import join
 # import django_heroku
 from pathlib import Path
@@ -7,6 +5,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.urls import reverse_lazy
 import cloudinary
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -16,7 +15,7 @@ SECRET_KEY = 'django-insecure-os1iwsj-zywg7d6n_anxygtpg=79uuzl2&sy6)8h#5y1cn)=d5
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['internship-2021.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['internship-2021.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'Internship',
@@ -86,10 +85,10 @@ WSGI_APPLICATION = 'Internship.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd8op344tf5losh',
-        'USER': 'riaeaaeyjxnetl',
-        'PASSWORD': 'a5c9ae7d04da246f2eeaa6c8055402a1dc8337a43aa70e51a07b94185eb0b8c3',
-        'HOST': 'ec2-3-248-103-75.eu-west-1.compute.amazonaws.com',
+        'NAME': 'd4c6e25piing9j',
+        'USER': 'vljfgzrddxlaej',
+        'PASSWORD': '80dd46182054771d2f4cf2a190ffbb27cafd94ed95361f80f3cd79e7ef3d4550',
+        'HOST': 'ec2-54-76-249-45.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -109,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -124,7 +122,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (join(BASE_DIR, 'static'),)
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
@@ -141,10 +138,9 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 # django_heroku.settings(locals())
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
 cloudinary.config(
-  cloud_name = "dhavld11j",
-  api_key = "137955467533472",
-  api_secret = "zmrAQXommqofywnVJENgkIk9sx8",
-  secure = True
+    cloud_name="dhavld11j",
+    api_key="137955467533472",
+    api_secret="zmrAQXommqofywnVJENgkIk9sx8",
+    secure=True
 )
