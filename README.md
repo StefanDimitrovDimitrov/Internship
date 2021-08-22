@@ -60,7 +60,7 @@ TECHNOLOGIES:
       - the owner of the ad can create, update, delete, format and deactivate/activate the ad.
 
       - also, the company has access to all candidates applied for certain position
-        ![img_5.png](img_5.png)
+![img_5.png](img_5.png)
       - can to filter or search ads
       - can to search companies
 
