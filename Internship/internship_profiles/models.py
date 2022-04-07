@@ -27,10 +27,11 @@ class CandidateProfile(models.Model):
         blank=True,
     )
 
-    CV = cloudinary_model.CloudinaryField(
-        resource_type='auto',
-        blank=True,
-    )
+    CV = models.FileField(upload_to='intern_cv', blank=True)
+    # CV = cloudinary_model.CloudinaryField(
+    #     resource_type='auto',
+    #     blank=True,
+    # )
 
     is_complete = models.BooleanField(
         default=False
