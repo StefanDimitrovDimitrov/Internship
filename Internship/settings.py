@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'Internship.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd4c6e25piing9j',
-        'USER': 'vljfgzrddxlaej',
-        'PASSWORD': '80dd46182054771d2f4cf2a190ffbb27cafd94ed95361f80f3cd79e7ef3d4550',
-        'HOST': 'ec2-54-76-249-45.eu-west-1.compute.amazonaws.com',
+        'NAME': 'de5e1p9uhl44lr',
+        'USER': 'jfagwbvtgztqhj',
+        'PASSWORD': '55d3f33df72864645f86bab40df03c55e37b6402393c18ba57e965bfcd8138ce',
+        'HOST': 'ec2-52-30-133-191.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
